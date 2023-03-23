@@ -1,0 +1,17 @@
+{
+  "name": "Population",
+  "version": "1.0.0",
+  "title": "Population",
+  "author": "James Fire",
+  "homepage": "",
+  "description": "Adds population",
+  "factorio_version": "1.1",
+  "dependencies": [
+	"base >= 0.18.0",
+	"? Fire-Electronics",
+	"? bobplates",
+	"LSlib",
+	"stdlib"
+  ]
+}
+
