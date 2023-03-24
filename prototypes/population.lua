@@ -45,7 +45,7 @@ data:extend({
 			{ "tired-person",2 },
 			{ "person",4 },
 			{ "garbage",10 },
-			--{ "copper-plate",10 },
+			{ "copper-plate",10 },
 			{type = "fluid", name = "sewage", amount = 3*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -70,7 +70,7 @@ data:extend({
 			{ "tired-person",8 },
 			{ "person",16 },
 			{ "garbage",40 },
-			--{ "copper-plate",40 },
+			{ "copper-plate",40 },
 			{type = "fluid", name = "sewage", amount = 24*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -95,7 +95,7 @@ data:extend({
 			{ "tired-person",8 },
 			{ "person",16 },
 			{ "garbage",40 },
-			--{ "copper-plate",40 },
+			{ "copper-plate",40 },
 			{type = "fluid", name = "sewage", amount = 24*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -120,7 +120,7 @@ data:extend({
 			{ "tired-person",20 },
 			{ "person",40 },
 			{ "garbage",100 },
-			--{ "copper-plate",100 },
+			{ "copper-plate",100 },
 			{type = "fluid", name = "sewage", amount = 60*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -145,7 +145,7 @@ data:extend({
 			{ "tired-person",20 },
 			{ "person",40 },
 			{ "garbage",100 },
-			--{ "copper-plate",100 },
+			{ "copper-plate",100 },
 			{type = "fluid", name = "sewage", amount = 60*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -170,7 +170,7 @@ data:extend({
 			{ "tired-person",2 },
 			{ "child-person",1 },
 			{ "garbage",2 },
-			--{ "copper-plate",2 },
+			{ "copper-plate",2 },
 			{type = "fluid", name = "sewage", amount = 3*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -194,7 +194,7 @@ data:extend({
 			{ "tired-person",8 },
 			{ "child-person",4 },
 			{ "garbage",8 },
-			--{ "copper-plate",8 },
+			{ "copper-plate",8 },
 			{type = "fluid", name = "sewage", amount = 12*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -218,7 +218,7 @@ data:extend({
 			{ "tired-person",8 },
 			{ "child-person",4 },
 			{ "garbage",8 },
-			--{ "copper-plate",8 },
+			{ "copper-plate",8 },
 			{type = "fluid", name = "sewage", amount = 12*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -242,7 +242,7 @@ data:extend({
 			{ "tired-person",20 },
 			{ "child-person",10 },
 			{ "garbage",20 },
-			--{ "copper-plate",20 },
+			{ "copper-plate",20 },
 			{type = "fluid", name = "sewage", amount = 30*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -266,7 +266,7 @@ data:extend({
 			{ "tired-person",20 },
 			{ "child-person",10 },
 			{ "garbage",20 },
-			--{ "copper-plate",20 },
+			{ "copper-plate",20 },
 			{type = "fluid", name = "sewage", amount = 30*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -290,7 +290,7 @@ data:extend({
 		results = {
 			{ "person",2 },
 			{ "garbage",2 },
-			--{ "copper-plate",2 },
+			{ "copper-plate",2 },
 			{type = "fluid", name = "sewage", amount = 2*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -313,7 +313,7 @@ data:extend({
 		results = {
 			{ "person",8 },
 			{ "garbage",8 },
-			--{ "copper-plate",8 },
+			{ "copper-plate",8 },
 			{type = "fluid", name = "sewage", amount = 8*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -336,7 +336,7 @@ data:extend({
 		results = {
 			{ "person",8 },
 			{ "garbage",8 },
-			--{ "copper-plate",8 },
+			{ "copper-plate",8 },
 			{type = "fluid", name = "sewage", amount = 8*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -359,7 +359,7 @@ data:extend({
 		results = {
 			{ "person",20 },
 			{ "garbage",20 },
-			--{ "copper-plate",20 },
+			{ "copper-plate",20 },
 			{type = "fluid", name = "sewage", amount = 20*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -382,7 +382,7 @@ data:extend({
 		results = {
 			{ "person",20 },
 			{ "garbage",20 },
-			--{ "copper-plate",20 },
+			{ "copper-plate",20 },
 			{type = "fluid", name = "sewage", amount = 20*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -496,6 +496,8 @@ for _, count in pairs(PopRestRecipes) do
 	LSlib.recipe.editEnergyRequired("4-plastic-"..count, 0.90)
 	LSlib.recipe.editEnergyRequired("5-plastic-"..count, 0.85)
 	
+	log("Before editing results and ingredients"..serpent.block(data.raw.recipe["2-copper-"..count]))
+	
 	LSlib.recipe.editResult("2-plastic-"..count, "copper-plate", "plastic-recycling", 1 )
 	LSlib.recipe.editResult("3-plastic-"..count, "copper-plate", "plastic-recycling", 1 )
 	LSlib.recipe.editResult("4-plastic-"..count, "copper-plate", "plastic-recycling", 1 )
@@ -505,6 +507,8 @@ for _, count in pairs(PopRestRecipes) do
 	LSlib.recipe.editIngredient("3-plastic-"..count, "copper-plate", "plastic-food-3", 1 )
 	LSlib.recipe.editIngredient("4-plastic-"..count, "copper-plate", "plastic-food-4", 1 )
 	LSlib.recipe.editIngredient("5-plastic-"..count, "copper-plate", "plastic-food-5", 1 )
+	
+	log("After editing results and ingredients"..serpent.block(data.raw.recipe["2-copper-"..count]))
 	
 	if count == "rest-person-1" then
 		LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)

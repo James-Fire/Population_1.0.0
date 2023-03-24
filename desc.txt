@@ -21,13 +21,11 @@ but do so slightly slower.
 TODO
 Plant Oil needs a use
 Should probably be able to turn any farming products into organic material or fertilizer
+Need a way to farm fish
 Alternate construction recipes?
-Farms and housing need to account for pollution
 Farms and housing need to be updated every so often
 Entertainment somehow?
 Vertical Farming? Hydroponics?
-Need a source of fertilizer that isn't based on farms. Sulfur + Stone?
-Switch housing negatives to being compared to positives
 Localisation, if gameplay turns out good.
 Art, if gameplay good.
 

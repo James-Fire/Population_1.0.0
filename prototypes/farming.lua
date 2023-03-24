@@ -112,6 +112,7 @@ data:extend({
 		flow_color = {r=0.1, g=0.1, b=0.1},
 		icon = "__base__/graphics/icons/steam-turbine.png",
 		icon_size = 64,
+		fuel_value = "1.2MJ",
 		order = "x[fluid]-a[water]",
 		pressure_to_speed_ratio = 0.4,
 		flow_to_energy_ratio = 0.59,
@@ -379,10 +380,20 @@ for i, Farm in pairs(Farms) do
 	LSlib.recipe.setCraftingCategory(Farm.."-farm", Farm.."-farming")
 	LSlib.recipe.addResult(Farm.."-farm", Farm, FarmProduce[i] )
 	LSlib.recipe.setEnergyRequired(Farm.."-farm", FarmTime[i])
+	if FarmRequiresWater[i] == true then
+		LSlib.recipe.addIngredient(Farm.."-farm", "water", FarmProduce[i], "fluid")
+	end
+	if Farm == "meat" then
+		LSlib.recipe.addIngredient(Farm.."-farm", "animal-feed", FarmProduce[i], "item")
+	else
+		LSlib.recipe.duplicate(Farm.."-farm", "fertilizer-"..Farm.."-farm")
+		LSlib.recipe.addIngredient("fertilizer-"..Farm.."-farm", "fertilizer", LSlib.recipe.getResultCount("fertilizer-"..Farm.."-farm", Farm), "item")
+		LSlib.recipe.editEnergyRequired("fertilizer-"..Farm.."-farm", 0.60)
+	end
 	
-	LSlib.recipe.duplicate(Farm.."-farm", "fertilizer"..Farm.."-farm")
-	LSlib.recipe.addIngredient("fertilizer"..Farm.."-farm", "fertilizer", LSlib.recipe.getResultCount("fertilizer"..Farm.."-farm", Farm), "item")
-	LSlib.recipe.editEnergyRequired("fertilizer"..Farm.."-farm", 0.60)
+	LSlib.recipe.duplicate("composting", Farm.."-composting")
+	LSlib.recipe.editIngredient(Farm.."-composting", "organic-material", Farm, 1 )
+	LSlib.recipe.editResult(Farm.."-composting", "fertilizer", "organic-material", 1 )
 	
 	local farmcopy = table.deepcopy(data.raw.furnace["farm"])
 	farmcopy.name = Farm.."-farm"

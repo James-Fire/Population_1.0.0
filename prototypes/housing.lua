@@ -311,7 +311,7 @@ data:extend({
 				base_area = 1,
 				base_level = -1,
 				pipe_connections = {
-				  { position = {0, -(MathData.HousingSize[1]/2)} }
+				  { position = {0, -(MathData.HousingSize[1]/2)-0.5} }
 				}
 			},
 			{
@@ -325,7 +325,7 @@ data:extend({
 				base_level = 1,
 				pipe_connections =
 				{ 
-				  { position = {0, (MathData.HousingSize[1]/2)} }
+				  { position = {0, (MathData.HousingSize[1]/2)+0.5} }
 				}
 			}
 		},
@@ -353,7 +353,7 @@ for _, count in pairs({2,3,4,5}) do
 			base_area = 1,
 			base_level = -1,
 			pipe_connections = {
-				{ position = {0, -(MathData.HousingSize[count]/2)} }
+				{ position = {0, -(MathData.HousingSize[count]/2)-0.5} }
 			}
 		},
 		{
@@ -367,7 +367,7 @@ for _, count in pairs({2,3,4,5}) do
 			base_level = 1,
 			pipe_connections =
 			{ 
-				{ position = {0, (MathData.HousingSize[count]/2)} }
+				{ position = {0, (MathData.HousingSize[count]/2)+0.5} }
 			}
 		}
 	}

@@ -173,6 +173,82 @@ data:extend({
 		subgroup = "Recycling",
 		order = "c",
 	},
+	{
+		type = "recipe",
+		name = "stone-fertilizer",
+		category = "Recycling",
+		enabled = true,
+		energy = 20,
+		ingredients = {
+			{ "stone",5 },
+			{type = "fluid", name = "water", amount = 5 },
+		},
+		results = {
+			{ "fertilizer",10 },
+		},
+		--icon = "__Population__/graphics/crude-oil.png",
+		--icon_size = 32,
+		subgroup = "Recycling",
+		order = "c",
+	},
+	{
+		type = "recipe",
+		name = "stone-sulfur-fertilizer",
+		category = "Recycling",
+		enabled = false,
+		energy = 20,
+		ingredients = {
+			{ "stone",5 },
+			{ "sulfur",5 },
+			{type = "fluid", name = "water", amount = 5 },
+		},
+		results = {
+			{ "fertilizer",14 },
+		},
+		--icon = "__Population__/graphics/crude-oil.png",
+		--icon_size = 32,
+		subgroup = "Recycling",
+		order = "c",
+	},
+	{
+		type = "recipe",
+		name = "stone-organic-fertilizer",
+		category = "Recycling",
+		enabled = true,
+		energy = 20,
+		ingredients = {
+			{ "stone",5 },
+			{ "organic-material",5 },
+			{type = "fluid", name = "water", amount = 5 },
+		},
+		results = {
+			{ "fertilizer",14 },
+		},
+		--icon = "__Population__/graphics/crude-oil.png",
+		--icon_size = 32,
+		subgroup = "Recycling",
+		order = "c",
+	},
+	{
+		type = "recipe",
+		name = "fertilizer",
+		category = "Recycling",
+		enabled = false,
+		energy = 20,
+		ingredients = {
+			{ "stone",5 },
+			{ "sulfur",5 },
+			{ "organic-material",5 },
+			{type = "fluid", name = "water", amount = 5 },
+		},
+		results = {
+			{ "fertilizer",20 },
+		},
+		--icon = "__Population__/graphics/crude-oil.png",
+		--icon_size = 32,
+		subgroup = "Recycling",
+		order = "c",
+	},
 })
 
 local sewage_plant = table.deepcopy(data.raw["assembling-machine"]["chemical-plant"])
@@ -192,3 +268,5 @@ LSlib.technology.addRecipeUnlock("plastics", "plastic-recycling")
 LSlib.technology.addRecipeUnlock("advanced-material-processing", "copper-recycling")
 LSlib.technology.addRecipeUnlock("advanced-material-processing", "paper-recycling")
 LSlib.technology.addRecipeUnlock("advanced-material-processing", "sewage-treatment-plant")
+LSlib.technology.addRecipeUnlock("sulfur-processing", "stone-sulfur-fertilizer")
+LSlib.technology.addRecipeUnlock("sulfur-processing", "fertilizer")
