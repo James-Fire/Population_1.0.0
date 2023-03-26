@@ -33,17 +33,17 @@ function round(num, numDecimalPlaces)
   return math.floor(num * mult + 0.5) / mult
 end
 
---(event.tick % global.intervalBetweenNodeUpdates == 0) --Divides the current tick count of the game, and checks if the remainder is zero
+--iscrafting() Table entry on an entity that tracks whether it is crafting
 
 
 
 
 script.on_nth_tick(PeriodicUpdateInterval, function(event)
-	game.print("Update farms and houses")
+	--game.print("Update farms and houses")
 	global.counter = 0
 	global.UpdateList = { }
 	global.UpdateInterval = PeriodicUpdateInterval/((table_size(global.HousingList)+table_size(global.FarmList))+1)
-	game.print("Update Interval: "..tostring(global.UpdateInterval))
+	--game.print("Update Interval: "..tostring(global.UpdateInterval))
 	for i, House in pairs(global.HousingList) do
 		if House.valid then
 			table.insert(global.UpdateList, House)
@@ -58,19 +58,19 @@ script.on_nth_tick(PeriodicUpdateInterval, function(event)
 			table.remove(global.FarmList, i)
 		end
 	end
-	game.print(serpent.block(global.UpdateList))
+	--game.print(serpent.block(global.UpdateList))
 end)
 
 local function doSomething()
 	global.counter = global.counter + 1
-	game.print("Global Counter: "..tostring(global.counter))
+	--game.print("Global Counter: "..tostring(global.counter))
 	if global.UpdateList[global.counter] == nil then
 	else
-		game.print(serpent.block(global.UpdateList[global.counter]))
-		if stdlib.contains(global.UpdateList[global.counter].name, "-farm") then
+		--game.print(serpent.block(global.UpdateList[global.counter]))
+		if stdlib.contains(global.UpdateList[global.counter].name, "-farm") or global.UpdateList[global.counter].name == "fishery" then
 			ManageFarmingBeacon(global.UpdateList[global.counter], global.UpdateList[global.counter].surface, global.UpdateList[global.counter].force, 3)
 		elseif stdlib.contains(global.UpdateList[global.counter].name, "-house") or stdlib.contains(global.UpdateList[global.counter].name, "-tower") or stdlib.contains(global.UpdateList[global.counter].name, "-rise") then
-			ManageHousingBeacon(global.UpdateList[global.counter].surface, global.UpdateList[global.counter].position, global.UpdateList[global.counter].force, 3)
+			ManageHousingBeacon(global.UpdateList[global.counter], global.UpdateList[global.counter].surface, global.UpdateList[global.counter].force, MathData.HousingSize[3])
 		end
 	end
 end
@@ -144,28 +144,33 @@ function on_new_entity(event)
 		if not CheckTableValue(new_entity,global.FarmList) then
 			table.insert(global.FarmList, new_entity)
 		end
+	elseif new_entity.name == "fishery" then
+		ManageFarmingBeacon(new_entity, surface, force, 3)
+		if not CheckTableValue(new_entity,global.FarmList) then
+			table.insert(global.FarmList, new_entity)
+		end
 	elseif new_entity.name == "sf-house" then
-		ManageHousingBeacon(surface, position, force, MathData.HousingSize[3])
+		ManageHousingBeacon(new_entity, surface, force, MathData.HousingSize[3])
 		if not CheckTableValue(new_entity,global.HousingList) then
 			table.insert(global.HousingList, new_entity)
 		end
 	elseif new_entity.name == "mf-house" then
-		ManageHousingBeacon(surface, position, force, MathData.HousingSize[3])
+		ManageHousingBeacon(new_entity, surface, force, MathData.HousingSize[3])
 		if not CheckTableValue(new_entity,global.HousingList) then
 			table.insert(global.HousingList, new_entity)
 		end
 	elseif new_entity.name == "low-rise" then
-		ManageHousingBeacon(surface, position, force, MathData.HousingSize[3])
+		ManageHousingBeacon(new_entity, surface, force, MathData.HousingSize[3])
 		if not CheckTableValue(new_entity,global.HousingList) then
 			table.insert(global.HousingList, new_entity)
 		end
 	elseif new_entity.name == "ap-tower" then
-		ManageHousingBeacon(surface, position, force, MathData.HousingSize[3])
+		ManageHousingBeacon(new_entity, surface, force, MathData.HousingSize[3])
 		if not CheckTableValue(new_entity,global.HousingList) then
 			table.insert(global.HousingList, new_entity)
 		end
 	elseif new_entity.name == "arcology-tower" then
-		ManageHousingBeacon(surface, position, force, MathData.HousingSize[3])
+		ManageHousingBeacon(new_entity, surface, force, MathData.HousingSize[3])
 		if not CheckTableValue(new_entity,global.HousingList) then
 			table.insert(global.HousingList, new_entity)
 		end
@@ -223,24 +228,34 @@ function ManageBeaconModules(module_inventory, Score)
 end
 
 --Calculate Farming effectivity
-function CalculateFarmingBeacon(surface, position, force, radius)
+function CalculateFarmingBeacon(entity, surface, position, force, radius)
 	local Score = 0
 	local WaterTiles = 0
 	local GoodTiles = 0
 	local BadTiles = 0
 	--Check what the tiles its on are
-	for i, tile in pairs(surface.find_tiles_filtered{position = position,radius = radius}) do
-		--game.print(serpent.block(tile.name))
-		if CheckTableValue(tile.name,global.Meh_Tiles_List) then
-			BadTiles = BadTiles + 2
-		elseif CheckTableValue(tile.name,global.Bad_Tiles_List) then
-			BadTiles = BadTiles + 3
-		elseif CheckTableValue(tile.name,global.Good_Tiles_List) then
-			GoodTiles = GoodTiles + 1
+	if entity.name == "fishery" then
+		for i, tile in pairs(surface.find_tiles_filtered{position = position,radius = radius}) do
+			if stdlib.contains(tile.name, "water") and not stdlib.contains(tile.name, "green") then
+				GoodTiles = GoodTiles + 1
+			elseif stdlib.contains(tile.name, "water") and stdlib.contains(tile.name, "green") then
+				GoodTiles = GoodTiles + 0.5
+			end
+		end
+	else
+		for i, tile in pairs(surface.find_tiles_filtered{position = position,radius = radius}) do
+			--game.print(serpent.block(tile.name))
+			if CheckTableValue(tile.name,global.Meh_Tiles_List) then
+				BadTiles = BadTiles + 2
+			elseif CheckTableValue(tile.name,global.Bad_Tiles_List) then
+				BadTiles = BadTiles + 3
+			elseif CheckTableValue(tile.name,global.Good_Tiles_List) then
+				GoodTiles = GoodTiles + 1
+			end
 		end
 	end
-	--game.print("Good Tile Count: "..tostring(GoodTiles))
-	--game.print("Bad Tile Count: "..tostring(BadTiles))
+	game.print("Good Tile Count: "..tostring(GoodTiles))
+	game.print("Bad Tile Count: "..tostring(BadTiles))
 	Score = Score + GoodTiles
 	Score = Score - BadTiles
 	
@@ -248,21 +263,31 @@ function CalculateFarmingBeacon(surface, position, force, radius)
 	Score = Score - surface.get_pollution(position)
 	
 	--Check for nearby water. Polluted water is still pretty good
-	for i, tile in pairs(surface.find_tiles_filtered{position = position,radius = 2*radius}) do
-		if stdlib.contains(tile.name, "water") and not stdlib.contains(tile.name, "green") then
-			WaterTiles = WaterTiles + 4
-		elseif stdlib.contains(tile.name, "water") and stdlib.contains(tile.name, "green") then
-			WaterTiles = WaterTiles + 2
+	if entity.name == "fishery" then
+		for i, tile in pairs(surface.find_tiles_filtered{position = position,radius = 2*radius}) do
+			if stdlib.contains(tile.name, "water") and not stdlib.contains(tile.name, "green") then
+				WaterTiles = WaterTiles + 0.25
+			elseif stdlib.contains(tile.name, "water") and stdlib.contains(tile.name, "green") then
+				WaterTiles = WaterTiles + 0.125
+			end
+		end
+	else
+		for i, tile in pairs(surface.find_tiles_filtered{position = position,radius = 2*radius}) do
+			if stdlib.contains(tile.name, "water") and not stdlib.contains(tile.name, "green") then
+				WaterTiles = WaterTiles + 4
+			elseif stdlib.contains(tile.name, "water") and stdlib.contains(tile.name, "green") then
+				WaterTiles = WaterTiles + 2
+			end
 		end
 	end
-	--game.print("Water Tile Effect: "..tostring(WaterTiles))
+	game.print("Water Tile Effect: "..tostring(WaterTiles))
 	Score = Score + WaterTiles
 	return Score
 end
 
 --Calculate terrain impact
 function CalculateHousingBeacon(surface, position, force, radius)
-	local Tiles_Max = radius*radius/10 --You need this many Meh tiles to start having penalties, then you can have this many Meh tiles give penalties, and this is the max number of a single type of good or bad tile that have an effect
+	local Tiles_Max = radius*radius/5 --You need this many Meh tiles to start having penalties, then you can have this many Meh tiles give penalties, and this is the max number of a single type of good or bad tile that have an effect
 	local Score = 0
 	local TempScore = 0
 	local Terrain_Radius = 2*radius
@@ -323,8 +348,8 @@ function CalculateHousingBeacon(surface, position, force, radius)
 	--game.print("Meh Tile Count: "..tostring(MehTiles))
 	
 	
-	if MehTiles > Tiles_Max then
-		BadTiles = BadTiles + MehTiles - Tiles_Max
+	if MehTiles > (2*Tiles_Max) then
+		BadTiles = BadTiles + MehTiles - (2*Tiles_Max)
 	end
 	TempScore = GoodTiles - BadTiles
 	--game.print("Tile Temp Score: "..tostring(TempScore))
@@ -355,37 +380,33 @@ function CalculateHousingBeacon(surface, position, force, radius)
 end
 
 -- Set modules in hidden beacons for Terrain speed bonus
-function ManageHousingBeacon(surface, position, force, radius)
-	game.print("Updating house at"..serpent.block(position))
-	for _, entity in pairs(surface.find_entities_filtered{name = Housing_Beaconed_Entities, force = force, area = areaAroundPosition(position, radius)}) do
-		if entity.valid then
-			game.print("#"..tostring(_).." "..entity.name.." is valid")
-			local hiddenBeacon = surface.find_entity(Housing_Beacon, entity.position)
-			--log("Beacon "..serpent.block(hiddenBeacon))
-			if hiddenBeacon == nil then
-				--Make beacon
-				--log("Make a Beacon")
-				surface.create_entity{name = Housing_Beacon, position = entity.position, raise_built = false}
-				hiddenBeacon = surface.find_entity(Housing_Beacon, entity.position)
-			end
-			--log("Beacon "..serpent.block(hiddenBeacon))
-			--Fill beacon
-			if hiddenBeacon then
-				game.print("Beacon is valid")
-				--log("Beacon "..serpent.block(hiddenBeacon))
-				local module_inventory = hiddenBeacon.get_module_inventory()
-				if module_inventory then
-					local Score = CalculateHousingBeacon(surface, hiddenBeacon.position, force, radius)
-					game.print("Final House Score: "..tostring(Score))
-					ManageBeaconModules(module_inventory, Score)
-				end
-			end
+function ManageHousingBeacon(entity, surface, force, radius)
+	--game.print("Updating house at"..serpent.block(entity.position))
+	local hiddenBeacon = surface.find_entity(Housing_Beacon, entity.position)
+	--game.print("Beacon "..serpent.block(hiddenBeacon))
+	if hiddenBeacon == nil then
+		--Make beacon
+		--log("Make a Beacon")
+		surface.create_entity{name = Housing_Beacon, position = entity.position, raise_built = false}
+		hiddenBeacon = surface.find_entity(Housing_Beacon, entity.position)
+	end
+	--game.print("Beacon "..serpent.block(hiddenBeacon))
+	--Fill beacon
+	if hiddenBeacon then
+		--game.print("Beacon is valid")
+		--log("Beacon "..serpent.block(hiddenBeacon))
+		local module_inventory = hiddenBeacon.get_module_inventory()
+		if module_inventory then
+			--game.print("Module Inventory is valid")
+			local Score = CalculateHousingBeacon(surface, hiddenBeacon.position, force, radius)
+			--game.print("Final House Score: "..tostring(Score))
+			ManageBeaconModules(module_inventory, Score)
 		end
 	end
 end
 -- Set modules in hidden beacons for Terrain farming speed bonus
 function ManageFarmingBeacon(entity, surface, force, radius)
-	game.print("Updating farm at"..serpent.block(position))
+	--game.print("Updating farm at"..serpent.block(position))
 	if entity.valid then
 		--log(entity.name.." is valid")
 		local hiddenBeacon = surface.find_entity(Housing_Beacon, entity.position)
@@ -403,8 +424,8 @@ function ManageFarmingBeacon(entity, surface, force, radius)
 			--log("Beacon "..serpent.block(hiddenBeacon))
 			local module_inventory = hiddenBeacon.get_module_inventory()
 			if module_inventory then
-				local Score = CalculateFarmingBeacon(surface, hiddenBeacon.position, force, radius)
-				game.print("Final Farm Score: "..tostring(Score))
+				local Score = CalculateFarmingBeacon(entity, surface, hiddenBeacon.position, force, radius)
+				--game.print("Final Farm Score: "..tostring(Score))
 				ManageBeaconModules(module_inventory, Score)
 			end
 		end

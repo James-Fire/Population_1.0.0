@@ -1,4 +1,4 @@
-local energy = 40
+local energy_required = 40
 local amount_param = 1
 sciencepacks = {}
 sciencepackrecipes = {}

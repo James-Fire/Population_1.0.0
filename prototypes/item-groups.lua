@@ -182,6 +182,10 @@ data:extend({
 	},
 	{
 		type = "recipe-category",
+		name = "fishing"
+	},
+	{
+		type = "recipe-category",
 		name = "grain-farming"
 	},
 	{

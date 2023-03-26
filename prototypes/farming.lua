@@ -6,7 +6,7 @@ data:extend({
 	--Standard farming doesn't work for everything, obviously, but how to do that in-game?
 	
 	--Grain just grows, stacks nicely (Higher stack size), can be turned into feed
-	--Fruit needs input water, can be turned into feed
+	--Fruit needs extra input water, can be turned into feed
 	--Vegetables just grow, can be turned into feed
 	--Meat needs more time, space, water, and input feed. Basically, it's very expensive to make, so should be the last thing you make, if at all. Also can't be sped up by fertilizer
 	--Fish is fished
@@ -14,7 +14,7 @@ data:extend({
 	--Wood grows, used to make paper, structural
 	--Hemp just grows, used to make paper, feed, directly in meals, with water and stone to make bricks, Oil. Separates into fibers, foodstuff, and oil on processing.
 	
-	--From a variety of furnace farms, so they can just be given fertilizer and
+	--From a variety of furnace farms, so they can ju st be given fertilizer and
 	--use it without having to select that recipe and perhaps being blocked because there's none.
 	--Fertilizer reduces growth time by 40%
 	
@@ -125,6 +125,24 @@ data:extend({
 		subgroup = "farming",
 		order = "a",
 		stack_size = 200
+	},
+	--Planet Oil recipes	
+	{
+		type = "recipe",
+		name = "plant-oil-plastic",
+		category = "chemistry",
+		enabled = false,
+		energy_required = 2,
+		ingredients = {
+			{type = "fluid", name = "plant-oil", amount = 20 },
+		},
+		results = {
+			{ "plastic-bar",2 },
+		},
+		--icon = "__Population__/graphics/crude-oil.png",
+		--icon_size = 32,
+		--subgroup = "Recycling",
+		--order = "c",
 	},
 	--Farm Recipes
 	{
@@ -260,6 +278,23 @@ data:extend({
 		subgroup = "farming",
 		order = "a",
 	},
+	{
+		type = "recipe",
+		name = "fishing",
+		icon = "__base__/graphics/icons/steam-turbine.png",
+		icon_size = 64,
+		category = "fishing",
+		enabled = true,
+		energy_required = 20,
+		ingredients = {
+			{ "animal-feed", 5 }
+		},
+		results = {
+			{ "raw-fish",5 },
+		},
+		subgroup = "farming",
+		order = "a",
+	},
 	--Furnace farm for each item
 	{
 		type = "item",
@@ -272,18 +307,28 @@ data:extend({
 		place_result = "farm",
 	},
 	{
-		type = "recipe",
-		name = "farm",
+		type = "item",
+		name = "fishery",
 		icon = "__base__/graphics/icons/steam-turbine.png",
 		icon_size = 64,
-		category = "farming",
+		subgroup = "farming",
+		order = "a",
+		stack_size = 20,
+		place_result = "fishery",
+	},
+	{
+		type = "recipe",
+		name = "fishery",
+		icon = "__base__/graphics/icons/steam-turbine.png",
+		icon_size = 64,
+		category = "crafting",
 		enabled = true,
 		energy_required = 10,
 		ingredients = {
 			{ "wood",10 },
 		},
 		results = {
-			{ "farm",1 },
+			{ "fishery",1 },
 		},
 		subgroup = "farming-buildings",
 		order = "a",
@@ -366,6 +411,85 @@ data:extend({
 				}
 			},
 		},
+	},{
+		type = "furnace",
+		name = "fishery",
+		icon = "__Population__/graphics/icons/gasifier.png",
+		icon_size = 32,
+		flags = {"placeable-neutral","player-creation"},
+		minable = {
+			mining_time = 1,
+			result = "fishery",
+		},
+		max_health = 250,
+		corpse = "big-remnants",
+		dying_explosion = "medium-explosion",
+		collision_mask = {"ground-tile"},
+		collision_box = {{-3,-3},{3,3}},
+		selection_box = {{-3,-3},{3,3}},
+		crafting_categories = {"fishing"},
+		crafting_speed = 0.1,
+		energy_usage = "1kW",
+		allowed_effects = {"speed"},
+		energy_source = {
+			type = "void",
+			usage_priority = "secondary-input",
+		},
+		source_inventory_size = 1,
+		result_inventory_size = 8,
+		animation = {
+			filename =
+				"__Population__/graphics/entity/"
+				.."gasifier.png",
+			priority="high",
+			width = 160,
+			height = 160,
+			frame_count = 1,
+			shift = {1.5, -1.59375}
+		},
+		working_visualisations = {{
+				animation = {
+					filename =
+						"__Population__/graphics/entity/"
+						.."gasifier-fumes.png",
+					priority = "extra-high",
+					frame_count = 29,
+					width = 48,
+					height = 105,
+					shift = {-0.05, -5.65},
+					animation_speed = 0.5,
+					scale = 1.5,
+					run_mode="backward"
+				}
+		}},
+		vehicle_impact_sound = {
+		  filename = "__base__/sound/car-metal-impact.ogg",
+		  volume = 0.65
+		},
+		working_sound = {
+			sound = {
+				filename = "__base__/sound/oil-refinery.ogg"
+			},
+			idle_sound = {
+				filename = "__base__/sound/idle1.ogg", volume = 0.6
+			},
+			apparent_volume = 2,
+		},
+		fluid_boxes = {
+			{
+				production_type = "input",
+				pipe_picture = bulkypipepictures(),
+				secondary_draw_orders = {
+					north=-1,south=-1,east=-1,west=-1
+				},
+				pipe_covers = pipecoverspictures(),
+				base_area = 1,
+				base_level = -1,
+				pipe_connections = {
+				  { position = {0, -3.5} }
+				}
+			},
+		},
 	},
 })
 
@@ -376,20 +500,24 @@ local FarmProduce = { 30, 50, 30, 30, 30, 100, 10 }
 local FarmRequiresWater = { false, true, false, true, false, false, false }
 
 for i, Farm in pairs(Farms) do
-	LSlib.recipe.duplicate("farming", Farm.."-farm")
-	LSlib.recipe.setCraftingCategory(Farm.."-farm", Farm.."-farming")
-	LSlib.recipe.addResult(Farm.."-farm", Farm, FarmProduce[i] )
-	LSlib.recipe.setEnergyRequired(Farm.."-farm", FarmTime[i])
+	LSlib.recipe.duplicate("farming", Farm.."-farming")
+	LSlib.recipe.setCraftingCategory(Farm.."-farming", Farm.."-farming")
+	LSlib.recipe.addResult(Farm.."-farming", Farm, FarmProduce[i], "item")
+	LSlib.recipe.setEnergyRequired(Farm.."-farming", FarmTime[i])
 	if FarmRequiresWater[i] == true then
-		LSlib.recipe.addIngredient(Farm.."-farm", "water", FarmProduce[i], "fluid")
+		LSlib.recipe.addIngredient(Farm.."-farming", "water", 3*FarmProduce[i], "fluid")
+	else
+		LSlib.recipe.addIngredient(Farm.."-farming", "water", FarmProduce[i], "fluid")
 	end
 	if Farm == "meat" then
-		LSlib.recipe.addIngredient(Farm.."-farm", "animal-feed", FarmProduce[i], "item")
+		LSlib.recipe.addIngredient(Farm.."-farming", "animal-feed", FarmProduce[i], "item")
 	else
-		LSlib.recipe.duplicate(Farm.."-farm", "fertilizer-"..Farm.."-farm")
-		LSlib.recipe.addIngredient("fertilizer-"..Farm.."-farm", "fertilizer", LSlib.recipe.getResultCount("fertilizer-"..Farm.."-farm", Farm), "item")
-		LSlib.recipe.editEnergyRequired("fertilizer-"..Farm.."-farm", 0.60)
+		LSlib.recipe.duplicate(Farm.."-farming", "fertilizer-"..Farm.."-farming")
+		LSlib.recipe.addIngredient("fertilizer-"..Farm.."-farming", "fertilizer", FarmProduce[i], "item")
+		LSlib.recipe.editEnergyRequired("fertilizer-"..Farm.."-farming", 0.60)
 	end
+	
+	log("Non-fertilized farming recipe "..serpent.block(data.raw.recipe[Farm.."-farm"]))
 	
 	LSlib.recipe.duplicate("composting", Farm.."-composting")
 	LSlib.recipe.editIngredient(Farm.."-composting", "organic-material", Farm, 1 )
@@ -402,7 +530,7 @@ for i, Farm in pairs(Farms) do
 	local farmitemcopy = table.deepcopy(data.raw.item["farm"])
 	farmitemcopy.name = Farm.."-farm"
 	farmitemcopy.place_result = Farm.."-farm"
-	local farmrecipecopy = table.deepcopy(data.raw.recipe["farm"])
+	local farmrecipecopy = table.deepcopy(data.raw.recipe["fishery"])
 	farmrecipecopy.name = Farm.."-farm"
 	farmrecipecopy.results = { { Farm.."-farm",1 },	},
 	data:extend({farmcopy,farmitemcopy,farmrecipecopy})
@@ -410,4 +538,4 @@ end
 
 LSlib.recipe.disable("farming")
 LSlib.recipe.disable("farm")
-
+LSlib.technology.addRecipeUnlock("plastics", "plant-oil-plastic")

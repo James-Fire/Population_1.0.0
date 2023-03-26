@@ -410,7 +410,7 @@ for _, count in pairs(PopRestRecipes) do
 	LSlib.recipe.editEnergyRequired("4-copper-"..count, 0.90)
 	LSlib.recipe.editEnergyRequired("5-copper-"..count, 0.85)
 	
-	log("Before editing results and ingredients"..serpent.block(data.raw.recipe["2-copper-"..count]))
+	--log("Before editing results and ingredients"..serpent.block(data.raw.recipe["2-copper-"..count]))
 	
 	LSlib.recipe.editResult("2-copper-"..count, "copper-plate", "copper-recycling", 1 )
 	LSlib.recipe.editResult("3-copper-"..count, "copper-plate", "copper-recycling", 1 )
@@ -422,7 +422,7 @@ for _, count in pairs(PopRestRecipes) do
 	LSlib.recipe.editIngredient("4-copper-"..count, "copper-plate", "copper-food-4", 1 )
 	LSlib.recipe.editIngredient("5-copper-"..count, "copper-plate", "copper-food-5", 1 )
 	
-	log("After editing results and ingredients"..serpent.block(data.raw.recipe["2-copper-"..count]))
+	--log("After editing results and ingredients"..serpent.block(data.raw.recipe["2-copper-"..count]))
 	
 	if count == "rest-person-3" then
 		LSlib.technology.addRecipeUnlock("steel-processing", "2-copper-"..count)

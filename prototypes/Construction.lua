@@ -90,7 +90,7 @@ data:extend({
 		name = "basic-structural",
 		category = "crafting",
 		enabled = true,
-		energy = 5,
+		energy_required = 5,
 		ingredients = {
 			{ "wood", 5 },
 			{ "iron-plate", 1 },
@@ -106,7 +106,7 @@ data:extend({
 		name = "steel-structural",
 		category = "crafting",
 		enabled = true,
-		energy = 5,
+		energy_required = 5,
 		ingredients = {
 			{ "wood", 1 },
 			{ "steel-plate", 5 },
@@ -122,7 +122,7 @@ data:extend({
 		name = "stone-structural",
 		category = "crafting",
 		enabled = true,
-		energy = 5,
+		energy_required = 5,
 		ingredients = {
 			{ "steel-plate", 5 },
 			{ "concrete", 10 },
@@ -138,7 +138,7 @@ data:extend({
 		name = "skyscraper-structural",
 		category = "crafting",
 		enabled = true,
-		energy = 5,
+		energy_required = 5,
 		ingredients = {
 			{ "low-density-structure", 10 },
 			{ "steel-plate", 5 },
@@ -157,7 +157,7 @@ data:extend({
 		name = "basic-electrical",
 		category = "crafting",
 		enabled = true,
-		energy = 5,
+		energy_required = 5,
 		ingredients = {
 			{ "iron-plate", 2 },
 			{ "copper-cable", 10 },
@@ -174,7 +174,7 @@ data:extend({
 		name = "advanced-electrical",
 		category = "crafting",
 		enabled = true,
-		energy = 5,
+		energy_required = 5,
 		ingredients = {
 			{ "iron-plate", 2 },
 			{ "copper-cable", 20 },
@@ -194,7 +194,7 @@ data:extend({
 		name = "basic-mechanical",
 		category = "crafting",
 		enabled = true,
-		energy = 5,
+		energy_required = 5,
 		ingredients = {
 			{ "pipe", 10 },
 			{ "boiler", 1 },
@@ -210,7 +210,7 @@ data:extend({
 		name = "advanced-mechanical",
 		category = "crafting",
 		enabled = true,
-		energy = 5,
+		energy_required = 5,
 		ingredients = {
 			{ "pipe", 15 },
 			{ "boiler", 1 },
@@ -227,7 +227,7 @@ data:extend({
 		name = "skyscraper-mechanical",
 		category = "crafting",
 		enabled = true,
-		energy = 5,
+		energy_required = 5,
 		ingredients = {
 			{ "pipe", 30 },
 			{ "boiler", 1 },

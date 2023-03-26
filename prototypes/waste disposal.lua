@@ -50,7 +50,7 @@ data:extend({
 		category = "sewage-treatment",
 		hidden = true,
 		enabled = true,
-		energy = 1,
+		energy_required = 1,
 		ingredients = {
 			{type = "fluid", name = "sewage", amount = 10 },
 		},
@@ -106,7 +106,7 @@ data:extend({
 		name = "paper-recycling",
 		category = "Recycling",
 		enabled = false,
-		energy = 1,
+		energy_required = 5,
 		ingredients = {
 			{ "paper-recycling",10 },
 			{type = "fluid", name = "water", amount = 5 },
@@ -126,7 +126,7 @@ data:extend({
 		name = "copper-recycling",
 		category = "Recycling",
 		enabled = false,
-		energy = 1,
+		energy_required = 5,
 		ingredients = {
 			{ "copper-recycling",10 },
 		},
@@ -143,7 +143,7 @@ data:extend({
 		name = "plastic-recycling",
 		category = "Recycling",
 		enabled = false,
-		energy = 1,
+		energy_required = 5,
 		ingredients = {
 			{ "plastic-recycling",10 },
 		},
@@ -160,13 +160,13 @@ data:extend({
 		name = "composting",
 		category = "Recycling",
 		enabled = true,
-		energy = 20,
+		energy_required = 20,
 		ingredients = {
-			{ "organic-material",10 },
-			{type = "fluid", name = "water", amount = 5 },
+			{ "organic-material",40 },
+			{type = "fluid", name = "water", amount = 20 },
 		},
 		results = {
-			{ "fertilizer",10 },
+			{ "fertilizer",40 },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		--icon_size = 32,
@@ -178,7 +178,7 @@ data:extend({
 		name = "stone-fertilizer",
 		category = "Recycling",
 		enabled = true,
-		energy = 20,
+		energy_required = 2.5,
 		ingredients = {
 			{ "stone",5 },
 			{type = "fluid", name = "water", amount = 5 },
@@ -196,7 +196,7 @@ data:extend({
 		name = "stone-sulfur-fertilizer",
 		category = "Recycling",
 		enabled = false,
-		energy = 20,
+		energy_required = 2.5,
 		ingredients = {
 			{ "stone",5 },
 			{ "sulfur",5 },
@@ -215,7 +215,7 @@ data:extend({
 		name = "stone-organic-fertilizer",
 		category = "Recycling",
 		enabled = true,
-		energy = 20,
+		energy_required = 2.5,
 		ingredients = {
 			{ "stone",5 },
 			{ "organic-material",5 },
@@ -234,7 +234,7 @@ data:extend({
 		name = "fertilizer",
 		category = "Recycling",
 		enabled = false,
-		energy = 20,
+		energy_required = 2.5,
 		ingredients = {
 			{ "stone",5 },
 			{ "sulfur",5 },
@@ -243,6 +243,24 @@ data:extend({
 		},
 		results = {
 			{ "fertilizer",20 },
+		},
+		--icon = "__Population__/graphics/crude-oil.png",
+		--icon_size = 32,
+		subgroup = "Recycling",
+		order = "c",
+	},
+	{
+		type = "recipe",
+		name = "plant-oil-fertilizer",
+		category = "Recycling",
+		enabled = true,
+		energy_required = 10,
+		ingredients = {
+			{type = "fluid", name = "plant-oil", amount = 5 },
+			{type = "fluid", name = "water", amount = 5 },
+		},
+		results = {
+			{ "fertilizer",5 },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		--icon_size = 32,

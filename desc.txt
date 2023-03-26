@@ -19,11 +19,8 @@ but do so slightly slower.
 *Vertical Farming to be more space-efficient, but does require input resources. Also divorces food production from land quality
 
 TODO
-Plant Oil needs a use
-Should probably be able to turn any farming products into organic material or fertilizer
-Need a way to farm fish
+Global happiness value that influences housing speed?
 Alternate construction recipes?
-Farms and housing need to be updated every so often
 Entertainment somehow?
 Vertical Farming? Hydroponics?
 Localisation, if gameplay turns out good.
