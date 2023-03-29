@@ -19,12 +19,76 @@ but do so slightly slower.
 *Vertical Farming to be more space-efficient, but does require input resources. Also divorces food production from land quality
 
 TODO
+Productivity
+Septic Tank, 3x3 building that converts sewage into organic material. Sewage treatment is way more efficient.
+Housing buildings have 2 fluidboxes on each side
+Hempcrete made from stone, water, hemp fiber
+Maybe farms should require different materials?
+Alternate structural recipes:
+	Swap out wood for hemp fiber and steel.
+	Swap out wood for stone bricks/hempcrete
+	Swap out steel for titanium
+	Swap out concrete for hempcrete
+Alternate Electrical recipes:
+	
+Alternate Mechanical recipes:
+	Maybe switch to furnaces?
+	Alternate pipe recipes seems obvious
+Building to make fertile ground?
 Global happiness value that influences housing speed?
-Alternate construction recipes?
-Entertainment somehow?
+Entertainment somehow? Influences global happiness?
 Vertical Farming? Hydroponics?
 Localisation, if gameplay turns out good.
-Art, if gameplay good.
+Art, if gameplay good:
+Buildings:
+	Single-Family House
+	Multi-Family House
+	Low Rise
+	Apartment Tower
+	Arcology Tower
+	Sewage Treatment Plant
+Items:
+	Person
+	Tired Person
+	Child
+	Basic Structural
+	Steel Structural
+	Concrete Structural
+	Skyscraper Structural
+	Basic Electrical
+	Advanced Electrical
+	Basic Mechanical
+	Advanced Mechanical
+	Skyscraper Mechanical
+	Hemp Seed
+	Hemp Fiber
+	Plant Oil
+	Animal Feed
+	Hemp
+	Nuts
+	Grain
+	Meat
+	Fruit
+	Vegetables
+	Farm for each: Maybe just a generic farm, then I can layer the crop it makes onto it?
+		Hemp
+		Nuts
+		Grain
+		Meat
+		Fruit
+		Vegetables
+	Fishery
+	Paper
+	Food
+	Plastic Food
+	Copper Food
+	Paper Food
+	Sewage
+	Garbage
+	Fertilizer
+	Plastic Recycling
+	Copper Recycling
+	Paper Recycling
 
 
 DESIGN IDEA

@@ -8,7 +8,7 @@ data:extend({
 		icon_size = 64,
 		subgroup = "Population",
 		order = "a",
-		stack_size = 4
+		stack_size = 8
 	},
 	{
 		type = "item",
@@ -17,7 +17,7 @@ data:extend({
 		icon_size = 64,
 		subgroup = "Population",
 		order = "a",
-		stack_size = 2
+		stack_size = 4
 	},
 	{
 		type = "item",
@@ -26,7 +26,7 @@ data:extend({
 		icon_size = 64,
 		subgroup = "Population",
 		order = "b",
-		stack_size = 2
+		stack_size = 4
 	},
 	--Make Children grow up
 	{
@@ -34,7 +34,7 @@ data:extend({
 		name = "grow-person-1",
 		category = "pop-rest-1",
 		enabled = true,
-		energy_required = MathData.RestTime*10,
+		energy_required = MathData.RestTime*MathData.GrowthTime,
 		ingredients = {
 			{ "person",2 },
 			{ "child-person",4 },
@@ -59,7 +59,7 @@ data:extend({
 		name = "grow-person-2",
 		category = "pop-rest-2",
 		enabled = true,
-		energy_required = MathData.RestTime*4,
+		energy_required = MathData.RestTime*MathData.GrowthTime,
 		ingredients = {
 			{ "person",8 },
 			{ "child-person",16 },
@@ -84,7 +84,7 @@ data:extend({
 		name = "grow-person-3",
 		category = "pop-rest-3",
 		enabled = false,
-		energy_required = MathData.RestTime*10,
+		energy_required = MathData.RestTime*MathData.GrowthTime,
 		ingredients = {
 			{ "person",8 },
 			{ "child-person",16 },
@@ -109,7 +109,7 @@ data:extend({
 		name = "grow-person-4",
 		category = "pop-rest-4",
 		enabled = false,
-		energy_required = MathData.RestTime*10,
+		energy_required = MathData.RestTime*MathData.GrowthTime,
 		ingredients = {
 			{ "person",20 },
 			{ "child-person",40 },
@@ -134,7 +134,7 @@ data:extend({
 		name = "grow-person-5",
 		category = "pop-rest-5",
 		enabled = false,
-		energy_required = MathData.RestTime*10,
+		energy_required = MathData.RestTime*MathData.GrowthTime,
 		ingredients = {
 			{ "person",20 },
 			{ "child-person",40 },
@@ -160,7 +160,7 @@ data:extend({
 		name = "reproduce-person-1",
 		category = "pop-rest-1",
 		enabled = true,
-		energy_required = MathData.RestTime*4,
+		energy_required = MathData.RestTime*MathData.GrowthTime,
 		ingredients = {
 			{ "person",2 },
 			{ "copper-plate",2 },
@@ -184,7 +184,7 @@ data:extend({
 		name = "reproduce-person-2",
 		category = "pop-rest-2",
 		enabled = true,
-		energy_required = MathData.RestTime*4,
+		energy_required = MathData.RestTime*MathData.GrowthTime,
 		ingredients = {
 			{ "person",8 },
 			{ "copper-plate",8 },
@@ -208,7 +208,7 @@ data:extend({
 		name = "reproduce-person-3",
 		category = "pop-rest-3",
 		enabled = false,
-		energy_required = MathData.RestTime*4,
+		energy_required = MathData.RestTime*MathData.GrowthTime,
 		ingredients = {
 			{ "person",8 },
 			{ "copper-plate",8 },
@@ -232,7 +232,7 @@ data:extend({
 		name = "reproduce-person-4",
 		category = "pop-rest-4",
 		enabled = false,
-		energy_required = MathData.RestTime*4,
+		energy_required = MathData.RestTime*MathData.GrowthTime,
 		ingredients = {
 			{ "person",20 },
 			{ "copper-plate",20 },
@@ -256,7 +256,7 @@ data:extend({
 		name = "reproduce-person-5",
 		category = "pop-rest-5",
 		enabled = false,
-		energy_required = MathData.RestTime*4,
+		energy_required = MathData.RestTime*MathData.GrowthTime,
 		ingredients = {
 			{ "person",20 },
 			{ "copper-plate",20 },

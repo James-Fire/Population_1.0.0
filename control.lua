@@ -111,6 +111,7 @@ script.on_init(function()
 	end
 	local population_start = {
 		["person"] = 40,
+		["child-person"] = 80,
 		["mf-house"] = 5,
 		["wood"] = 100,
 		["vegetables-farm"] = 2,

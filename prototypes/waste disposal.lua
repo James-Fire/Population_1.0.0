@@ -48,7 +48,7 @@ data:extend({
 		type = "recipe",
 		name = "sewage-treatment",
 		category = "sewage-treatment",
-		hidden = true,
+		hidden = false,
 		enabled = true,
 		energy_required = 1,
 		ingredients = {
@@ -72,7 +72,10 @@ data:extend({
 		icon_size = 64,
 		subgroup = "Recycling",
 		order = "a",
-		stack_size = 100
+		stack_size = 100,
+		fuel_category = "chemical",
+		fuel_value = "1MJ",
+		emissions_multiplier = 1.5,
 	},
 	{
 		type = "item",
@@ -104,7 +107,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "paper-recycling",
-		category = "Recycling",
+		category = "crafting-with-fluid",
 		enabled = false,
 		energy_required = 5,
 		ingredients = {
@@ -124,8 +127,8 @@ data:extend({
 	{
 		type = "recipe",
 		name = "copper-recycling",
-		category = "Recycling",
-		enabled = false,
+		category = "crafting-with-fluid",
+		enabled = true,
 		energy_required = 5,
 		ingredients = {
 			{ "copper-recycling",10 },
@@ -141,7 +144,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "plastic-recycling",
-		category = "Recycling",
+		category = "crafting-with-fluid",
 		enabled = false,
 		energy_required = 5,
 		ingredients = {
@@ -158,7 +161,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "composting",
-		category = "Recycling",
+		category = "crafting-with-fluid",
 		enabled = true,
 		energy_required = 20,
 		ingredients = {
@@ -176,7 +179,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "stone-fertilizer",
-		category = "Recycling",
+		category = "crafting-with-fluid",
 		enabled = true,
 		energy_required = 2.5,
 		ingredients = {
@@ -194,7 +197,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "stone-sulfur-fertilizer",
-		category = "Recycling",
+		category = "crafting-with-fluid",
 		enabled = false,
 		energy_required = 2.5,
 		ingredients = {
@@ -213,7 +216,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "stone-organic-fertilizer",
-		category = "Recycling",
+		category = "crafting-with-fluid",
 		enabled = true,
 		energy_required = 2.5,
 		ingredients = {
@@ -232,7 +235,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "fertilizer",
-		category = "Recycling",
+		category = "crafting-with-fluid",
 		enabled = false,
 		energy_required = 2.5,
 		ingredients = {
@@ -252,7 +255,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "plant-oil-fertilizer",
-		category = "Recycling",
+		category = "crafting-with-fluid",
 		enabled = true,
 		energy_required = 10,
 		ingredients = {
@@ -283,8 +286,8 @@ sewage_plant_recipe.results = {{"sewage-treatment-plant",1}}
 data:extend({sewage_plant, sewage_plant_recipe})
 
 LSlib.technology.addRecipeUnlock("plastics", "plastic-recycling")
-LSlib.technology.addRecipeUnlock("advanced-material-processing", "copper-recycling")
 LSlib.technology.addRecipeUnlock("advanced-material-processing", "paper-recycling")
 LSlib.technology.addRecipeUnlock("advanced-material-processing", "sewage-treatment-plant")
+LSlib.technology.addRecipeUnlock("advanced-material-processing", "sewage-treatment")
 LSlib.technology.addRecipeUnlock("sulfur-processing", "stone-sulfur-fertilizer")
 LSlib.technology.addRecipeUnlock("sulfur-processing", "fertilizer")

@@ -2,11 +2,16 @@ local stdlib = require('__stdlib__/stdlib/utils/string')
 
 local MathData = { }
 
+function MathData.round(num, numDecimalPlaces)
+	local mult = 10^(numDecimalPlaces or 0)
+	return math.ceil(num * mult + 0.5) / mult
+end
+
 MathData.Bad_Building_List = { "assembling-machine", "furnace" }
 
 MathData.RequiredWater = 10 --Water required for 1 rest period for 1 person
-MathData.RestTime = 600 --Rest time for 1 rest period
-MathData.RestTimeScale = 2.5 --Rest scalar for working people multiple times
+MathData.RestTime = 300 --Rest time for 1 rest period
+MathData.GrowthTime = 3 --time mult for 1 growth period, making or raising children
 MathData.RestFood = 1 --How much food/packaging waste is used/made per rest period
 MathData.RestPower = 92000 --How much energy is required for 1 rest period, in KJ
 MathData.FoodVarietyScalar = 0.05 --How much each additional food ingredient improves rest speed, %
@@ -79,43 +84,43 @@ MathData.StructuralBase = { --Structural resources that are used per tile
 	4,
 	4,
 	16,
+	16,
 	32,
-	64,
 }
 MathData.StructuralScalar = { --Structural resources that are used per pop capacity
-	20,
-	15,
-	5,
-	5,
-	5,
+	10,
+	4,
+	2,
+	2,
+	1,
 }
 MathData.ElectricalBase = { --Electrical resources that are used per tile
 	4,
 	4,
+	8,
+	8,
 	16,
-	16,
-	32,
 }
 MathData.ElectricalScalar = { --Electrical resources that are used per pop capacity
-	10,
 	8,
-	5,
-	5,
-	5,
+	6,
+	4,
+	3,
+	2,
 }
 MathData.MechanicalBase = { --Mechanical resources that are used per tile
+	1,
+	1,
+	2,
+	2,
 	4,
-	4,
-	16,
-	16,
-	32,
 }
 MathData.MechanicalScalar = { --Mechanical resources that are used per pop capacity
-	10,
-	8,
-	5,
-	5,
-	5,
+	4,
+	2,
+	2,
+	1,
+	1,
 }
 
 --Materials are abstracted away, to allow usage of a variety of different materials based on mods present.
@@ -134,5 +139,13 @@ MathData.ElectricalResources = { --Resources that are used for electrical purpos
     "basic-electrical",
 	"advanced-electrical",
 }
+
+function MathData.CalcHousingCost(BaseType,ScalarType,HouseIndex)
+	local HousingCost = 0
+	HousingCost = HousingCost + BaseType[HouseIndex]*MathData.HousingSize[HouseIndex]^2 --Base Cost for the structure
+	HousingCost = HousingCost + MathData.HousingPopRest[HouseIndex]*ScalarType[HouseIndex] --Scaled cost for the population capacity
+	HousingCost = MathData.round(HousingCost/10) --Make it reasonable, and round it.
+	return HousingCost
+end
 
 return MathData

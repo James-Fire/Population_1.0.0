@@ -404,7 +404,7 @@ data:extend({
 					north=-1,south=-1,east=-1,west=-1
 				},
 				pipe_covers = pipecoverspictures(),
-				base_area = 1,
+				base_area = 2,
 				base_level = -1,
 				pipe_connections = {
 				  { position = {0, -3.5} }
@@ -495,7 +495,7 @@ data:extend({
 
 local Farms = { "grain", "fruit", "vegetables", "meat", "nuts", "wood", "hemp" }
 --"fish",
-local FarmTime = { 80, 100, 60, 180, 60, 400, 20 }
+local FarmTime = { 160, 200, 120, 360, 120, 800, 40 }
 local FarmProduce = { 30, 50, 30, 30, 30, 100, 10 }
 local FarmRequiresWater = { false, true, false, true, false, false, false }
 
