@@ -55,7 +55,7 @@ MathData.HousingWorkSpeed = { --Crafting Speed of each density
 	(MathData.HousingBaseRestSpeed-4*MathData.DensityRestStep)*MathData.HousingPopCapScalar[5],
 }
 
-MathData.PopPollution = 5 --How much pollution is produced per pop, per rest period.
+MathData.PopPollution = 3 --How much pollution is produced per pop, per rest period.
 MathData.DensityPollutionScalar = 0.8 --How much each density step reduces per-pop pollution
 MathData.DensityEnergyScalar = 0.95 --How much each density step reduces per-pop energy usage
 

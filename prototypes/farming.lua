@@ -276,7 +276,7 @@ data:extend({
 			--{ "grain",1 },
 		},
 		subgroup = "farming",
-		order = "a",
+		order = "b",
 	},
 	{
 		type = "recipe",
@@ -355,6 +355,7 @@ data:extend({
 		energy_source = {
 			type = "void",
 			usage_priority = "secondary-input",
+			emissions_per_minute = -2,
 		},
 		source_inventory_size = 1,
 		result_inventory_size = 8,
@@ -500,6 +501,18 @@ local FarmProduce = { 30, 50, 30, 30, 30, 100, 10 }
 local FarmRequiresWater = { false, true, false, true, false, false, false }
 
 for i, Farm in pairs(Farms) do
+	local FarmingIcons = {
+			{
+				icon = "__base__/graphics/icons/steam-turbine.png",
+				icon_size = 64,
+				scale = 1/2,
+				shift = {16, -16},
+			},
+			{
+				icon = "__base__/graphics/icons/steam-turbine.png",
+				icon_size = 64,
+			},
+		},
 	LSlib.recipe.duplicate("farming", Farm.."-farming")
 	LSlib.recipe.setCraftingCategory(Farm.."-farming", Farm.."-farming")
 	LSlib.recipe.addResult(Farm.."-farming", Farm, FarmProduce[i], "item")
@@ -515,6 +528,8 @@ for i, Farm in pairs(Farms) do
 		LSlib.recipe.duplicate(Farm.."-farming", "fertilizer-"..Farm.."-farming")
 		LSlib.recipe.addIngredient("fertilizer-"..Farm.."-farming", "fertilizer", FarmProduce[i], "item")
 		LSlib.recipe.editEnergyRequired("fertilizer-"..Farm.."-farming", 0.60)
+		LSlib.recipe.setOrderstring("fertilizer-"..Farm.."-farming", "a")
+		LSlib.recipe.changeIcons("fertilizer-"..Farm.."-farming", FarmingIcons, 64)
 	end
 	
 	log("Non-fertilized farming recipe "..serpent.block(data.raw.recipe[Farm.."-farm"]))

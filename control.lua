@@ -331,8 +331,12 @@ function CalculateHousingBeacon(surface, position, force, radius)
 		local Building = surface.find_entities_filtered{position = tile.position}
 		Building = Building[1]
 		if Building then
-			if CheckTableValue(Building.type, global.Bad_Building_List) then
-				MehTiles = MehTiles + 1
+			if Building.name:find("farm", 1, true) then
+				GoodTiles = GoodTiles + 1
+			else
+				if CheckTableValue(Building.type, global.Bad_Building_List) then
+					MehTiles = MehTiles + 1
+				end
 			end
 		elseif CheckTableValue(tile.name,global.Meh_Tiles_List) or Building then
 			MehTiles = MehTiles + 1

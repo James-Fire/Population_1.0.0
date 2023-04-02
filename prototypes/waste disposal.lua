@@ -32,6 +32,8 @@ data:extend({
 		icon = "__base__/graphics/icons/steam-turbine.png",
 		icon_size = 64,
 		subgroup = "Recycling",
+		fuel_category = "chemical",
+		fuel_value = "1MJ",
 		order = "a",
 		stack_size = 100
 	},
@@ -49,14 +51,15 @@ data:extend({
 		name = "sewage-treatment",
 		category = "sewage-treatment",
 		hidden = false,
-		enabled = true,
-		energy_required = 1,
+		enabled = false,
+		energy_required = 6,
 		ingredients = {
-			{type = "fluid", name = "sewage", amount = 10 },
+			{type = "fluid", name = "sewage", amount = 40 },
 		},
 		results = {
-			{type = "fluid", name = "water", amount = 9 },
+			{type = "fluid", name = "water", amount = 38 },
 			{ "organic-material",1 },
+			{ "garbage",1 },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		--icon_size = 32,
@@ -116,7 +119,8 @@ data:extend({
 		},
 		results = {
 			{ "paper",5 },
-			{ "organic-material",5 },
+			{ "organic-material",3 },
+			{ "garbage",2 },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		--icon_size = 32,
