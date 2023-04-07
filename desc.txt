@@ -19,6 +19,8 @@ but do so slightly slower.
 *Vertical Farming to be more space-efficient, but does require input resources. Also divorces food production from land quality
 
 TODO
+Quiet Rails?
+Recipe-based construction of housing structures?
 Productivity
 Septic Tank, 3x3 building that converts sewage into organic material. Sewage treatment is way more efficient.
 Housing buildings have 2 fluidboxes on each side
@@ -34,7 +36,9 @@ Alternate Electrical recipes:
 Alternate Mechanical recipes:
 	Maybe switch to furnaces?
 	Alternate pipe recipes seems obvious
-Building to make fertile ground?
+Building to make fertile ground
+Alternate Food packaging recipes: Glass, Aluminum
+Fruit used to make fruit juice?
 Global happiness value that influences housing speed?
 Entertainment somehow? Influences global happiness?
 Vertical Farming? Hydroponics?

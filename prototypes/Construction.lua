@@ -7,7 +7,7 @@ data:extend({
 		icon_size = 64,
 		subgroup = "Construction-Structural",
 		order = "a",
-		stack_size = 20
+		stack_size = 100
 	},
 	{
 		type = "item",
@@ -16,7 +16,7 @@ data:extend({
 		icon_size = 64,
 		subgroup = "Construction-Structural",
 		order = "b",
-		stack_size = 20
+		stack_size = 100
 	},
 	{
 		type = "item",
@@ -25,7 +25,7 @@ data:extend({
 		icon_size = 64,
 		subgroup = "Construction-Structural",
 		order = "c",
-		stack_size = 20
+		stack_size = 100
 	},
 	{
 		type = "item",
@@ -34,7 +34,7 @@ data:extend({
 		icon_size = 64,
 		subgroup = "Construction-Structural",
 		order = "d",
-		stack_size = 20
+		stack_size = 100
 	},
 	--Electrical Items
 	{
@@ -44,7 +44,7 @@ data:extend({
 		icon_size = 64,
 		subgroup = "Construction-Electrical",
 		order = "a",
-		stack_size = 20
+		stack_size = 100
 	},
 	{
 		type = "item",
@@ -53,7 +53,7 @@ data:extend({
 		icon_size = 64,
 		subgroup = "Construction-Electrical",
 		order = "b",
-		stack_size = 20
+		stack_size = 100
 	},
 	--Mechanical Items
 	{
@@ -63,7 +63,7 @@ data:extend({
 		icon_size = 64,
 		subgroup = "Construction-Mechanical",
 		order = "a",
-		stack_size = 20
+		stack_size = 100
 	},
 	{
 		type = "item",
@@ -72,7 +72,7 @@ data:extend({
 		icon_size = 64,
 		subgroup = "Construction-Mechanical",
 		order = "b",
-		stack_size = 20
+		stack_size = 100
 	},
 	{
 		type = "item",
@@ -81,7 +81,7 @@ data:extend({
 		icon_size = 64,
 		subgroup = "Construction-Mechanical",
 		order = "c",
-		stack_size = 20
+		stack_size = 100
 	},
 	
 	--Structural Recipes

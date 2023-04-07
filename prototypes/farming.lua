@@ -497,7 +497,7 @@ data:extend({
 local Farms = { "grain", "fruit", "vegetables", "meat", "nuts", "wood", "hemp" }
 --"fish",
 local FarmTime = { 160, 200, 120, 360, 120, 800, 40 }
-local FarmProduce = { 30, 50, 30, 30, 30, 100, 10 }
+local FarmProduce = { 30, 50, 30, 30, 30, 100, 20 }
 local FarmRequiresWater = { false, true, false, true, false, false, false }
 
 for i, Farm in pairs(Farms) do
@@ -550,6 +550,14 @@ for i, Farm in pairs(Farms) do
 	farmrecipecopy.results = { { Farm.."-farm",1 },	},
 	data:extend({farmcopy,farmitemcopy,farmrecipecopy})
 end
+
+LSlib.recipe.duplicate("composting", "hemp-food-composting")
+LSlib.recipe.editIngredient("hemp-food-composting", "organic-material", "hemp-food", 1 )
+LSlib.recipe.editResult("hemp-food-composting", "fertilizer", "organic-material", 1 )
+
+LSlib.recipe.duplicate("composting", "hemp-fiber-composting")
+LSlib.recipe.editIngredient("hemp-fiber-composting", "organic-material", "hemp-fiber", 1 )
+LSlib.recipe.editResult("hemp-fiber-composting", "fertilizer", "organic-material", 1 )
 
 LSlib.recipe.disable("farming")
 LSlib.recipe.disable("farm")
