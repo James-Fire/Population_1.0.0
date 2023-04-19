@@ -13,7 +13,7 @@ MathData.RequiredWater = 10 --Water required for 1 rest period for 1 person
 MathData.RestTime = 300 --Rest time for 1 rest period
 MathData.GrowthTime = 3 --time mult for 1 growth period, making or raising children
 MathData.RestFood = 1 --How much food/packaging waste is used/made per rest period
-MathData.RestPower = 92000 --How much energy is required for 1 rest period, in KJ
+MathData.RestPower = 120000 --How much energy is required for 1 rest period, in KJ
 MathData.FoodVarietyScalar = 0.05 --How much each additional food ingredient improves rest speed, %
 
 MathData.HousingName = {
@@ -55,8 +55,8 @@ MathData.HousingWorkSpeed = { --Crafting Speed of each density
 	(MathData.HousingBaseRestSpeed-4*MathData.DensityRestStep)*MathData.HousingPopCapScalar[5],
 }
 
-MathData.PopPollution = 0.5 --How much pollution is produced per pop, per rest period.
-MathData.DensityPollutionScalar = 0.8 --How much each density step reduces per-pop pollution
+MathData.PopPollution = 0.1 --How much pollution is produced per pop, per rest period.
+MathData.DensityPollutionScalar = 0.75 --How much each density step reduces per-pop pollution
 MathData.DensityEnergyScalar = 0.95 --How much each density step reduces per-pop energy usage
 
 MathData.HousingPollution = { --How much pollution each density of housing makes
@@ -83,16 +83,16 @@ MathData.HousingSize = { --The side length, in tiles(Meters), of each housing st
 MathData.StructuralBase = { --Structural resources that are used per tile
 	4,
 	4,
+	8,
+	8,
 	16,
-	16,
-	32,
 }
 MathData.StructuralScalar = { --Structural resources that are used per pop capacity
-	10,
+	4,
 	4,
 	2,
-	2,
 	1,
+	0.5,
 }
 MathData.ElectricalBase = { --Electrical resources that are used per tile
 	4,
@@ -102,11 +102,11 @@ MathData.ElectricalBase = { --Electrical resources that are used per tile
 	16,
 }
 MathData.ElectricalScalar = { --Electrical resources that are used per pop capacity
-	8,
-	6,
 	4,
-	3,
+	4,
 	2,
+	1,
+	0.5,
 }
 MathData.MechanicalBase = { --Mechanical resources that are used per tile
 	1,

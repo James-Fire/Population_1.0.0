@@ -222,6 +222,10 @@ data:extend({
 	},
 	{
 		type = "recipe-category",
+		name = "septic"
+	},
+	{
+		type = "recipe-category",
 		name = "sewage-treatment"
 	},
 	{

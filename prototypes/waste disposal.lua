@@ -48,9 +48,27 @@ data:extend({
 	},
 	{
 		type = "recipe",
+		name = "septic-treatment",
+		category = "septic",
+		enabled = true,
+		energy_required = 30,
+		ingredients = {
+			{type = "fluid", name = "sewage", amount = 20 },
+		},
+		results = {
+			{ "organic-material",1 },
+			{ "garbage",1 },
+		},
+		--icon = "__Population__/graphics/crude-oil.png",
+		--icon_size = 32,
+		subgroup = "Recycling",
+		order = "a",
+		main_product = "garbage"
+	},
+	{
+		type = "recipe",
 		name = "sewage-treatment",
 		category = "sewage-treatment",
-		hidden = false,
 		enabled = false,
 		energy_required = 6,
 		ingredients = {
@@ -78,7 +96,7 @@ data:extend({
 		stack_size = 100,
 		fuel_category = "chemical",
 		fuel_value = "1MJ",
-		emissions_multiplier = 1.5,
+		fuel_emissions_multiplier = 1.5,
 	},
 	{
 		type = "item",
@@ -87,7 +105,10 @@ data:extend({
 		icon_size = 64,
 		subgroup = "Recycling",
 		order = "a",
-		stack_size = 100
+		stack_size = 100,
+		fuel_category = "chemical",
+		fuel_value = "1MJ",
+		fuel_emissions_multiplier = 1.5,
 	},
 	{
 		type = "item",
@@ -96,7 +117,10 @@ data:extend({
 		icon_size = 64,
 		subgroup = "Recycling",
 		order = "a",
-		stack_size = 100
+		stack_size = 100,
+		fuel_category = "chemical",
+		fuel_value = "1MJ",
+		fuel_emissions_multiplier = 2,
 	},
 	{
 		type = "item",
@@ -105,8 +129,12 @@ data:extend({
 		icon_size = 64,
 		subgroup = "Recycling",
 		order = "a",
-		stack_size = 100
+		stack_size = 100,
+		fuel_category = "chemical",
+		fuel_value = "1MJ",
+		fuel_emissions_multiplier = 3,
 	},
+	--Recycling Recipes
 	{
 		type = "recipe",
 		name = "paper-recycling",
@@ -126,7 +154,7 @@ data:extend({
 		--icon_size = 32,
 		main_product = "paper",
 		subgroup = "Recycling",
-		order = "b",
+		order = "a-0",
 	},
 	{
 		type = "recipe",
@@ -145,7 +173,7 @@ data:extend({
 		--icon = "__Population__/graphics/crude-oil.png",
 		--icon_size = 32,
 		subgroup = "Recycling",
-		order = "b",
+		order = "a-1",
 	},
 	{
 		type = "recipe",
@@ -165,8 +193,67 @@ data:extend({
 		--icon = "__Population__/graphics/crude-oil.png",
 		--icon_size = 32,
 		subgroup = "Recycling",
-		order = "c",
+		order = "a-2",
 	},
+	{
+		type = "recipe",
+		name = "organic-material-gas",
+		category = "chemistry",
+		enabled = false,
+		energy_required = 6,
+		ingredients = {
+			{ "organic-material",20 },
+			{type = "fluid", name = "water", amount = 5 },
+		},
+		results = {
+			{type = "fluid", name = "petroleum-gas", amount = 30 },
+		},
+		--icon = "__Population__/graphics/crude-oil.png",
+		--icon_size = 32,
+		subgroup = "Recycling",
+		order = "b-1",
+	},
+	{
+		type = "recipe",
+		name = "organic-garbage-gas",
+		category = "chemistry",
+		enabled = false,
+		energy_required = 10,
+		ingredients = {
+			{ "organic-material",15 },
+			{ "garbage",15 },
+			{type = "fluid", name = "water", amount = 10 },
+		},
+		results = {
+			{type = "fluid", name = "petroleum-gas", amount = 45 },
+		},
+		--icon = "__Population__/graphics/crude-oil.png",
+		--icon_size = 32,
+		subgroup = "Recycling",
+		order = "b-3",
+	},
+	{
+		type = "recipe",
+		name = "garbage-recycling",
+		category = "chemistry",
+		enabled = false,
+		energy_required = 3,
+		ingredients = {
+			{ "garbage",5 },
+		},
+		results = {
+			{ "organic-material",2 },
+			{ "plastic-recycling",1 },
+			{ "copper-recycling",1 },
+			{ "paper-recycling",1 },
+		},
+		--icon = "__Population__/graphics/crude-oil.png",
+		--icon_size = 32,
+		main_product = "organic-material",
+		subgroup = "Recycling",
+		order = "b-3",
+	},
+	--Fertilizer Recipes
 	{
 		type = "recipe",
 		name = "composting",
@@ -288,7 +375,6 @@ sewage_plant.crafting_categories = {"sewage-treatment"}
 
 local sewage_plant_recipe = table.deepcopy(data.raw.recipe["chemical-plant"])
 sewage_plant_recipe.name = "sewage-treatment-plant"
-sewage_plant_recipe.category = "Recycling"
 sewage_plant_recipe.subgroup = "Recycling"
 sewage_plant_recipe.results = {{"sewage-treatment-plant",1}}
 
@@ -296,7 +382,16 @@ data:extend({sewage_plant, sewage_plant_recipe})
 
 LSlib.technology.addRecipeUnlock("plastics", "plastic-recycling")
 LSlib.technology.addRecipeUnlock("advanced-material-processing", "paper-recycling")
-LSlib.technology.addRecipeUnlock("advanced-material-processing", "sewage-treatment-plant")
-LSlib.technology.addRecipeUnlock("advanced-material-processing", "sewage-treatment")
 LSlib.technology.addRecipeUnlock("sulfur-processing", "stone-sulfur-fertilizer")
 LSlib.technology.addRecipeUnlock("sulfur-processing", "fertilizer")
+
+
+local wasteproductivity = { "stone-fertilizer", "stone-sulfur-fertilizer", "stone-organic-fertilizer", "fertilizer", "organic-material-gas" }
+
+for km, vm in pairs(data.raw.module) do
+  if vm.effect.productivity and vm.limitation then
+	for _, recipe in ipairs(wasteproductivity) do
+	  table.insert(vm.limitation, recipe)
+	end
+  end
+end

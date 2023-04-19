@@ -20,6 +20,32 @@ data:extend({
 	
 	--At least 2 ingredients must be used, and a max of 5. Each ingedient above 2 reduces rest time by 5%
 	
+	--Farm Module
+	{
+		type = "module",
+		name = "farming-positive-speed-module",
+		icon = "__core__/graphics/empty.png",
+		icon_size = 1,
+		flags = {"hidden"},
+		subgroup = "module",
+		category = "speed",
+		tier = 0,
+		stack_size = 1,
+		effect = {speed = {bonus = 0.01}, pollution = {bonus = 0.01}},
+	},
+	{
+		type = "module",
+		name = "farming-negative-speed-module",
+		icon = "__core__/graphics/empty.png",
+		icon_size = 1,
+		flags = {"hidden"},
+		subgroup = "module",
+		category = "speed",
+		tier = 0,
+		stack_size = 1,
+		effect = {speed = {bonus = -0.01}, pollution = {bonus = -0.01}},
+	},
+	
 	--Farm Items
 	{
 		type = "item",
@@ -126,23 +152,24 @@ data:extend({
 		order = "a",
 		stack_size = 200
 	},
-	--Planet Oil recipes	
+	--Plant Oil recipes
 	{
 		type = "recipe",
-		name = "plant-oil-plastic",
+		name = "plant-oil-gas",
 		category = "chemistry",
 		enabled = false,
-		energy_required = 2,
+		energy_required = 10,
 		ingredients = {
 			{type = "fluid", name = "plant-oil", amount = 20 },
+			{type = "fluid", name = "water", amount = 5 },
 		},
 		results = {
-			{ "plastic-bar",2 },
+			{type = "fluid", name = "petroleum-gas", amount = 30 },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		--icon_size = 32,
-		--subgroup = "Recycling",
-		--order = "c",
+		subgroup = "Recycling",
+		order = "b-2",
 	},
 	--Farm Recipes
 	{
@@ -351,7 +378,7 @@ data:extend({
 		crafting_categories = {"farming"},
 		crafting_speed = 1,
 		energy_usage = "1kW",
-		allowed_effects = {"speed"},
+		allowed_effects = {"speed", "consumption"},
 		energy_source = {
 			type = "void",
 			usage_priority = "secondary-input",
@@ -532,7 +559,7 @@ for i, Farm in pairs(Farms) do
 		LSlib.recipe.changeIcons("fertilizer-"..Farm.."-farming", FarmingIcons, 64)
 	end
 	
-	log("Non-fertilized farming recipe "..serpent.block(data.raw.recipe[Farm.."-farm"]))
+	--log("Non-fertilized farming recipe "..serpent.block(data.raw.recipe[Farm.."-farm"]))
 	
 	LSlib.recipe.duplicate("composting", Farm.."-composting")
 	LSlib.recipe.editIngredient(Farm.."-composting", "organic-material", Farm, 1 )
@@ -561,4 +588,15 @@ LSlib.recipe.editResult("hemp-fiber-composting", "fertilizer", "organic-material
 
 LSlib.recipe.disable("farming")
 LSlib.recipe.disable("farm")
-LSlib.technology.addRecipeUnlock("plastics", "plant-oil-plastic")
+
+local farmproductivity = { "nut-procressing", "plant-oil-gas", "hemp-procressing", "hemp-paper", "paper" }
+
+--limitation_blacklist
+
+for km, vm in pairs(data.raw.module) do
+  if vm.effect.productivity and vm.limitation then
+	for _, recipe in ipairs(farmproductivity) do
+	  table.insert(vm.limitation, recipe)
+	end
+  end
+end

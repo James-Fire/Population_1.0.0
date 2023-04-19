@@ -21,11 +21,21 @@ but do so slightly slower.
 TODO
 Quiet Rails?
 Recipe-based construction of housing structures?
-Productivity
-Septic Tank, 3x3 building that converts sewage into organic material. Sewage treatment is way more efficient.
+See how much making people move on their own would cost
+Septic Tank, 3x3 building that converts sewage into organic material. Sewage treatment is way more efficient, faster, outputs water
+Sewage Plant is now Biomass Processing Plant
 Housing buildings have 2 fluidboxes on each side
-Hempcrete made from stone, water, hemp fiber
-Maybe farms should require different materials?
+Hempcrete made from stone, water, hemp fiber (Copy concrete, replace iron stick with hemp fiber) 
+Split farm and housing beacon modules. Farm modules give full power usage, housing doesn't
+Blacklist my recipes in the vanilla modules
+Purified water
+Fix module update for farms and housing
+Maybe farms should require different materials? Farms need to be assemblers, so this might not be relevant at all.
+
+Global happiness value that influences housing speed?:
+	Entertainment somehow? Influences global happiness?
+	Overcrowding. Each housing structure has an amount of people it can house. If you have more people than space, happiness is lower
+	
 Alternate structural recipes:
 	Swap out wood for hemp fiber and steel.
 	Swap out wood for stone bricks/hempcrete
@@ -39,8 +49,6 @@ Alternate Mechanical recipes:
 Building to make fertile ground
 Alternate Food packaging recipes: Glass, Aluminum
 Fruit used to make fruit juice?
-Global happiness value that influences housing speed?
-Entertainment somehow? Influences global happiness?
 Vertical Farming? Hydroponics?
 Localisation, if gameplay turns out good.
 Art, if gameplay good:
@@ -96,6 +104,23 @@ Items:
 
 
 DESIGN IDEA
+
+The core loop added by the mod is using People to make science, then resting them so they can do it again.
+
+Resting people requires housing, food, water, and waste management. How you accomplish these is open-ended, allowing multiple solutions.
+
+Housing is better in better areas. Grassy areas, healthy trees, and water improve the work speed of housing. Other buildings are acceptable, to a point.
+
+Food needs to be grown, prepared, and packaged. It also has other uses.
+
+Water needs to be purified before use.
+
+Waste produced includes solid garbage and recycling, as well as sewage. Better tech gives you more options for handling these, that are more efficient resource-wise.
+
+You can make more people by making children, then caring for them so they grow up.
+
+
+
 
 Trip generation dependency between multiple centers, to give reason to build and use efficient rail networks.
 

@@ -5,6 +5,8 @@ local MathData = require("prototypes/Data Script")
 local Housing_Beacon = "housing-beacon"
 local Housing_Pos_Module = "housing-positive-speed-module"
 local Housing_Neg_Module = "housing-negative-speed-module"
+local Farming_Pos_Module = "farming-positive-speed-module"
+local Farming_Neg_Module = "farming-negative-speed-module"
 local Housing_Beaconed_Entities = {"sf-house", "mf-house", "low-rise", "ap-tower", "arcology-tower"}
 
 local Per_Tile_Impact = 1
@@ -39,7 +41,7 @@ end
 
 
 script.on_nth_tick(PeriodicUpdateInterval, function(event)
-	--game.print("Update farms and houses")
+	game.print("Update global update list and interval")
 	global.counter = 0
 	global.UpdateList = { }
 	global.UpdateInterval = PeriodicUpdateInterval/((table_size(global.HousingList)+table_size(global.FarmList))+1)
@@ -48,14 +50,14 @@ script.on_nth_tick(PeriodicUpdateInterval, function(event)
 		if House.valid then
 			table.insert(global.UpdateList, House)
 		else
-			table.remove(global.HousingList, i)
+			global.HousingList[i] = nil
 		end
 	end
 	for i, Farm in pairs(global.FarmList) do
 		if Farm.valid then
 			table.insert(global.UpdateList, Farm)
 		else
-			table.remove(global.FarmList, i)
+			global.FarmList[i] = nil
 		end
 	end
 	--game.print(serpent.block(global.UpdateList))
@@ -63,13 +65,15 @@ end)
 
 local function doSomething()
 	global.counter = global.counter + 1
-	--game.print("Global Counter: "..tostring(global.counter))
+	game.print("Global Counter: "..tostring(global.counter))
 	if global.UpdateList[global.counter] == nil then
 	else
-		--game.print(serpent.block(global.UpdateList[global.counter]))
+		game.print(serpent.block(global.UpdateList[global.counter]))
 		if stdlib.contains(global.UpdateList[global.counter].name, "-farm") or global.UpdateList[global.counter].name == "fishery" then
+			game.print("Updating a "..tostring(global.UpdateList[global.counter].name))
 			ManageFarmingBeacon(global.UpdateList[global.counter], global.UpdateList[global.counter].surface, global.UpdateList[global.counter].force, 3)
 		elseif stdlib.contains(global.UpdateList[global.counter].name, "-house") or stdlib.contains(global.UpdateList[global.counter].name, "-tower") or stdlib.contains(global.UpdateList[global.counter].name, "-rise") then
+			game.print("Updating a "..tostring(global.UpdateList[global.counter].name))
 			ManageHousingBeacon(global.UpdateList[global.counter], global.UpdateList[global.counter].surface, global.UpdateList[global.counter].force, MathData.HousingSize[3])
 		end
 	end
@@ -81,6 +85,7 @@ script.on_event(defines.events.on_tick, function(event)
 	doSomething()
 	global.queue[event.tick] = nil
 	global.queue[event.tick + global.UpdateInterval] = action --Do the action every 60 ticks, (1s)
+	game.print("tick")
 end)
 
 script.on_init(function()
@@ -210,8 +215,8 @@ function removeHiddenBeacon(surface, position, name)
 	end
 end
 
---Separate function to manage beacon modules, since multiple things use it
-function ManageBeaconModules(module_inventory, Score)
+--Separate functions to manage beacon modules
+function ManageHousingBeaconModules(module_inventory, Score)
 	if Score == (module_inventory.get_item_count(Housing_Pos_Module) - module_inventory.get_item_count(Housing_Neg_Module)) then
 	else
 		if module_inventory.get_item_count(Housing_Pos_Module) > 0 then
@@ -224,6 +229,22 @@ function ManageBeaconModules(module_inventory, Score)
 			module_inventory.insert{name = Housing_Pos_Module, count = added_modules}
 		elseif Score < 0 then
 			module_inventory.insert{name = Housing_Neg_Module, count = added_modules}
+		end
+	end
+end
+function ManageFarmingBeaconModules(module_inventory, Score)
+	if Score == (module_inventory.get_item_count(Farming_Pos_Module) - module_inventory.get_item_count(Farming_Neg_Module)) then
+	else
+		if module_inventory.get_item_count(Farming_Pos_Module) > 0 then
+			module_inventory.remove{name = Farming_Pos_Module, count = module_inventory.get_item_count(Farming_Pos_Module)}
+		elseif module_inventory.get_item_count(Farming_Neg_Module) > 0 then
+			module_inventory.remove{name = Farming_Neg_Module, count = module_inventory.get_item_count(Farming_Neg_Module)}
+		end
+		local added_modules = round(math.abs(Score))
+		if Score > 0 then
+			module_inventory.insert{name = Farming_Pos_Module, count = added_modules}
+		elseif Score < 0 then
+			module_inventory.insert{name = Farming_Neg_Module, count = added_modules}
 		end
 	end
 end
@@ -255,8 +276,8 @@ function CalculateFarmingBeacon(entity, surface, position, force, radius)
 			end
 		end
 	end
-	game.print("Good Tile Count: "..tostring(GoodTiles))
-	game.print("Bad Tile Count: "..tostring(BadTiles))
+	--game.print("Good Tile Count: "..tostring(GoodTiles))
+	--game.print("Bad Tile Count: "..tostring(BadTiles))
 	Score = Score + GoodTiles
 	Score = Score - BadTiles
 	
@@ -281,7 +302,7 @@ function CalculateFarmingBeacon(entity, surface, position, force, radius)
 			end
 		end
 	end
-	game.print("Water Tile Effect: "..tostring(WaterTiles))
+	--game.print("Water Tile Effect: "..tostring(WaterTiles))
 	Score = Score + WaterTiles
 	return Score
 end
@@ -386,7 +407,7 @@ end
 
 -- Set modules in hidden beacons for Terrain speed bonus
 function ManageHousingBeacon(entity, surface, force, radius)
-	--game.print("Updating house at"..serpent.block(entity.position))
+	game.print("Updating house at"..serpent.line(entity.position))
 	local hiddenBeacon = surface.find_entity(Housing_Beacon, entity.position)
 	--game.print("Beacon "..serpent.block(hiddenBeacon))
 	if hiddenBeacon == nil then
@@ -405,13 +426,13 @@ function ManageHousingBeacon(entity, surface, force, radius)
 			--game.print("Module Inventory is valid")
 			local Score = CalculateHousingBeacon(surface, hiddenBeacon.position, force, radius)
 			--game.print("Final House Score: "..tostring(Score))
-			ManageBeaconModules(module_inventory, Score)
+			ManageHousingBeaconModules(module_inventory, Score)
 		end
 	end
 end
 -- Set modules in hidden beacons for Terrain farming speed bonus
 function ManageFarmingBeacon(entity, surface, force, radius)
-	--game.print("Updating farm at"..serpent.block(position))
+	game.print("Updating farm at"..serpent.line(position))
 	if entity.valid then
 		--log(entity.name.." is valid")
 		local hiddenBeacon = surface.find_entity(Housing_Beacon, entity.position)
@@ -431,7 +452,7 @@ function ManageFarmingBeacon(entity, surface, force, radius)
 			if module_inventory then
 				local Score = CalculateFarmingBeacon(entity, surface, hiddenBeacon.position, force, radius)
 				--game.print("Final Farm Score: "..tostring(Score))
-				ManageBeaconModules(module_inventory, Score)
+				ManageFarmingBeaconModules(module_inventory, Score)
 			end
 		end
 	end

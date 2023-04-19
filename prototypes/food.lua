@@ -64,7 +64,7 @@ data:extend({
 		name = "food-2",
 		category = "crafting",
 		enabled = true,
-		energy_required = 1,
+		energy_required = 10,
 		ingredients = {
 		},
 		result = "food-2",
@@ -216,12 +216,12 @@ local PackageTiers = {"plastic-food-2","copper-food-2","paper-food-2"}
 
 
 for _, recipe in pairs(PackageTiers) do
-	for _, count in pairs({"3","4","5"}) do
+	for i, count in pairs({"3","4","5"}) do
 		--Plastic Packaging
 		if stdlib.contains(recipe, "plastic") then
 			LSlib.recipe.duplicate("plastic-food-2", "plastic-food-"..count)
 			LSlib.recipe.editIngredient("plastic-food-"..count, "food-2", "food-"..count, 1 )
-			LSlib.recipe.editIngredient("plastic-food-"..count, "plastic-bar", "plastic-bar", _/2+1 )
+			LSlib.recipe.editIngredient("plastic-food-"..count, "plastic-bar", "plastic-bar", i/2+1 )
 			LSlib.recipe.editResult("plastic-food-"..count, "plastic-food-2", "plastic-food-"..count, 1 )
 			LSlib.technology.addRecipeUnlock("plastics", "plastic-food-"..count)
 		end
@@ -229,21 +229,21 @@ for _, recipe in pairs(PackageTiers) do
 		if stdlib.contains(recipe, "copper") then
 			LSlib.recipe.duplicate("copper-food-2", "copper-food-"..count)
 			LSlib.recipe.editIngredient("copper-food-"..count, "food-2", "food-"..count, 1 )
-			LSlib.recipe.editIngredient("copper-food-"..count, "copper-plate", "copper-plate", _/2+1 )
+			LSlib.recipe.editIngredient("copper-food-"..count, "copper-plate", "copper-plate", i/2+1 )
 			LSlib.recipe.editResult("copper-food-"..count, "copper-food-2", "copper-food-"..count, 1 )
 		end
 		--Paper Packaging
 		if stdlib.contains(recipe, "paper") then
 			LSlib.recipe.duplicate("paper-food-2", "paper-food-"..count)
 			LSlib.recipe.editIngredient("paper-food-"..count, "food-2", "food-"..count, 1 )
-			LSlib.recipe.editIngredient("paper-food-"..count, "paper", "paper", _/2+1 )
+			LSlib.recipe.editIngredient("paper-food-"..count, "paper", "paper", i/2+1 )
 			LSlib.recipe.editResult("paper-food-"..count, "paper-food-2", "paper-food-"..count, 1 )
 		end
 		--Aluminum Packaging
 		if stdlib.contains(recipe, "aluminum") then
 			LSlib.recipe.duplicate("aluminum-food-2", "aluminum-food-"..count)
 			LSlib.recipe.editIngredient("aluminum-food-"..count, "food-2", "food-"..count, 1 )
-			LSlib.recipe.editIngredient("aluminum-food-"..count, "aluminum-plate", "aluminum-plate", _/2+1 )
+			LSlib.recipe.editIngredient("aluminum-food-"..count, "aluminum-plate", "aluminum-plate", i/2+1 )
 			LSlib.recipe.editResult("aluminum-food-"..count, "aluminum-food-2", "aluminum-food-"..count, 1 )
 		end
 	end

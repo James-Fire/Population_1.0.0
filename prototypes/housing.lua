@@ -70,7 +70,7 @@ data:extend{
 		category = "speed",
 		tier = 0,
 		stack_size = 1,
-		effect = {speed = {bonus = 0.01}},
+		effect = {speed = {bonus = 0.01}, consumption = {bonus = 0.005}},
 	},
 	{
 		type = "module",
@@ -82,7 +82,7 @@ data:extend{
 		category = "speed",
 		tier = 0,
 		stack_size = 1,
-		effect = {speed = {bonus = -0.01}},
+		effect = {speed = {bonus = -0.01}, consumption = {bonus = 0.005}},
 	},
 }
 
@@ -254,7 +254,7 @@ data:extend({
 		crafting_categories = {"pop-rest-1"},
 		crafting_speed = MathData.HousingWorkSpeed[1],
 		energy_usage = MathData.HousingEnergy[1],
-		allowed_effects = {"speed"},
+		allowed_effects = {"speed", "consumption"},
 		energy_source = {
 			type = "electric",
 			usage_priority = "secondary-input",
