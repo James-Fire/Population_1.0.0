@@ -578,6 +578,10 @@ for i, Farm in pairs(Farms) do
 	data:extend({farmcopy,farmitemcopy,farmrecipecopy})
 end
 
+LSlib.recipe.duplicate("concrete", "hempcrete")
+LSlib.recipe.editIngredient("hempcrete", "iron-stick", "hemp-fiber", 1 )
+LSlib.technology.addRecipeUnlock("concrete", "hempcrete")
+
 LSlib.recipe.duplicate("composting", "hemp-food-composting")
 LSlib.recipe.editIngredient("hemp-food-composting", "organic-material", "hemp-food", 1 )
 LSlib.recipe.editResult("hemp-food-composting", "fertilizer", "organic-material", 1 )

@@ -91,12 +91,21 @@ local function FindItemRecipe(Item)
 end
 
 local rocketrecipes = { }
-local Items = { "item", "fluid", "module", "tool", "ammo", "capsule", "armor", "gun", "rail-planner" }
+local Items = { "item", "fluid", "module", "tool", "ammo", "capsule", "armor", "gun", "rail-planner", "repair-tool", "item-with-entity-data", "spidertron-remote" }
 for i, ItemType in pairs(Items) do
 	for j, Item in pairs(data.raw[ItemType]) do
-		if Item.rocket_launch_product then
+		if Item.rocket_launch_product and Item.name ~= "space-science-pack" then
 			for k, Recipe in pairs(FindItemRecipe(Item.name)) do
-				table.insert(rocketrecipes,Recipe.name)
+				if Recipe.name:find("replication", 1, true) or Recipe.name:find("request", 1, true) then
+				else
+					table.insert(rocketrecipes,Recipe.name)
+				end
+			end
+			for k, Recipe in pairs(FindItemRecipe(Item.rocket_launch_product)) do
+				if Recipe.name:find("replication", 1, true) or Recipe.name:find("request", 1, true) then
+				elseif CheckTableValue(Recipe.name,rocketrecipes) == false then
+					table.insert(rocketrecipes,Recipe.name)
+				end
 			end
 		end
 	end
@@ -104,16 +113,36 @@ end
 
 for i, rocket in pairs(rocketrecipes) do
 	local recipe = data.raw.recipe[rocket] 
-	--Add people to each science pack recipe, based on an exponent of how many packs it makes per recipe
+	--Add people to any rocket launch items, based on how many items it takes, times the average item count.
 	local recipe_data = recipe
 	if recipe.normal then
 		recipe_data = recipe.normal
 	else
 		recipe_data = recipe
 	end
-	if recipe_data.ingredients then
-		LSlib.recipe.addResult(recipe.name, "tired-person", math.max(2*(table_size(recipe.ingredients)^3),1), "item")
-		LSlib.recipe.addIngredient(recipe.name, "person", math.max(2*(table_size(recipe.ingredients)^3),1), "item")
+	log(recipe.name)
+	if recipe_data.ingredients[1] then
+		log(recipe.name..": "..serpent.block(recipe_data.ingredients))
+		local TotalIngreds = 0
+		local TotalIngredCount = 0
+		for i, ingredient in pairs(recipe_data.ingredients) do
+			if ingredient.type ~= "fluid" then
+				TotalIngreds = TotalIngreds + 1
+				local ingredientcount = 1
+				if ingredient.count then
+					ingredientcount = ingredient.count
+				elseif ingredient.amount then
+					ingredientcount = ingredient.amount
+				else
+					ingredientcount = ingredient[2]
+				end
+				TotalIngredCount = TotalIngredCount + ingredientcount
+			end
+		end
+		TotalIngredCount = TotalIngredCount/TotalIngreds
+		log(recipe.name.." People: "..tostring(TotalResultCount))
+		LSlib.recipe.addResult(recipe.name, "tired-person", math.max(TotalIngredCount,1), "item")
+		LSlib.recipe.addIngredient(recipe.name, "person", math.max(TotalIngredCount,1), "item")
 		LSlib.recipe.setMainResult(recipe.name, recipe.name)
 		for km, vm in pairs(data.raw.module) do
 			if vm.effect.productivity and vm.limitation then
@@ -124,5 +153,38 @@ for i, rocket in pairs(rocketrecipes) do
 				end
 			end
 		end
+	else
+		local TotalResults = 0
+		local TotalResultCount = 1
+		if recipe_data.results then
+			for i, result in pairs(recipe_data.results) do
+				TotalResults = TotalResults + 1
+				if result.count then
+					TotalResultCount = TotalResultCount + result.count
+				elseif result.amount then
+					TotalResultCount = TotalResultCount + result.amount
+				end
+			end
+		elseif recipe_data.result then
+			TotalResults = TotalResults + 1
+			if recipe_data.result.count then
+				TotalResultCount = recipe_data.result.count
+			end
+		end
+		TotalResultCount = TotalResultCount/TotalResults
+		log(recipe.name.." People: "..tostring(TotalResultCount))
+		LSlib.recipe.addResult(recipe.name, "tired-person", math.max(TotalResultCount,1), "item")
+		LSlib.recipe.addIngredient(recipe.name, "person", math.max(TotalResultCount,1), "item")
+		LSlib.recipe.setMainResult(recipe.name, recipe.name)
+		for km, vm in pairs(data.raw.module) do
+			if vm.effect.productivity and vm.limitation then
+				for n, Name in pairs(vm.limitation) do
+					if Name == recipe.name then
+						table.remove(vm.limitation, n)
+					end
+				end
+			end
+		end
+	
 	end
 end
