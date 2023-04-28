@@ -21,7 +21,14 @@ but do so slightly slower.
 TODO
 Quiet Rails?
 Recipe-based construction of housing structures?
-Include a backup checker for entities that are removed from globalm
+Setting for requiring people in specific machines:
+	Mining Drones require people to make
+	Transport Drones require people to make
+	Trains require people to make
+Separate people from science by using some sort of "work" item, so that science stuff can use productivity? Unlock better work recipes?
+Include a backup checker for entities that are removed from global
+True garbage
+Increase value search radius on bigger house
 See how much making people move on their own would cost (Probably best to just have a table of source and destination entities for each network, periodically updated)
 Septic Tank, 3x3 building that converts sewage into organic material. Sewage treatment is way more efficient, faster, outputs water
 Sewage Plant is now Biomass Processing Plant

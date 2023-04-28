@@ -1,0 +1,1 @@
+--These are the other mod settings.  They're fairly straightforward.
