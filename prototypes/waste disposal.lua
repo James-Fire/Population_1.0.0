@@ -75,7 +75,7 @@ data:extend({
 			{type = "fluid", name = "sewage", amount = 40 },
 		},
 		results = {
-			{type = "fluid", name = "water", amount = 38 },
+			{ type = "fluid", name = "water", amount = 38 },
 			{ "organic-material",1 },
 			{ "garbage",1 },
 		},
@@ -283,7 +283,7 @@ data:extend({
 			{type = "fluid", name = "water", amount = 5 },
 		},
 		results = {
-			{ "fertilizer",10 },
+			{ "fertilizer",6 },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		--icon_size = 32,

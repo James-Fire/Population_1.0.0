@@ -6,7 +6,6 @@ for name, assembler in pairs(data.raw["assembling-machine"]) do
 	end
 end]]
 
-require("prototypes/science")
 
 LSlib.technology.addRecipeUnlock("sulfur-processing", "stone-sulfur-fertilizer")
 LSlib.technology.addRecipeUnlock("sulfur-processing", "fertilizer")

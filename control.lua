@@ -41,7 +41,7 @@ end
 
 
 script.on_nth_tick(PeriodicUpdateInterval, function(event)
-	game.print("Update global update list and interval")
+	--game.print("Update global update list and interval")
 	global.counter = 0
 	global.UpdateList = { }
 	global.UpdateInterval = PeriodicUpdateInterval/((table_size(global.HousingList)+table_size(global.FarmList))+1)
@@ -65,15 +65,15 @@ end)
 
 local function doSomething()
 	global.counter = global.counter + 1
-	game.print("Global Counter: "..tostring(global.counter))
+	--game.print("Global Counter: "..tostring(global.counter))
 	if global.UpdateList[global.counter] == nil then
 	else
-		game.print(serpent.block(global.UpdateList[global.counter]))
+		--game.print(serpent.block(global.UpdateList[global.counter]))
 		if stdlib.contains(global.UpdateList[global.counter].name, "-farm") or global.UpdateList[global.counter].name == "fishery" then
-			game.print("Updating a "..tostring(global.UpdateList[global.counter].name))
+			--game.print("Updating a "..tostring(global.UpdateList[global.counter].name))
 			ManageFarmingBeacon(global.UpdateList[global.counter], global.UpdateList[global.counter].surface, global.UpdateList[global.counter].force, 3)
 		elseif stdlib.contains(global.UpdateList[global.counter].name, "-house") or stdlib.contains(global.UpdateList[global.counter].name, "-tower") or stdlib.contains(global.UpdateList[global.counter].name, "-rise") then
-			game.print("Updating a "..tostring(global.UpdateList[global.counter].name))
+			--game.print("Updating a "..tostring(global.UpdateList[global.counter].name))
 			ManageHousingBeacon(global.UpdateList[global.counter], global.UpdateList[global.counter].surface, global.UpdateList[global.counter].force, MathData.HousingSize[3])
 		end
 	end
@@ -85,7 +85,7 @@ script.on_event(defines.events.on_tick, function(event)
 	doSomething()
 	global.queue[event.tick] = nil
 	global.queue[event.tick + global.UpdateInterval] = action --Do the action every 60 ticks, (1s)
-	game.print("tick")
+	--game.print("tick")
 end)
 
 script.on_init(function()
@@ -121,6 +121,7 @@ script.on_init(function()
 		["wood"] = 100,
 		["vegetables-farm"] = 2,
 		["grain-farm"] = 2,
+		["wood-farm"] = 2,
 	}
 	if remote.interfaces["freeplay"] then
 		local freeplayStartItems = remote.call("freeplay", "get_created_items") or {}
@@ -407,7 +408,7 @@ end
 
 -- Set modules in hidden beacons for Terrain speed bonus
 function ManageHousingBeacon(entity, surface, force, radius)
-	game.print("Updating house at"..serpent.line(entity.position))
+	--game.print("Updating house at"..serpent.line(entity.position))
 	local hiddenBeacon = surface.find_entity(Housing_Beacon, entity.position)
 	--game.print("Beacon "..serpent.block(hiddenBeacon))
 	if hiddenBeacon == nil then
@@ -432,7 +433,7 @@ function ManageHousingBeacon(entity, surface, force, radius)
 end
 -- Set modules in hidden beacons for Terrain farming speed bonus
 function ManageFarmingBeacon(entity, surface, force, radius)
-	game.print("Updating farm at"..serpent.line(position))
+	--game.print("Updating farm at"..serpent.line(position))
 	if entity.valid then
 		--log(entity.name.." is valid")
 		local hiddenBeacon = surface.find_entity(Housing_Beacon, entity.position)

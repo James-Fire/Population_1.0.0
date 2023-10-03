@@ -2,29 +2,52 @@ local energy_required = 40
 local amount_param = 1
 sciencepacks = {}
 sciencepackrecipes = {}
+packorfluid = "pack"
+if (mods["MoreScience"]) then
+	packorfluid = "fluid"
+	table.insert(sciencepackrecipes, data.raw.recipe["automation-science-pack-basic"])
+end
 --Get all the science packs
-for i, prototype in pairs(data.raw.item) do
-	if string.find(prototype.name, "science") then
+for i, prototype in pairs(data.raw.tool) do
+	if prototype.name:find("science", 1, true) then
 		table.insert(sciencepacks, prototype)
 	end
 end
 
-
 --Get all the science pack recipes
 for i, prototype in pairs(data.raw.recipe) do
-	if string.find(prototype.name, "science") and prototype.category == nil then
-		table.insert(sciencepackrecipes, prototype)
+	if prototype.name:find("science", 1, true) and prototype.name:find(packorfluid, 1, true) then
+		if not prototype.name:find("barrel", 1, true) then
+			table.insert(sciencepackrecipes, prototype)
+		end
 	end
 end
+
+--log(serpent.block(sciencepackrecipes))
 --[[Make a Data Card for each science pack
 for i, SciencePack in pairs(sciencepacks) do
 	LSlib.item.duplicate("item", SciencePack, SciencePack.."-data")
 end]]
 for i, Science in pairs(sciencepackrecipes) do
 	--Add people to each science pack recipe, based on an exponent of how many packs it makes per recipe
-	LSlib.recipe.addIngredient(Science.name, "person", 2*LSlib.recipe.getResultCount(Science.name, Science.name)*LSlib.recipe.getResultCount(Science.name, Science.name), "item")
-	LSlib.recipe.addResult(Science.name, "tired-person", 2*LSlib.recipe.getResultCount(Science.name, Science.name)*LSlib.recipe.getResultCount(Science.name, Science.name), "item")
-	LSlib.recipe.setMainResult(Science.name, Science.name)
+	local PeopleCount = 0
+	if (mods["MoreScience"]) then
+		PeopleCount = Science.energy_required*LSlib.recipe.getResultCount(Science.name, Science.name)/100
+	else
+		PeopleCount = 2*LSlib.recipe.getResultCount(Science.name, Science.name)*LSlib.recipe.getResultCount(Science.name, Science.name)
+	end
+	if PeopleCount == 0 then
+		PeopleCount = 2
+	end
+	if data.raw.tool[Science.name] then
+		LSlib.recipe.setMainResult(Science.name, Science.name)
+	elseif data.raw.fluid[Science.name] then
+		LSlib.recipe.setMainResult(Science.name, Science.name)
+	elseif Science.result then
+		Science.main_product = Science.result
+	end
+	LSlib.recipe.addIngredient(Science.name, "person", PeopleCount, "item")
+	LSlib.recipe.addResult(Science.name, "tired-person", PeopleCount, "item")
 	for km, vm in pairs(data.raw.module) do
 		if vm.effect.productivity and vm.limitation then
 			for n, Name in pairs(vm.limitation) do
@@ -120,9 +143,9 @@ for i, rocket in pairs(rocketrecipes) do
 	else
 		recipe_data = recipe
 	end
-	log(recipe.name)
+	--log(recipe.name)
 	if recipe_data.ingredients[1] then
-		log(recipe.name..": "..serpent.block(recipe_data.ingredients))
+		--log(recipe.name..": "..serpent.block(recipe_data.ingredients))
 		local TotalIngreds = 0
 		local TotalIngredCount = 0
 		for i, ingredient in pairs(recipe_data.ingredients) do
@@ -140,7 +163,7 @@ for i, rocket in pairs(rocketrecipes) do
 			end
 		end
 		TotalIngredCount = TotalIngredCount/TotalIngreds
-		log(recipe.name.." People: "..tostring(TotalResultCount))
+		--log(recipe.name.." People: "..tostring(TotalResultCount))
 		LSlib.recipe.addResult(recipe.name, "tired-person", math.max(TotalIngredCount,1), "item")
 		LSlib.recipe.addIngredient(recipe.name, "person", math.max(TotalIngredCount,1), "item")
 		LSlib.recipe.setMainResult(recipe.name, recipe.name)
@@ -172,7 +195,7 @@ for i, rocket in pairs(rocketrecipes) do
 			end
 		end
 		TotalResultCount = TotalResultCount/TotalResults
-		log(recipe.name.." People: "..tostring(TotalResultCount))
+		--log(recipe.name.." People: "..tostring(TotalResultCount))
 		LSlib.recipe.addResult(recipe.name, "tired-person", math.max(TotalResultCount,1), "item")
 		LSlib.recipe.addIngredient(recipe.name, "person", math.max(TotalResultCount,1), "item")
 		LSlib.recipe.setMainResult(recipe.name, recipe.name)
