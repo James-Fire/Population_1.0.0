@@ -378,7 +378,7 @@ data:extend({
 		crafting_categories = {"farming"},
 		crafting_speed = 1,
 		energy_usage = "1kW",
-		allowed_effects = {"speed", "consumption"},
+		allowed_effects = {"speed", "consumption", "pollution"},
 		energy_source = {
 			type = "void",
 			usage_priority = "secondary-input",
@@ -439,7 +439,8 @@ data:extend({
 				}
 			},
 		},
-	},{
+	},
+	{
 		type = "furnace",
 		name = "fishery",
 		icon = "__Population__/graphics/icons/gasifier.png",
@@ -458,7 +459,7 @@ data:extend({
 		crafting_categories = {"fishing"},
 		crafting_speed = 0.1,
 		energy_usage = "1kW",
-		allowed_effects = {"speed"},
+		allowed_effects = {"speed", "consumption", "pollution"},
 		energy_source = {
 			type = "void",
 			usage_priority = "secondary-input",

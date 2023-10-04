@@ -147,9 +147,11 @@ function on_new_entity(event)
 	local surface = new_entity.surface
 	local position = new_entity.position
 	local force = new_entity.force
-	if stdlib.contains(new_entity.name, "-farm") then
+	if new_entity.name:find("-farm", 1, true) then	
+		game.print("Found Farm")
 		ManageFarmingBeacon(new_entity, surface, force, 3)
 		if not CheckTableValue(new_entity,global.FarmList) then
+			game.print("Farm inserted into Global Table")
 			table.insert(global.FarmList, new_entity)
 		end
 	elseif new_entity.name == "fishery" then
@@ -236,13 +238,18 @@ function ManageHousingBeaconModules(module_inventory, Score)
 end
 function ManageFarmingBeaconModules(module_inventory, Score)
 	if Score == (module_inventory.get_item_count(Farming_Pos_Module) - module_inventory.get_item_count(Farming_Neg_Module)) then
+		--game.print("Farm already has correct modules")
 	else
+		--game.print("Farm does not have correct modules")
 		if module_inventory.get_item_count(Farming_Pos_Module) > 0 then
+			--game.print("Farm already has Positive Modules")
 			module_inventory.remove{name = Farming_Pos_Module, count = module_inventory.get_item_count(Farming_Pos_Module)}
 		elseif module_inventory.get_item_count(Farming_Neg_Module) > 0 then
+			--game.print("Farm already has Negative Modules")
 			module_inventory.remove{name = Farming_Neg_Module, count = module_inventory.get_item_count(Farming_Neg_Module)}
 		end
 		local added_modules = round(math.abs(Score))
+		game.print("Rounded Score:"..tostring(Score))
 		if Score > 0 then
 			module_inventory.insert{name = Farming_Pos_Module, count = added_modules}
 		elseif Score < 0 then
@@ -305,6 +312,7 @@ function CalculateFarmingBeacon(entity, surface, position, force, radius)
 		end
 	end
 	--game.print("Water Tile Effect: "..tostring(WaterTiles))
+	--game.print("Score:"..tostring(Score))
 	Score = Score + WaterTiles
 	return Score
 end
@@ -434,26 +442,28 @@ function ManageHousingBeacon(entity, surface, force, radius)
 end
 -- Set modules in hidden beacons for Terrain farming speed bonus
 function ManageFarmingBeacon(entity, surface, force, radius)
-	--game.print("Updating farm at"..serpent.line(position))
+	game.print("Updating farm at"..serpent.line(entity.position))
 	if entity.valid then
-		--log(entity.name.." is valid")
+		log(entity.name.." is valid")
 		local hiddenBeacon = surface.find_entity(Housing_Beacon, entity.position)
-		--log("Beacon "..serpent.block(hiddenBeacon))
+		--game.print("Beacon "..serpent.block(hiddenBeacon))
 		if hiddenBeacon == nil then
 			--Make beacon
-			--log("Make a Beacon")
+			--game.print("Make a Beacon")
 			surface.create_entity{name = Housing_Beacon, position = entity.position, raise_built = false}
 			hiddenBeacon = surface.find_entity(Housing_Beacon, entity.position)
 		end
-		--log("Beacon "..serpent.block(hiddenBeacon))
+		--game.print("Verify Beacon "..serpent.block(hiddenBeacon))
 		--Fill beacon
 		if hiddenBeacon then
-			--log("Beacon is valid")
+			--game.print("Beacon is valid")
 			--log("Beacon "..serpent.block(hiddenBeacon))
 			local module_inventory = hiddenBeacon.get_module_inventory()
+			--game.print("Beacon Modules "..serpent.block(module_inventory))
 			if module_inventory then
-				local Score = CalculateFarmingBeacon(entity, surface, hiddenBeacon.position, force, radius)
-				--game.print("Final Farm Score: "..tostring(Score))
+				game.print("Module Inventory is valid")
+				local Score = CalculateFarmingBeacon(entity, surface, entity.position, force, radius)
+				game.print("Final Farm Score: "..tostring(Score))
 				ManageFarmingBeaconModules(module_inventory, Score)
 			end
 		end

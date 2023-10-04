@@ -55,7 +55,7 @@ data:extend{
 		module_specification = {
 			module_slots = 65535,
 		},
-		allowed_effects = {"speed", "consumption"},
+		allowed_effects = {"speed", "consumption", "pollution"},
 		selection_box = {{0, 0}, {0, 0}},
 		collision_box = {{-1.4, -1.4}, {1.4, 1.4}},
 	},
@@ -82,7 +82,7 @@ data:extend{
 		category = "speed",
 		tier = 0,
 		stack_size = 1,
-		effect = {speed = {bonus = -0.01}, consumption = {bonus = 0.005}},
+		effect = {speed = {bonus = -0.01}, consumption = {bonus = -0.005}},
 	},
 }
 
