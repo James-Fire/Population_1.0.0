@@ -3,6 +3,7 @@ local amount_param = 1
 sciencepacks = {}
 sciencepackrecipes = {}
 packorfluid = "pack"
+toolorfluid = tool
 if (mods["MoreScience"]) then
 	packorfluid = "fluid"
 	table.insert(sciencepackrecipes, data.raw.recipe["automation-science-pack-basic"])
@@ -20,6 +21,10 @@ for i, prototype in pairs(data.raw.recipe) do
 		if not prototype.name:find("barrel", 1, true) then
 			table.insert(sciencepackrecipes, prototype)
 		end
+	elseif (mods["MoreScience"]) and prototype.name:find("rocketpart", 1, true) then
+		table.insert(sciencepackrecipes, prototype)
+	elseif (mods["MoreScience"]) and prototype.name:find("infused", 1, true) then
+		table.insert(sciencepackrecipes, prototype)
 	end
 end
 
@@ -32,9 +37,12 @@ for i, Science in pairs(sciencepackrecipes) do
 	--Add people to each science pack recipe, based on an exponent of how many packs it makes per recipe
 	local PeopleCount = 0
 	if (mods["MoreScience"]) then
-		PeopleCount = Science.energy_required*LSlib.recipe.getResultCount(Science.name, Science.name)/100
+		PeopleCount = Science.energy_required*LSlib.recipe.getResultCount(Science.name)*(LSlib.recipe.getIngredientsCount(Science.name, true)[1]+LSlib.recipe.getIngredientsCount(Science.name, true)[2]-1)
 	else
 		PeopleCount = 2*LSlib.recipe.getResultCount(Science.name, Science.name)*LSlib.recipe.getResultCount(Science.name, Science.name)
+	end
+	if Science.name:find("fluid", 1, true) then
+		PeopleCount = PeopleCount/100
 	end
 	if PeopleCount == 0 then
 		PeopleCount = 2
@@ -46,6 +54,42 @@ for i, Science in pairs(sciencepackrecipes) do
 	elseif Science.result then
 		Science.main_product = Science.result
 	end
+	--Why is it so fucking hard to just set a fucking icon
+	if (not Science.icon) and Science.result then
+		if data.raw.tool[Science.result] then
+			if data.raw.tool[Science.result].icon then
+				Science.icon = data.raw.tool[Science.result].icon
+			elseif data.raw.tool[Science.result].icons then
+				Science.icons = data.raw.tool[Science.result].icons
+			end
+		elseif data.raw.fluid[Science.result] then
+			if data.raw.fluid[Science.result].icon then
+				Science.icon = data.raw.fluid[Science.result].icon
+			elseif data.raw.fluid[Science.result].icons then
+				Science.icons = data.raw.fluid[Science.result].icons
+			end
+		end
+	elseif (not Science.icon) and Science.results then
+		ScienceResult = Science.results[1]
+		if data.raw.tool[ScienceResult] then
+			if data.raw.tool[ScienceResult].icon then
+				Science.icon = data.raw.tool[ScienceResult].icon
+			elseif data.raw.tool[ScienceResult].icons then
+				Science.icons = data.raw.tool[ScienceResult].icons
+			end
+		elseif data.raw.fluid[ScienceResult] then
+			if data.raw.fluid[ScienceResult].icon then
+				Science.icon = data.raw.fluid[ScienceResult].icon
+			elseif data.raw.fluid[ScienceResult].icons then
+				Science.icons = data.raw.fluid[ScienceResult].icons
+			end
+		end
+	end
+	--Why does More Science have so much bullshit to deal with just to add a result to their recipes?
+	if (mods["MoreScience"]) and Science.name:find("infused", 1, true) then
+		Science.subgroup = "ms-science-science-cauldron"
+	end
+	
 	LSlib.recipe.addIngredient(Science.name, "person", PeopleCount, "item")
 	LSlib.recipe.addResult(Science.name, "tired-person", PeopleCount, "item")
 	for km, vm in pairs(data.raw.module) do
