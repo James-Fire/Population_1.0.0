@@ -28,6 +28,16 @@ data:extend({
 	},
 	{
 		type = "item",
+		name = "septic-tank",
+		icon = "__base__/graphics/icons/steam-turbine.png",
+		icon_size = 64,
+		subgroup = "Recycling",
+		place_result = "septic-tank",
+		order = "a",
+		stack_size = 5
+	},
+	{
+		type = "item",
 		name = "organic-material",
 		icon = "__base__/graphics/icons/steam-turbine.png",
 		icon_size = 64,
@@ -378,13 +388,108 @@ sewage_plant_recipe.name = "sewage-treatment-plant"
 sewage_plant_recipe.subgroup = "Recycling"
 sewage_plant_recipe.results = {{"sewage-treatment-plant",1}}
 
-data:extend({sewage_plant, sewage_plant_recipe})
+local septic_tank_recipe = table.deepcopy(data.raw.recipe["storage-tank"])
+septic_tank_recipe.name = "septic-tank"
+septic_tank_recipe.subgroup = "Recycling"
+septic_tank_recipe.results = {{"septic-tank",1}}
+
+data:extend({
+
+	{
+		type = "furnace",
+		name = "septic-tank",
+		icon = "__Population__/graphics/icons/gasifier.png",
+		icon_size = 32,
+		flags = {"placeable-neutral","player-creation"},
+		minable = {
+			mining_time = 1,
+			result = "septic-tank",
+		},
+		max_health = 250,
+		corpse = "big-remnants",
+		dying_explosion = "medium-explosion",
+		collision_box = {{-1.5,-1.5},{1.5,1.5}},
+		selection_box = {{-1.5,-1.5},{1.5,1.5}},
+		crafting_categories = {"septic"},
+		crafting_speed = 1,
+		energy_usage = "1kW",
+		allowed_effects = {"speed", "consumption"},
+		energy_source = {
+			type = "void",
+			usage_priority = "secondary-input",
+			emissions_per_minute = 10,
+		},
+		source_inventory_size = 1,
+		result_inventory_size = 8,
+		animation = {
+			filename = "__base__/graphics/entity/storage-tank/storage-tank.png",
+			priority = "extra-high",
+			frame_count = 2,
+			width = 110,
+			height = 108,
+			shift = util.by_pixel(0, 4),
+			hr_version = {
+				filename = "__base__/graphics/entity/storage-tank/hr-storage-tank.png",
+				priority = "extra-high",
+				frame_count = 2,
+				width = 219,
+				height = 215,
+				shift = util.by_pixel(-0.25, 3.75),
+				scale = 0.5
+			}
+		},
+		working_visualisations = {{
+			animation = {
+				filename =
+					"__Population__/graphics/entity/"
+					.."gasifier-fumes.png",
+				priority = "extra-high",
+				frame_count = 29,
+				width = 48,
+				height = 105,
+				shift = {-0.05, -5.65},
+				animation_speed = 0.5,
+				scale = 1.5,
+				run_mode="backward"
+			}
+		}},
+		vehicle_impact_sound = {
+		  filename = "__base__/sound/car-metal-impact.ogg",
+		  volume = 0.65
+		},
+		working_sound = {
+			sound = {
+				filename = "__base__/sound/oil-refinery.ogg"
+			},
+			idle_sound = {
+				filename = "__base__/sound/idle1.ogg", volume = 0.6
+			},
+			apparent_volume = 2,
+		},
+		fluid_boxes = {
+			{
+				production_type = "input",
+				pipe_picture = bulkypipepictures(),
+				secondary_draw_orders = {
+					north=-1.5,south=-1.5,east=-1.5,west=-1.5
+				},
+				pipe_covers = pipecoverspictures(),
+				base_area = 2,
+				base_level = -1,
+				pipe_connections = {
+				  { position = {0, -1.75} }
+				}
+			},
+		},
+	},
+	sewage_plant, sewage_plant_recipe, septic_tank, septic_tank_recipe
+})
 
 LSlib.technology.addRecipeUnlock("plastics", "plastic-recycling")
 LSlib.technology.addRecipeUnlock("advanced-material-processing", "paper-recycling")
 LSlib.technology.addRecipeUnlock("sulfur-processing", "stone-sulfur-fertilizer")
 LSlib.technology.addRecipeUnlock("sulfur-processing", "fertilizer")
-
+LSlib.recipe.enable("septic-tank")
 
 local wasteproductivity = { "stone-fertilizer", "stone-sulfur-fertilizer", "stone-organic-fertilizer", "fertilizer", "organic-material-gas" }
 

@@ -122,6 +122,7 @@ script.on_init(function()
 		["vegetables-farm"] = 2,
 		["grain-farm"] = 2,
 		["wood-farm"] = 2,
+		["septic-tank"] = 5,
 	}
 	if remote.interfaces["freeplay"] then
 		local freeplayStartItems = remote.call("freeplay", "get_created_items") or {}
