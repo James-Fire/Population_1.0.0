@@ -482,7 +482,7 @@ data:extend({
 			},
 		},
 	},
-	sewage_plant, sewage_plant_recipe, septic_tank, septic_tank_recipe
+	sewage_plant, sewage_plant_recipe, septic_tank_recipe
 })
 
 LSlib.technology.addRecipeUnlock("plastics", "plastic-recycling")
