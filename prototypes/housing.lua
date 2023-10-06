@@ -371,5 +371,10 @@ for _, count in pairs({2,3,4,5}) do
 			}
 		}
 	}
+	if count == (2 or 3) then
+		mf_house_entity.fast_replaceable_group = "T2-housing"
+	elseif count == (4 or 5) then
+		mf_house_entity.fast_replaceable_group = "T3-housing"
+	end
 	data:extend({mf_house_entity})
 end

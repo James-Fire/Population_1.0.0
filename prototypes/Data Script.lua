@@ -27,16 +27,16 @@ MathData.HousingName = {
 MathData.HousingPopRest = { --How many people each density level rests in a given rest cycle
 	2,
 	8,
-	32,
-	400,
-	4000,
+	16,
+	200,
+	2000,
 }
 MathData.HousingPopCapScalar = { --Multiply the working speed of each density by this much, so we can avoid very large people recipe numbers
 	1,
 	1,
-	4,
-	20,
-	100,
+	2,
+	10,
+	50,
 }
 MathData.HousingPopCap = { --How many people each density level rests at once
 	MathData.HousingPopRest[1]/MathData.HousingPopCapScalar[1],
@@ -76,9 +76,9 @@ MathData.HousingEnergy = {	--How much energy each density of housing needs to wo
 MathData.HousingSize = { --The side length, in tiles(Meters), of each housing structure
 	5,
 	10,
+	10,
 	20,
-	40,
-	40,
+	20,
 }
 MathData.StructuralBase = { --Structural resources that are used per tile
 	4,
