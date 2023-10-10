@@ -384,8 +384,8 @@ function CalculateHousingBeacon(surface, position, force, radius)
 	--game.print("Meh Tile Count: "..tostring(MehTiles))
 	
 	
-	if MehTiles > (2*Tiles_Max) then
-		BadTiles = BadTiles + MehTiles - (2*Tiles_Max)
+	if MehTiles > Tiles_Max then
+		BadTiles = BadTiles + MehTiles - Tiles_Max
 	end
 	TempScore = GoodTiles - BadTiles
 	--game.print("Tile Temp Score: "..tostring(TempScore))

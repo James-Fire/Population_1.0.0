@@ -216,7 +216,7 @@ data:extend({
 			{type = "fluid", name = "water", amount = 5 },
 		},
 		results = {
-			{type = "fluid", name = "petroleum-gas", amount = 30 },
+			{type = "fluid", name = "petroleum-gas", amount = 40 },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		--icon_size = 32,
