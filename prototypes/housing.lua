@@ -305,8 +305,8 @@ data:extend({
 				production_type = "input",
 				pipe_picture = bulkypipepictures(),
 				pipe_covers = pipecoverspictures(),
-				base_area = 1,
-				height = 3,
+				base_area = 3,
+				height = 1,
 				base_level = 0,
 				pipe_connections = {
 				  { position = { (MathData.HousingSize[1]/2)-0.5, -(MathData.HousingSize[1]/2)-0.5 } },
@@ -317,8 +317,8 @@ data:extend({
 				production_type = "output",
 				pipe_picture = bulkypipepictures(),
 				pipe_covers = pipecoverspictures(),
-				base_area = 1,
-				height = 3,
+				base_area = 3,
+				height = 1,
 				base_level = 0,
 				pipe_connections = {
 				  { position = { -(MathData.HousingSize[1]/2)+0.5, -(MathData.HousingSize[1]/2)-0.5} },
@@ -343,13 +343,20 @@ for _, count in pairs({2,3,4,5}) do
 	mf_house_entity.energy_usage = MathData.HousingEnergy[count]
 	mf_house_entity.collision_box = {{-(MathData.HousingSize[count]/2), -(MathData.HousingSize[count]/2)}, {(MathData.HousingSize[count]/2), (MathData.HousingSize[count]/2)}}
 	mf_house_entity.selection_box = {{-(MathData.HousingSize[count]/2), -(MathData.HousingSize[count]/2)}, {(MathData.HousingSize[count]/2), (MathData.HousingSize[count]/2)}}
+	local fluidboxArea = 3
+	
+	if count == 2 or count == 3 then
+		fluidboxArea = 5
+	elseif count == 4 or count == 5 then
+		fluidboxArea = 10
+	end
 	mf_house_entity.fluid_boxes = {
 		{
 			production_type = "input",
 			pipe_picture = bulkypipepictures(),
 			pipe_covers = pipecoverspictures(),
-			base_area = 1,
-			height = 3,
+			base_area = fluidboxArea,
+			height = 1,
 			base_level = 0,
 			pipe_connections = {
 			  { position = { (MathData.HousingSize[count]/2)-1.5, -(MathData.HousingSize[count]/2)-0.5 } },
@@ -360,8 +367,8 @@ for _, count in pairs({2,3,4,5}) do
 			production_type = "output",
 			pipe_picture = bulkypipepictures(),
 			pipe_covers = pipecoverspictures(),
-			base_area = 1,
-			height = 3,
+			base_area = fluidboxArea,
+			height = 1,
 			base_level = 0,
 			pipe_connections = {
 			  { position = { -(MathData.HousingSize[count]/2)+1.5, -(MathData.HousingSize[count]/2)-0.5} },
