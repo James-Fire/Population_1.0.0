@@ -23,13 +23,30 @@ MathData.HousingName = {
 	"ap-tower",
 	"arcology-tower",
 }
-
-MathData.HousingPopRest = { --How many people each density level rests in a given rest cycle
+MathData.HousingPopRecipe = { --How many people each recipe level handles per run. Also how much food it needs, and how much garbage it makes
 	2,
 	8,
-	16,
-	200,
-	2000,
+	20,
+}
+MathData.HousingPopChildren = { --How many children are made per recipe run
+	MathData.HousingPopRecipe[1]/2,
+	MathData.HousingPopRecipe[2]/2,
+	MathData.HousingPopRecipe[3]/2,
+}
+MathData.HousingPopChildrenGrow = { --How many children are grown per recipe run
+	MathData.HousingPopRecipe[1]*2,
+	MathData.HousingPopRecipe[2]*2,
+	MathData.HousingPopRecipe[3]*2,
+}
+MathData.HousingPopGrowRecipe = { --How much food growing recipes need, and how much garbage and recycling it makes
+	MathData.HousingPopRecipe[1]+MathData.HousingPopChildrenGrow[1],
+	MathData.HousingPopRecipe[2]+MathData.HousingPopChildrenGrow[2],
+	MathData.HousingPopRecipe[3]+MathData.HousingPopChildrenGrow[3],
+}
+MathData.HousingPopReproRecipe = { --How much Food reproduction recipes need, and how much garbage and recycling it makes
+	MathData.HousingPopRecipe[1]+MathData.HousingPopChildren[1],
+	MathData.HousingPopRecipe[2]+MathData.HousingPopChildren[2],
+	MathData.HousingPopRecipe[3]+MathData.HousingPopChildren[3],
 }
 MathData.HousingPopCapScalar = { --Multiply the working speed of each density by this much, so we can avoid very large people recipe numbers
 	1,
@@ -37,13 +54,6 @@ MathData.HousingPopCapScalar = { --Multiply the working speed of each density by
 	2,
 	10,
 	50,
-}
-MathData.HousingPopCap = { --How many people each density level rests at once
-	MathData.HousingPopRest[1]/MathData.HousingPopCapScalar[1],
-	MathData.HousingPopRest[2]/MathData.HousingPopCapScalar[2],
-	MathData.HousingPopRest[3]/MathData.HousingPopCapScalar[3],
-	MathData.HousingPopRest[4]/MathData.HousingPopCapScalar[4],
-	MathData.HousingPopRest[5]/MathData.HousingPopCapScalar[5],
 }
 MathData.HousingBaseRestSpeed = 1.2 --The base working speed of the lowest-density housing
 MathData.DensityRestStep = 0.1 --How much each density step decreases rest speed
@@ -53,6 +63,13 @@ MathData.HousingWorkSpeed = { --Crafting Speed of each density
 	(MathData.HousingBaseRestSpeed-2*MathData.DensityRestStep)*MathData.HousingPopCapScalar[3],
 	(MathData.HousingBaseRestSpeed-3*MathData.DensityRestStep)*MathData.HousingPopCapScalar[4],
 	(MathData.HousingBaseRestSpeed-4*MathData.DensityRestStep)*MathData.HousingPopCapScalar[5],
+}
+MathData.HousingPopRest = { --How many people each density level rests in a given rest cycle
+	MathData.HousingPopRecipe[1]*MathData.HousingWorkSpeed[1],
+	MathData.HousingPopRecipe[2]*MathData.HousingWorkSpeed[2],
+	MathData.HousingPopRecipe[2]*MathData.HousingWorkSpeed[3],
+	MathData.HousingPopRecipe[3]*MathData.HousingWorkSpeed[4],
+	MathData.HousingPopRecipe[3]*MathData.HousingWorkSpeed[5],
 }
 
 MathData.PopPollution = 0.1 --How much pollution is produced per pop, per rest period.

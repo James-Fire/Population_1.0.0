@@ -304,30 +304,27 @@ data:extend({
 			{
 				production_type = "input",
 				pipe_picture = bulkypipepictures(),
-				secondary_draw_orders = {
-					north=-1,south=-1,east=-1,west=-1
-				},
 				pipe_covers = pipecoverspictures(),
 				base_area = 1,
-				base_level = -1,
+				height = 3,
+				base_level = 0,
 				pipe_connections = {
-				  { position = {0, -(MathData.HousingSize[1]/2)-0.5} }
+				  { position = { (MathData.HousingSize[1]/2)-0.5, -(MathData.HousingSize[1]/2)-0.5 } },
+				  { position = { (MathData.HousingSize[1]/2)-0.5, (MathData.HousingSize[1]/2)+0.5 } },
 				}
 			},
 			{
 				production_type = "output",
 				pipe_picture = bulkypipepictures(),
-				secondary_draw_orders = {
-					north=-1,south=-1,east=-1,west=-1
-				},
 				pipe_covers = pipecoverspictures(),
 				base_area = 1,
-				base_level = 1,
-				pipe_connections =
-				{ 
-				  { position = {0, (MathData.HousingSize[1]/2)+0.5} }
+				height = 3,
+				base_level = 0,
+				pipe_connections = {
+				  { position = { -(MathData.HousingSize[1]/2)+0.5, -(MathData.HousingSize[1]/2)-0.5} },
+				  { position = { -(MathData.HousingSize[1]/2)+0.5, (MathData.HousingSize[1]/2)+0.5 } },
 				}
-			}
+			},
 		},
 	},
 })
@@ -337,7 +334,11 @@ for _, count in pairs({2,3,4,5}) do
 	mf_house_entity.name = MathData.HousingName[count]
 	mf_house_entity.minable.result = MathData.HousingName[count]
 	mf_house_entity.energy_source.emissions_per_minute = MathData.HousingPollution[count]
-	mf_house_entity.crafting_categories = {"pop-rest-"..count}
+	if count == 2 or count == 3 then
+		mf_house_entity.crafting_categories = {"pop-rest-2"}
+	elseif count == 4 or count == 5 then
+		mf_house_entity.crafting_categories = {"pop-rest-3"}
+	end
 	mf_house_entity.crafting_speed = MathData.HousingWorkSpeed[count]
 	mf_house_entity.energy_usage = MathData.HousingEnergy[count]
 	mf_house_entity.collision_box = {{-(MathData.HousingSize[count]/2), -(MathData.HousingSize[count]/2)}, {(MathData.HousingSize[count]/2), (MathData.HousingSize[count]/2)}}
@@ -346,9 +347,30 @@ for _, count in pairs({2,3,4,5}) do
 		{
 			production_type = "input",
 			pipe_picture = bulkypipepictures(),
-			secondary_draw_orders = {
-				north=-1,south=-1,east=-1,west=-1
-			},
+			pipe_covers = pipecoverspictures(),
+			base_area = 1,
+			height = 3,
+			base_level = 0,
+			pipe_connections = {
+			  { position = { (MathData.HousingSize[count]/2)-1.5, -(MathData.HousingSize[count]/2)-0.5 } },
+			  { position = { (MathData.HousingSize[count]/2)-1.5, (MathData.HousingSize[count]/2)+0.5 } },
+			}
+		},
+		{
+			production_type = "output",
+			pipe_picture = bulkypipepictures(),
+			pipe_covers = pipecoverspictures(),
+			base_area = 1,
+			height = 3,
+			base_level = 0,
+			pipe_connections = {
+			  { position = { -(MathData.HousingSize[count]/2)+1.5, -(MathData.HousingSize[count]/2)-0.5} },
+			  { position = { -(MathData.HousingSize[count]/2)+1.5, (MathData.HousingSize[count]/2)+0.5 } },
+			}
+		},
+		--[[{
+			production_type = "input",
+			pipe_picture = bulkypipepictures(),
 			pipe_covers = pipecoverspictures(),
 			base_area = 1,
 			base_level = -1,
@@ -359,21 +381,17 @@ for _, count in pairs({2,3,4,5}) do
 		{
 			production_type = "output",
 			pipe_picture = bulkypipepictures(),
-			secondary_draw_orders = {
-				north=-1,south=-1,east=-1,west=-1
-			},
 			pipe_covers = pipecoverspictures(),
 			base_area = 1,
 			base_level = 1,
-			pipe_connections =
-			{ 
+			pipe_connections = { 
 				{ position = {0, (MathData.HousingSize[count]/2)+0.5} }
 			}
-		}
+		}]]
 	}
-	if count == (2 or 3) then
+	if count == 2 or count == 3 then
 		mf_house_entity.fast_replaceable_group = "T2-housing"
-	elseif count == (4 or 5) then
+	elseif count == 4 or count == 5 then
 		mf_house_entity.fast_replaceable_group = "T3-housing"
 	end
 	data:extend({mf_house_entity})

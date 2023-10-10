@@ -36,17 +36,17 @@ data:extend({
 		enabled = true,
 		energy_required = MathData.RestTime*MathData.GrowthTime,
 		ingredients = {
-			{ "person",2 },
-			{ "child-person",4 },
-			{ "copper-plate",10 },
-			{ type = "fluid", name = "water", amount = 3*MathData.RequiredWater },
+			{ "person",MathData.HousingPopRecipe[1] },
+			{ "child-person",MathData.HousingPopChildrenGrow[1] },
+			{ "copper-plate",MathData.HousingPopGrowRecipe[1] },
+			{ type = "fluid", name = "water", amount = MathData.HousingPopGrowRecipe[1]*MathData.RequiredWater },
 		},
 		results = {
-			{ "tired-person",2 },
-			{ "person",4 },
-			{ "garbage",10 },
-			{ "copper-plate",10 },
-			{type = "fluid", name = "sewage", amount = 3*MathData.RequiredWater },
+			{ "tired-person",MathData.HousingPopRecipe[1] },
+			{ "person",MathData.HousingPopChildrenGrow[1] },
+			{ "garbage",MathData.HousingPopGrowRecipe[1] },
+			{ "copper-plate",MathData.HousingPopGrowRecipe[1] },
+			{type = "fluid", name = "sewage", amount = MathData.HousingPopGrowRecipe[1]*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		icon_size = 32,
@@ -61,17 +61,17 @@ data:extend({
 		enabled = true,
 		energy_required = MathData.RestTime*MathData.GrowthTime,
 		ingredients = {
-			{ "person",8 },
-			{ "child-person",16 },
-			{ "copper-plate",40 },
-			{ type = "fluid", name = "water", amount = 24*MathData.RequiredWater },
+			{ "person",MathData.HousingPopRecipe[2] },
+			{ "child-person",MathData.HousingPopChildrenGrow[2] },
+			{ "copper-plate",MathData.HousingPopGrowRecipe[2] },
+			{ type = "fluid", name = "water", amount = MathData.HousingPopGrowRecipe[2]*MathData.RequiredWater },
 		},
 		results = {
-			{ "tired-person",8 },
-			{ "person",16 },
-			{ "garbage",40 },
-			{ "copper-plate",40 },
-			{type = "fluid", name = "sewage", amount = 24*MathData.RequiredWater },
+			{ "tired-person",MathData.HousingPopRecipe[2] },
+			{ "person",MathData.HousingPopChildrenGrow[2] },
+			{ "garbage",MathData.HousingPopGrowRecipe[2] },
+			{ "copper-plate",MathData.HousingPopGrowRecipe[2] },
+			{type = "fluid", name = "sewage", amount = MathData.HousingPopGrowRecipe[2]*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		icon_size = 32,
@@ -86,72 +86,22 @@ data:extend({
 		enabled = false,
 		energy_required = MathData.RestTime*MathData.GrowthTime,
 		ingredients = {
-			{ "person",8 },
-			{ "child-person",16 },
-			{ "copper-plate",40 },
-			{ type = "fluid", name = "water", amount = 24*MathData.RequiredWater },
+			{ "person",MathData.HousingPopRecipe[3] },
+			{ "child-person",MathData.HousingPopChildrenGrow[3] },
+			{ "copper-plate",MathData.HousingPopGrowRecipe[3] },
+			{ type = "fluid", name = "water", amount = MathData.HousingPopGrowRecipe[3]*MathData.RequiredWater },
 		},
 		results = {
-			{ "tired-person",8 },
-			{ "person",16 },
-			{ "garbage",40 },
-			{ "copper-plate",40 },
-			{type = "fluid", name = "sewage", amount = 24*MathData.RequiredWater },
+			{ "tired-person",MathData.HousingPopRecipe[3] },
+			{ "person",MathData.HousingPopChildrenGrow[3] },
+			{ "garbage",MathData.HousingPopGrowRecipe[3] },
+			{ "copper-plate",MathData.HousingPopGrowRecipe[3] },
+			{type = "fluid", name = "sewage", amount = MathData.HousingPopGrowRecipe[3]*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		icon_size = 32,
 		subgroup = "Population",
 		order = "a-2",
-		main_product = "person"
-	},
-	{
-		type = "recipe",
-		name = "grow-person-4",
-		category = "pop-rest-4",
-		enabled = false,
-		energy_required = MathData.RestTime*MathData.GrowthTime,
-		ingredients = {
-			{ "person",20 },
-			{ "child-person",40 },
-			{ "copper-plate",100 },
-			{ type = "fluid", name = "water", amount = 60*MathData.RequiredWater },
-		},
-		results = {
-			{ "tired-person",20 },
-			{ "person",40 },
-			{ "garbage",100 },
-			{ "copper-plate",100 },
-			{type = "fluid", name = "sewage", amount = 60*MathData.RequiredWater },
-		},
-		--icon = "__Population__/graphics/crude-oil.png",
-		icon_size = 32,
-		subgroup = "Population",
-		order = "a-3",
-		main_product = "person"
-	},
-	{
-		type = "recipe",
-		name = "grow-person-5",
-		category = "pop-rest-5",
-		enabled = false,
-		energy_required = MathData.RestTime*MathData.GrowthTime,
-		ingredients = {
-			{ "person",20 },
-			{ "child-person",40 },
-			{ "copper-plate",100 },
-			{ type = "fluid", name = "water", amount = 60*MathData.RequiredWater },
-		},
-		results = {
-			{ "tired-person",20 },
-			{ "person",40 },
-			{ "garbage",100 },
-			{ "copper-plate",100 },
-			{type = "fluid", name = "sewage", amount = 60*MathData.RequiredWater },
-		},
-		--icon = "__Population__/graphics/crude-oil.png",
-		icon_size = 32,
-		subgroup = "Population",
-		order = "a-4",
 		main_product = "person"
 	},
 	--Make Children
@@ -162,16 +112,16 @@ data:extend({
 		enabled = true,
 		energy_required = MathData.RestTime*MathData.GrowthTime,
 		ingredients = {
-			{ "person",2 },
-			{ "copper-plate",3 },
-			{ type = "fluid", name = "water", amount = 6*MathData.RequiredWater },
+			{ "person",MathData.HousingPopRecipe[1] },
+			{ "copper-plate",MathData.HousingPopReproRecipe[1] },
+			{ type = "fluid", name = "water", amount = MathData.HousingPopReproRecipe[1]*MathData.RequiredWater },
 		},
 		results = {
-			{ "tired-person",2 },
-			{ "child-person",1 },
-			{ "garbage",2 },
-			{ "copper-plate",3 },
-			{type = "fluid", name = "sewage", amount = 6*MathData.RequiredWater },
+			{ "tired-person",MathData.HousingPopRecipe[1] },
+			{ "child-person",MathData.HousingPopChildren[1] },
+			{ "garbage",MathData.HousingPopReproRecipe[1] },
+			{ "copper-plate",MathData.HousingPopReproRecipe[1] },
+			{type = "fluid", name = "sewage", amount = MathData.HousingPopReproRecipe[1]*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		icon_size = 32,
@@ -186,16 +136,16 @@ data:extend({
 		enabled = true,
 		energy_required = MathData.RestTime*MathData.GrowthTime,
 		ingredients = {
-			{ "person",8 },
-			{ "copper-plate",12 },
-			{ type = "fluid", name = "water", amount = 24*MathData.RequiredWater },
+			{ "person",MathData.HousingPopRecipe[2] },
+			{ "copper-plate",MathData.HousingPopReproRecipe[2] },
+			{ type = "fluid", name = "water", amount = MathData.HousingPopReproRecipe[2]*MathData.RequiredWater },
 		},
 		results = {
-			{ "tired-person",8 },
-			{ "child-person",4 },
-			{ "garbage",8 },
-			{ "copper-plate",12 },
-			{type = "fluid", name = "sewage", amount = 24*MathData.RequiredWater },
+			{ "tired-person",MathData.HousingPopRecipe[2] },
+			{ "child-person",MathData.HousingPopChildren[2] },
+			{ "garbage",MathData.HousingPopReproRecipe[2] },
+			{ "copper-plate",MathData.HousingPopReproRecipe[2] },
+			{type = "fluid", name = "sewage", amount = MathData.HousingPopReproRecipe[2]*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		icon_size = 32,
@@ -210,69 +160,21 @@ data:extend({
 		enabled = false,
 		energy_required = MathData.RestTime*MathData.GrowthTime,
 		ingredients = {
-			{ "person",8 },
-			{ "copper-plate",12 },
-			{ type = "fluid", name = "water", amount = 24*MathData.RequiredWater },
+			{ "person",MathData.HousingPopRecipe[3] },
+			{ "copper-plate",MathData.HousingPopReproRecipe[3] },
+			{ type = "fluid", name = "water", amount = MathData.HousingPopReproRecipe[3]*MathData.RequiredWater },
 		},
 		results = {
-			{ "tired-person",8 },
-			{ "child-person",4 },
-			{ "garbage",8 },
-			{ "copper-plate",12 },
-			{type = "fluid", name = "sewage", amount = 24*MathData.RequiredWater },
+			{ "tired-person",MathData.HousingPopRecipe[3] },
+			{ "child-person",MathData.HousingPopChildren[3] },
+			{ "garbage",MathData.HousingPopReproRecipe[3] },
+			{ "copper-plate",MathData.HousingPopReproRecipe[3] },
+			{type = "fluid", name = "sewage", amount = MathData.HousingPopReproRecipe[3]*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		icon_size = 32,
 		subgroup = "Population",
 		order = "b-2",
-		main_product = "child-person"
-	},
-	{
-		type = "recipe",
-		name = "reproduce-person-4",
-		category = "pop-rest-4",
-		enabled = false,
-		energy_required = MathData.RestTime*MathData.GrowthTime,
-		ingredients = {
-			{ "person",20 },
-			{ "copper-plate",30 },
-			{ type = "fluid", name = "water", amount = 60*MathData.RequiredWater },
-		},
-		results = {
-			{ "tired-person",20 },
-			{ "child-person",10 },
-			{ "garbage",20 },
-			{ "copper-plate",30 },
-			{type = "fluid", name = "sewage", amount = 60*MathData.RequiredWater },
-		},
-		--icon = "__Population__/graphics/crude-oil.png",
-		icon_size = 32,
-		subgroup = "Population",
-		order = "b-3",
-		main_product = "child-person"
-	},
-	{
-		type = "recipe",
-		name = "reproduce-person-5",
-		category = "pop-rest-5",
-		enabled = false,
-		energy_required = MathData.RestTime*MathData.GrowthTime,
-		ingredients = {
-			{ "person",20 },
-			{ "copper-plate",30 },
-			{ type = "fluid", name = "water", amount = 60*MathData.RequiredWater },
-		},
-		results = {
-			{ "tired-person",20 },
-			{ "child-person",10 },
-			{ "garbage",20 },
-			{ "copper-plate",30 },
-			{type = "fluid", name = "sewage", amount = 60*MathData.RequiredWater },
-		},
-		--icon = "__Population__/graphics/crude-oil.png",
-		icon_size = 32,
-		subgroup = "Population",
-		order = "b-4",
 		main_product = "child-person"
 	},
 	--Base Rest Recipes that are then copied. They do not show up.
@@ -283,15 +185,15 @@ data:extend({
 		enabled = true,
 		energy_required = MathData.RestTime,
 		ingredients = {
-			{ "tired-person",2 },
-			{ "copper-plate",2 },
-			{ type = "fluid", name = "water", amount = 2*MathData.RequiredWater },
+			{ "tired-person",MathData.HousingPopRecipe[1] },
+			{ "copper-plate",MathData.HousingPopRecipe[1] },
+			{ type = "fluid", name = "water", amount = MathData.HousingPopRecipe[1]*MathData.RequiredWater },
 		},
 		results = {
-			{ "person",2 },
-			{ "garbage",2 },
-			{ "copper-plate",2 },
-			{type = "fluid", name = "sewage", amount = 2*MathData.RequiredWater },
+			{ "person",MathData.HousingPopRecipe[1] },
+			{ "garbage",MathData.HousingPopRecipe[1] },
+			{ "copper-plate",MathData.HousingPopRecipe[1] },
+			{type = "fluid", name = "sewage", amount = MathData.HousingPopRecipe[1]*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		icon_size = 32,
@@ -306,15 +208,15 @@ data:extend({
 		enabled = true,
 		energy_required = MathData.RestTime,
 		ingredients = {
-			{ "tired-person",8 },
-			{ "copper-plate",8 },
-			{ type = "fluid", name = "water", amount = 8*MathData.RequiredWater },
+			{ "tired-person",MathData.HousingPopRecipe[2] },
+			{ "copper-plate",MathData.HousingPopRecipe[2] },
+			{ type = "fluid", name = "water", amount = MathData.HousingPopRecipe[2]*MathData.RequiredWater },
 		},
 		results = {
-			{ "person",8 },
-			{ "garbage",8 },
-			{ "copper-plate",8 },
-			{type = "fluid", name = "sewage", amount = 8*MathData.RequiredWater },
+			{ "person",MathData.HousingPopRecipe[2] },
+			{ "garbage",MathData.HousingPopRecipe[2] },
+			{ "copper-plate",MathData.HousingPopRecipe[2] },
+			{type = "fluid", name = "sewage", amount = MathData.HousingPopRecipe[2]*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		icon_size = 32,
@@ -329,15 +231,15 @@ data:extend({
 		enabled = false,
 		energy_required = MathData.RestTime,
 		ingredients = {
-			{ "tired-person",8 },
-			{ "copper-plate",8 },
-			{ type = "fluid", name = "water", amount = 8*MathData.RequiredWater },
+			{ "tired-person",MathData.HousingPopRecipe[3] },
+			{ "copper-plate",MathData.HousingPopRecipe[3] },
+			{ type = "fluid", name = "water", amount = MathData.HousingPopRecipe[3]*MathData.RequiredWater },
 		},
 		results = {
-			{ "person",8 },
-			{ "garbage",8 },
-			{ "copper-plate",8 },
-			{type = "fluid", name = "sewage", amount = 8*MathData.RequiredWater },
+			{ "person",MathData.HousingPopRecipe[3] },
+			{ "garbage",MathData.HousingPopRecipe[3] },
+			{ "copper-plate",MathData.HousingPopRecipe[3] },
+			{type = "fluid", name = "sewage", amount = MathData.HousingPopRecipe[3]*MathData.RequiredWater },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		icon_size = 32,
@@ -345,55 +247,9 @@ data:extend({
 		order = "c-2",
 		main_product = "person"
 	},
-	{
-		type = "recipe",
-		name = "rest-person-4",
-		category = "pop-rest-4",
-		enabled = false,
-		energy_required = MathData.RestTime,
-		ingredients = {
-			{ "tired-person",20 },
-			{ "copper-plate",20 },
-			{ type = "fluid", name = "water", amount = 20*MathData.RequiredWater },
-		},
-		results = {
-			{ "person",20 },
-			{ "garbage",20 },
-			{ "copper-plate",20 },
-			{type = "fluid", name = "sewage", amount = 20*MathData.RequiredWater },
-		},
-		--icon = "__Population__/graphics/crude-oil.png",
-		icon_size = 32,
-		subgroup = "Population",
-		order = "c-3",
-		main_product = "person"
-	},
-	{
-		type = "recipe",
-		name = "rest-person-5",
-		category = "pop-rest-5",
-		enabled = false,
-		energy_required = MathData.RestTime,
-		ingredients = {
-			{ "tired-person",20 },
-			{ "copper-plate",20 },
-			{ type = "fluid", name = "water", amount = 20*MathData.RequiredWater },
-		},
-		results = {
-			{ "person",20 },
-			{ "garbage",20 },
-			{ "copper-plate",20 },
-			{type = "fluid", name = "sewage", amount = 20*MathData.RequiredWater },
-		},
-		--icon = "__Population__/graphics/crude-oil.png",
-		icon_size = 32,
-		subgroup = "Population",
-		order = "c-4",
-		main_product = "person"
-	},
 })
 
-local PopRestRecipes = { "rest-person-1", "rest-person-2", "rest-person-3", "rest-person-4", "rest-person-5" }
+local PopRestRecipes = { "rest-person-1", "rest-person-2", "rest-person-3" }
 
 for _, count in pairs(PopRestRecipes) do
 	LSlib.recipe.duplicate(count, "2-copper-"..count)
@@ -552,7 +408,7 @@ for _, count in pairs(PopRestRecipes) do
 	end
 end
 
-local PopReproduceRecipes = { "reproduce-person-1", "reproduce-person-2", "reproduce-person-3", "reproduce-person-4", "reproduce-person-5" }
+local PopReproduceRecipes = { "reproduce-person-1", "reproduce-person-2", "reproduce-person-3" }
 
 for _, count in pairs(PopReproduceRecipes) do
 	LSlib.recipe.duplicate(count, "2-copper-"..count)
@@ -707,7 +563,7 @@ for _, count in pairs(PopReproduceRecipes) do
 	end
 end
 
-local PopGrowRecipes = { "grow-person-1", "grow-person-2", "grow-person-3", "grow-person-4", "grow-person-5" }
+local PopGrowRecipes = { "grow-person-1", "grow-person-2", "grow-person-3" }
 
 for _, count in pairs(PopGrowRecipes) do
 	LSlib.recipe.duplicate(count, "2-copper-"..count)
@@ -864,10 +720,13 @@ end
 
 LSlib.recipe.disable("rest-person-1")
 LSlib.recipe.disable("rest-person-2")
+LSlib.recipe.disable("rest-person-3")
 LSlib.recipe.disable("reproduce-person-1")
 LSlib.recipe.disable("reproduce-person-2")
+LSlib.recipe.disable("reproduce-person-3")
 LSlib.recipe.disable("grow-person-1")
 LSlib.recipe.disable("grow-person-2")
+LSlib.recipe.disable("grow-person-3")
 
 --Since furnaces can only have 1 input, I can't use them to automatically handle this complexity.
 --Hidden assemblers that can take in stuff and spit out "prepared" pops that the housing buildings then rest? Bad, would need an assembler for every combination, and it would automatically fill irrelevant ones.
