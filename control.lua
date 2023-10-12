@@ -250,6 +250,10 @@ function ManageFarmingBeaconModules(module_inventory, Score)
 		end
 		local added_modules = round(math.abs(Score))
 		game.print("Rounded Score:"..tostring(Score))
+		game.print("Module Count:"..tostring(added_modules))
+		if added_modules < 0 then
+			added_modules = 0
+		end
 		if Score > 0 then
 			module_inventory.insert{name = Farming_Pos_Module, count = added_modules}
 		elseif Score < 0 then
