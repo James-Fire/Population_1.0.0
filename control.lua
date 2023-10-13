@@ -1,5 +1,4 @@
 --Modules
-local stdlib = require('__stdlib__/stdlib/utils/string')
 local MathData = require("prototypes/Data Script")
 --My entities
 local Housing_Beacon = "housing-beacon"
@@ -69,10 +68,10 @@ local function doSomething()
 	if global.UpdateList[global.counter] == nil then
 	else
 		--game.print(serpent.block(global.UpdateList[global.counter]))
-		if stdlib.contains(global.UpdateList[global.counter].name, "-farm") or global.UpdateList[global.counter].name == "fishery" then
+		if global.UpdateList[global.counter].name:find("-farm", 1, true) or global.UpdateList[global.counter].name == "fishery" then
 			--game.print("Updating a "..tostring(global.UpdateList[global.counter].name))
 			ManageFarmingBeacon(global.UpdateList[global.counter], global.UpdateList[global.counter].surface, global.UpdateList[global.counter].force, 3)
-		elseif stdlib.contains(global.UpdateList[global.counter].name, "-house") or stdlib.contains(global.UpdateList[global.counter].name, "-tower") or stdlib.contains(global.UpdateList[global.counter].name, "-rise") then
+		elseif global.UpdateList[global.counter].name:find("-house", 1, true) or global.UpdateList[global.counter].name:find("-tower", 1, true) or global.UpdateList[global.counter].name:find("-rise", 1, true) then
 			--game.print("Updating a "..tostring(global.UpdateList[global.counter].name))
 			ManageHousingBeacon(global.UpdateList[global.counter], global.UpdateList[global.counter].surface, global.UpdateList[global.counter].force, MathData.HousingSize[3])
 		end
@@ -97,16 +96,16 @@ script.on_init(function()
 	global.Bad_Building_List = { "assembling-machine", "furnace", "generator", "boiler", "reactor", "heat-pipe", "pipe", "straight-rail", "curved-rail" }
 	
 	for _, tile in pairs(game.tile_prototypes) do
-		if stdlib.contains(tile.name, "water") and stdlib.contains(tile.name, "green") and not CheckTableValue(tile.name, Processed_Tiles_List) and not CheckTableValue(tile.name, global.Good_Tiles_List) and not CheckTableValue(tile.name, global.Bad_Tiles_List) and not CheckTableValue(tile.name, global.Meh_Tiles_List) then
+		if tile.name:find("water", 1, true) and tile.name:find("green", 1, true) and not CheckTableValue(tile.name, Processed_Tiles_List) and not CheckTableValue(tile.name, global.Good_Tiles_List) and not CheckTableValue(tile.name, global.Bad_Tiles_List) and not CheckTableValue(tile.name, global.Meh_Tiles_List) then
 			table.insert(global.Bad_Tiles_List, tile.name)
 			table.insert(Processed_Tiles_List, tile.name)
-		elseif stdlib.contains(tile.name, "nuclear") and not CheckTableValue(tile.name, Processed_Tiles_List) and not CheckTableValue(tile.name, global.Good_Tiles_List) and not CheckTableValue(tile.name, global.Bad_Tiles_List) and not CheckTableValue(tile.name, global.Meh_Tiles_List) then
+		elseif tile.name:find("nuclear", 1, true) and not CheckTableValue(tile.name, Processed_Tiles_List) and not CheckTableValue(tile.name, global.Good_Tiles_List) and not CheckTableValue(tile.name, global.Bad_Tiles_List) and not CheckTableValue(tile.name, global.Meh_Tiles_List) then
 			table.insert(global.Bad_Tiles_List, tile.name)
 			table.insert(Processed_Tiles_List, tile.name)
-		elseif stdlib.contains(tile.name, "water") and not CheckTableValue(tile.name, Processed_Tiles_List) and not CheckTableValue(tile.name, global.Good_Tiles_List) and not CheckTableValue(tile.name, global.Bad_Tiles_List) and not CheckTableValue(tile.name, global.Meh_Tiles_List) then
+		elseif tile.name:find("water", 1, true) and not CheckTableValue(tile.name, Processed_Tiles_List) and not CheckTableValue(tile.name, global.Good_Tiles_List) and not CheckTableValue(tile.name, global.Bad_Tiles_List) and not CheckTableValue(tile.name, global.Meh_Tiles_List) then
 			table.insert(global.Good_Water_Tiles_List, tile.name)
 			table.insert(Processed_Tiles_List, tile.name)
-		elseif stdlib.contains(tile.name, "grass") and not CheckTableValue(tile.name, Processed_Tiles_List) and not CheckTableValue(tile.name, global.Good_Tiles_List) and not CheckTableValue(tile.name, global.Bad_Tiles_List) and not CheckTableValue(tile.name, global.Meh_Tiles_List) then
+		elseif tile.name:find("grass", 1, true) and not CheckTableValue(tile.name, Processed_Tiles_List) and not CheckTableValue(tile.name, global.Good_Tiles_List) and not CheckTableValue(tile.name, global.Bad_Tiles_List) and not CheckTableValue(tile.name, global.Meh_Tiles_List) then
 			table.insert(global.Good_Tiles_List, tile.name)
 			table.insert(Processed_Tiles_List, tile.name)
 		elseif not CheckTableValue(tile.name, Processed_Tiles_List) and not CheckTableValue(tile.name, global.Good_Tiles_List) and not CheckTableValue(tile.name, global.Bad_Tiles_List) and not CheckTableValue(tile.name, global.Meh_Tiles_List) then
@@ -271,9 +270,9 @@ function CalculateFarmingBeacon(entity, surface, position, force, radius)
 	--Check what the tiles its on are
 	if entity.name == "fishery" then
 		for i, tile in pairs(surface.find_tiles_filtered{position = position,radius = radius}) do
-			if stdlib.contains(tile.name, "water") and not stdlib.contains(tile.name, "green") then
+			if tile.name:find("water", 1, true) and not tile.name:find("green", 1, true) then
 				GoodTiles = GoodTiles + 1
-			elseif stdlib.contains(tile.name, "water") and stdlib.contains(tile.name, "green") then
+			elseif tile.name:find("water", 1, true) and tile.name:find("green", 1, true) then
 				GoodTiles = GoodTiles + 0.5
 			end
 		end
@@ -300,17 +299,17 @@ function CalculateFarmingBeacon(entity, surface, position, force, radius)
 	--Check for nearby water. Polluted water is still pretty good
 	if entity.name == "fishery" then
 		for i, tile in pairs(surface.find_tiles_filtered{position = position,radius = 2*radius}) do
-			if stdlib.contains(tile.name, "water") and not stdlib.contains(tile.name, "green") then
+			if tile.name:find("water", 1, true) and not tile.name:find("green", 1, true) then
 				WaterTiles = WaterTiles + 0.25
-			elseif stdlib.contains(tile.name, "water") and stdlib.contains(tile.name, "green") then
+			elseif tile.name:find("water", 1, true) and tile.name:find("green", 1, true) then
 				WaterTiles = WaterTiles + 0.125
 			end
 		end
 	else
 		for i, tile in pairs(surface.find_tiles_filtered{position = position,radius = 2*radius}) do
-			if stdlib.contains(tile.name, "water") and not stdlib.contains(tile.name, "green") then
+			if tile.name:find("water", 1, true) and not tile.name:find("green", 1, true) then
 				WaterTiles = WaterTiles + 4
-			elseif stdlib.contains(tile.name, "water") and stdlib.contains(tile.name, "green") then
+			elseif tile.name:find("water", 1, true) and tile.name:find("green", 1, true) then
 				WaterTiles = WaterTiles + 2
 			end
 		end
@@ -333,9 +332,9 @@ function CalculateHousingBeacon(surface, position, force, radius)
 	--Count trees
 	for _, entity in pairs(surface.find_entities_filtered{area = areaAroundPosition(position, Terrain_Radius)}) do
 		--game.print(serpent.block(entity.name))
-		if stdlib.contains(entity.name, "tree") then
+		if entity.name:find("tree", 1, true) then
 			--game.print("Found Tree")
-			if not stdlib.contains(entity.name, "dead") then
+			if not entity.name:find("dead", 1, true) then
 				--game.print("Found Living Tree")
 				TempScore = TempScore + Per_Tree_Impact
 			end
@@ -346,7 +345,7 @@ function CalculateHousingBeacon(surface, position, force, radius)
 	--game.print("Total Score: "..tostring(Score))
 	TempScore = 0
 	for _, entity in pairs(surface.find_entities_filtered{area = areaAroundPosition(position, Terrain_Radius)}) do
-		if stdlib.contains(entity.name, "tree") and stdlib.contains(entity.name, "dead") then
+		if entity.name:find("tree", 1, true) and entity.name:find("dead", 1, true) then
 			--game.print("Found Dead Tree")
 			TempScore = TempScore + Per_Tree_Impact
 		end

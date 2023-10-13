@@ -1,5 +1,3 @@
-local stdlib = require('__stdlib__/stdlib/utils/string')
-
 local MathData = { }
 
 function MathData.round(num, numDecimalPlaces)

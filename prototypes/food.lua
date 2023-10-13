@@ -1,5 +1,3 @@
-local stdlib = require('__stdlib__/stdlib/utils/string')
-
 data:extend({
 	--Food Packaging should be of prepared meals
 	--Food can be 2 to 5 ingredients
@@ -218,7 +216,7 @@ local PackageTiers = {"plastic-food-2","copper-food-2","paper-food-2"}
 for _, recipe in pairs(PackageTiers) do
 	for i, count in pairs({"3","4","5"}) do
 		--Plastic Packaging
-		if stdlib.contains(recipe, "plastic") then
+		if recipe:find("plastic", 1, true) then
 			LSlib.recipe.duplicate("plastic-food-2", "plastic-food-"..count)
 			LSlib.recipe.editIngredient("plastic-food-"..count, "food-2", "food-"..count, 1 )
 			LSlib.recipe.editIngredient("plastic-food-"..count, "plastic-bar", "plastic-bar", i/2+1 )
@@ -226,21 +224,21 @@ for _, recipe in pairs(PackageTiers) do
 			LSlib.technology.addRecipeUnlock("plastics", "plastic-food-"..count)
 		end
 		--Copper Packaging
-		if stdlib.contains(recipe, "copper") then
+		if recipe:find("copper", 1, true) then
 			LSlib.recipe.duplicate("copper-food-2", "copper-food-"..count)
 			LSlib.recipe.editIngredient("copper-food-"..count, "food-2", "food-"..count, 1 )
 			LSlib.recipe.editIngredient("copper-food-"..count, "copper-plate", "copper-plate", i/2+1 )
 			LSlib.recipe.editResult("copper-food-"..count, "copper-food-2", "copper-food-"..count, 1 )
 		end
 		--Paper Packaging
-		if stdlib.contains(recipe, "paper") then
+		if recipe:find("paper", 1, true) then
 			LSlib.recipe.duplicate("paper-food-2", "paper-food-"..count)
 			LSlib.recipe.editIngredient("paper-food-"..count, "food-2", "food-"..count, 1 )
 			LSlib.recipe.editIngredient("paper-food-"..count, "paper", "paper", i/2+1 )
 			LSlib.recipe.editResult("paper-food-"..count, "paper-food-2", "paper-food-"..count, 1 )
 		end
 		--Aluminum Packaging
-		if stdlib.contains(recipe, "aluminum") then
+		if recipe:find("aluminum", 1, true) then
 			LSlib.recipe.duplicate("aluminum-food-2", "aluminum-food-"..count)
 			LSlib.recipe.editIngredient("aluminum-food-"..count, "food-2", "food-"..count, 1 )
 			LSlib.recipe.editIngredient("aluminum-food-"..count, "aluminum-plate", "aluminum-plate", i/2+1 )

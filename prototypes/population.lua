@@ -1,5 +1,4 @@
 local MathData = require("__Population__/prototypes/Data Script")
-local stdlib = require('__stdlib__/stdlib/utils/string')
 data:extend({
 	{
 		type = "item",
