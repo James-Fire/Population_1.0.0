@@ -30,10 +30,7 @@ Include a backup checker for entities that are removed from global
 True garbage
 Increase value search radius on bigger house
 See how much making people move on their own would cost (Probably best to just have a table of source and destination entities for each network, periodically updated)
-Septic Tank, 3x3 building that converts sewage into organic material. Sewage treatment is way more efficient, faster, outputs water
 Sewage Plant is now Biomass Processing Plant
-Housing buildings have 2 fluidboxes on each side
-Split farm and housing beacon modules. Farm modules give full power usage, housing doesn't
 Blacklist my recipes in the vanilla modules
 Purified water
 Fix module update for farms and housing
