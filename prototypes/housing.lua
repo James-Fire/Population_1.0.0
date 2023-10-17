@@ -307,7 +307,7 @@ data:extend({
 				pipe_covers = pipecoverspictures(),
 				base_area = 3,
 				height = 1,
-				base_level = 0,
+				base_level = -1,
 				pipe_connections = {
 				  { position = { (MathData.HousingSize[1]/2)-0.5, -(MathData.HousingSize[1]/2)-0.5 } },
 				  { position = { (MathData.HousingSize[1]/2)-0.5, (MathData.HousingSize[1]/2)+0.5 } },
@@ -319,7 +319,7 @@ data:extend({
 				pipe_covers = pipecoverspictures(),
 				base_area = 3,
 				height = 1,
-				base_level = 0,
+				base_level = 1,
 				pipe_connections = {
 				  { position = { -(MathData.HousingSize[1]/2)+0.5, -(MathData.HousingSize[1]/2)-0.5} },
 				  { position = { -(MathData.HousingSize[1]/2)+0.5, (MathData.HousingSize[1]/2)+0.5 } },
