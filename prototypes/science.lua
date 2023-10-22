@@ -1,9 +1,10 @@
 local energy_required = 40
 local amount_param = 1
-sciencepacks = {}
-sciencepackrecipes = {}
-packorfluid = "pack"
-toolorfluid = tool
+local sciencepacks = {}
+local sciencepackrecipes = {}
+local rocketrecipes = { }
+local packorfluid = "pack"
+local toolorfluid = tool
 
 local function round(num, numDecimalPlaces)
 	local mult = 10^(numDecimalPlaces or 0)
@@ -28,7 +29,7 @@ for i, prototype in pairs(data.raw.recipe) do
 			table.insert(sciencepackrecipes, prototype)
 		end
 	elseif (mods["MoreScience"]) and prototype.name:find("rocketpart", 1, true) then
-		table.insert(sciencepackrecipes, prototype)
+		table.insert(rocketrecipes, prototype.name)
 	elseif (mods["MoreScience"]) and prototype.name:find("infused", 1, true) then
 		table.insert(sciencepackrecipes, prototype)
 	end
@@ -166,19 +167,18 @@ local function FindItemRecipe(Item)
 	return RecipeTable
 end
 
-local rocketrecipes = { }
 local Items = { "item", "fluid", "module", "tool", "ammo", "capsule", "armor", "gun", "rail-planner", "repair-tool", "item-with-entity-data", "spidertron-remote" }
 for i, ItemType in pairs(Items) do
 	for j, Item in pairs(data.raw[ItemType]) do
 		if Item.rocket_launch_product and Item.name ~= "space-science-pack" then
 			for k, Recipe in pairs(FindItemRecipe(Item.name)) do
-				if Recipe.name:find("replication", 1, true) or Recipe.name:find("request", 1, true) then
+				if Recipe.name:find("replication", 1, true) or Recipe.name:find("request-", 1, true) then
 				else
 					table.insert(rocketrecipes,Recipe.name)
 				end
 			end
 			for k, Recipe in pairs(FindItemRecipe(Item.rocket_launch_product)) do
-				if Recipe.name:find("replication", 1, true) or Recipe.name:find("request", 1, true) then
+				if Recipe.name:find("replication", 1, true) or Recipe.name:find("request-", 1, true) then
 				elseif CheckTableValue(Recipe.name,rocketrecipes) == false then
 					table.insert(rocketrecipes,Recipe.name)
 				end
