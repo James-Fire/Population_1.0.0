@@ -4,6 +4,12 @@ sciencepacks = {}
 sciencepackrecipes = {}
 packorfluid = "pack"
 toolorfluid = tool
+
+local function round(num, numDecimalPlaces)
+	local mult = 10^(numDecimalPlaces or 0)
+	return math.ceil(num * mult + 0.5) / mult
+end
+
 if (mods["MoreScience"]) then
 	packorfluid = "fluid"
 	table.insert(sciencepackrecipes, data.raw.recipe["automation-science-pack-basic"])
@@ -40,6 +46,9 @@ for i, Science in pairs(sciencepackrecipes) do
 		PeopleCount = Science.energy_required*LSlib.recipe.getResultCount(Science.name)*(LSlib.recipe.getIngredientsCount(Science.name, true)[1]+LSlib.recipe.getIngredientsCount(Science.name, true)[2]-1)
 	else
 		PeopleCount = 2*LSlib.recipe.getResultCount(Science.name, Science.name)*LSlib.recipe.getResultCount(Science.name, Science.name)
+	end
+	if PeopleCount < #Science.ingredients then
+		PeopleCount = #Science.ingredients
 	end
 	if Science.name:find("fluid", 1, true) then
 		PeopleCount = PeopleCount/100
@@ -180,7 +189,7 @@ end
 
 for i, rocket in pairs(rocketrecipes) do
 	local recipe = data.raw.recipe[rocket] 
-	--Add people to any rocket launch items, based on how many items it takes, times the average item count.
+	--Add people to any rocket launch items, based on how many items it takes, times the average item count, times the time required divided by 30.
 	local recipe_data = recipe
 	if recipe.normal then
 		recipe_data = recipe.normal
@@ -204,9 +213,28 @@ for i, rocket in pairs(rocketrecipes) do
 					ingredientcount = ingredient[2]
 				end
 				TotalIngredCount = TotalIngredCount + ingredientcount
+			else
+				TotalIngreds = TotalIngreds + 1
+				local ingredientcount = 1
+				if ingredient.count then
+					ingredientcount = ingredient.count
+				elseif ingredient.amount then
+					ingredientcount = ingredient.amount
+				else
+					ingredientcount = ingredient[2]
+				end
+				TotalIngredCount = TotalIngredCount + ingredientcount/100
 			end
 		end
 		TotalIngredCount = TotalIngredCount/TotalIngreds
+		if TotalIngredCount < #recipe_data.ingredients then
+			TotalIngredCount = #recipe_data.ingredients
+		end
+		TotalIngredCount = TotalIngredCount*(math.log(recipe.energy_required) / math.log(10))/3
+		
+		if TotalIngredCount > 65535 then
+			TotalIngredCount = 65535
+		end
 		--log(recipe.name.." People: "..tostring(TotalResultCount))
 		LSlib.recipe.addResult(recipe.name, "tired-person", math.max(TotalIngredCount,1), "item")
 		LSlib.recipe.addIngredient(recipe.name, "person", math.max(TotalIngredCount,1), "item")

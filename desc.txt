@@ -19,6 +19,7 @@ but do so slightly slower.
 *Vertical Farming to be more space-efficient, but does require input resources. Also divorces food production from land quality
 
 TODO
+Heating, maintain a 20C temp, outside that slows rest speed
 Quiet Rails?
 Recipe-based construction of housing structures?
 Setting for requiring people in specific machines:
@@ -31,7 +32,6 @@ True garbage
 Increase value search radius on bigger house
 See how much making people move on their own would cost (Probably best to just have a table of source and destination entities for each network, periodically updated)
 Sewage Plant is now Biomass Processing Plant
-Blacklist my recipes in the vanilla modules
 Purified water
 Fix module update for farms and housing
 Maybe farms should require different materials? Farms need to be assemblers, so this might not be relevant at all.
