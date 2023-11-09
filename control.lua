@@ -14,7 +14,7 @@ local Per_Tree_Impact = 1
 
 local PeriodicUpdateInterval = 10*60*60 --Recheck all housing and farm structures every so often, at 10 minutes right now.
 
-function CheckTableValue(Value,Table)
+local function CheckTableValue(Value,Table)
 	for i, v in pairs(Table) do
 		if Value == v then
 			return true
@@ -22,14 +22,14 @@ function CheckTableValue(Value,Table)
 	end
 	return false
 end
-function areaAroundPosition(position, extraRange)
+local function areaAroundPosition(position, extraRange)
 	if type(extraRange) ~= "number" then extraRange = 0 end
 	return {
 		{x = math.floor(position.x) - extraRange,     y = math.floor(position.y) - extraRange},
 		{x = math.floor(position.x) + 1 + extraRange, y = math.floor(position.y) + 1 + extraRange}
 	}
 end
-function round(num, numDecimalPlaces)
+local function round(num, numDecimalPlaces)
   local mult = 10^(numDecimalPlaces or 0)
   return math.floor(num * mult + 0.5) / mult
 end
@@ -87,7 +87,7 @@ script.on_event(defines.events.on_tick, function(event)
 	--game.print("tick")
 end)
 
-script.on_init(function()
+local function OnInit()
 	global.Good_Water_Tiles_List = { }
 	global.Good_Tiles_List = { }
 	global.Bad_Tiles_List = { }
@@ -139,9 +139,9 @@ script.on_init(function()
 	global.counter = 0
 	global.queue = {}
 	global.queue[60] = {toDo = doSomething}
-end)
+end
 
-function on_new_entity(event)
+local function on_new_entity(event)
 	local new_entity = event.created_entity or event.entity --Handle multiple event types
 	local surface = new_entity.surface
 	local position = new_entity.position
@@ -186,7 +186,7 @@ function on_new_entity(event)
 	end
 end
 
-function on_remove_entity(event)
+local function on_remove_entity(event)
 	local entity = event.created_entity or event.entity --Handle multiple event types
 	if not entity then return end
 	local surface = entity.surface
@@ -209,7 +209,7 @@ function on_remove_entity(event)
 	end
 end
 
-function removeHiddenBeacon(surface, position, name)
+local function removeHiddenBeacon(surface, position, name)
 	-- Remove Beacon for Housing
 	if surface and surface.valid then
 		for _, beacon in pairs(surface.find_entities_filtered{name = name, position = position}) do
@@ -219,7 +219,7 @@ function removeHiddenBeacon(surface, position, name)
 end
 
 --Separate functions to manage beacon modules
-function ManageHousingBeaconModules(module_inventory, Score)
+local function ManageHousingBeaconModules(module_inventory, Score)
 	if Score == (module_inventory.get_item_count(Housing_Pos_Module) - module_inventory.get_item_count(Housing_Neg_Module)) then
 	else
 		if module_inventory.get_item_count(Housing_Pos_Module) > 0 then
@@ -235,7 +235,7 @@ function ManageHousingBeaconModules(module_inventory, Score)
 		end
 	end
 end
-function ManageFarmingBeaconModules(module_inventory, Score)
+local function ManageFarmingBeaconModules(module_inventory, Score)
 	if Score == (module_inventory.get_item_count(Farming_Pos_Module) - module_inventory.get_item_count(Farming_Neg_Module)) then
 		--game.print("Farm already has correct modules")
 	else
@@ -262,7 +262,7 @@ function ManageFarmingBeaconModules(module_inventory, Score)
 end
 
 --Calculate Farming effectivity
-function CalculateFarmingBeacon(entity, surface, position, force, radius)
+local function CalculateFarmingBeacon(entity, surface, position, force, radius)
 	local Score = 0
 	local WaterTiles = 0
 	local GoodTiles = 0
@@ -321,7 +321,7 @@ function CalculateFarmingBeacon(entity, surface, position, force, radius)
 end
 
 --Calculate terrain impact
-function CalculateHousingBeacon(surface, position, force, radius)
+local function CalculateHousingBeacon(surface, position, force, radius)
 	local Tiles_Max = radius*radius/5 --You need this many Meh tiles to start having penalties, then you can have this many Meh tiles give penalties, and this is the max number of a single type of good or bad tile that have an effect
 	local Score = 0
 	local TempScore = 0
@@ -419,7 +419,7 @@ function CalculateHousingBeacon(surface, position, force, radius)
 end
 
 -- Set modules in hidden beacons for Terrain speed bonus
-function ManageHousingBeacon(entity, surface, force, radius)
+local function ManageHousingBeacon(entity, surface, force, radius)
 	--game.print("Updating house at"..serpent.line(entity.position))
 	local hiddenBeacon = surface.find_entity(Housing_Beacon, entity.position)
 	--game.print("Beacon "..serpent.block(hiddenBeacon))
@@ -444,7 +444,7 @@ function ManageHousingBeacon(entity, surface, force, radius)
 	end
 end
 -- Set modules in hidden beacons for Terrain farming speed bonus
-function ManageFarmingBeacon(entity, surface, force, radius)
+local function ManageFarmingBeacon(entity, surface, force, radius)
 	game.print("Updating farm at"..serpent.line(entity.position))
 	if entity.valid then
 		log(entity.name.." is valid")
@@ -473,9 +473,34 @@ function ManageFarmingBeacon(entity, surface, force, radius)
 	end
 end
 
+local function OnLoadSetup()
+	local CatalogueHouse = { "sf-house", "mf-house", "low-rise", "ap-tower", "arcology-tower" }
+	local CatalogueFarm = { "fishery" }
+	for i, entity in pairs(game.entity_prototypes) do
+		if i:find("-farm", 1, true) then	
+			table.insert(CatalogueFarm, i)
+		end
+	end
+	for i, surface in pairs(surfaces) do
+		for j, entity_name in pairs(CatalogueHouse) do
+			for i, entity in pairs(surface.find_entities_filtered{ name = entity_name }) do
+				table.insert(global.HousingList, entity)
+			end
+		end
+		for j, entity_name in pairs(CatalogueFarm) do
+			for i, entity in pairs(surface.find_entities_filtered{ name = entity_name }) do
+				table.insert(global.FarmList, entity)
+			end
+		end
+	end
+end
 
 script.on_event(defines.events.on_entity_destroyed, on_remove_entity)
+script.on_event(defines.events.on_entity_died, on_remove_entity)
 script.on_event(defines.events.on_built_entity, on_new_entity)
 script.on_event(defines.events.on_robot_built_entity, on_new_entity)
 script.on_event(defines.events.script_raised_built, on_new_entity)
 script.on_event(defines.events.script_raised_revive, on_new_entity)
+script.on_load(function(OnLoadSetup))
+script.on_load(function(OnInit))
+script.on_init(function(OnInit)
