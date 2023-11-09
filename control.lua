@@ -95,7 +95,7 @@ local function OnInit()
 	Processed_Tiles_List = { }
 	global.Bad_Building_List = { "assembling-machine", "furnace", "generator", "boiler", "reactor", "heat-pipe", "pipe", "straight-rail", "curved-rail" }
 	
-	for _, tile in pairs(game.tile_prototypes) do
+	for i, tile in pairs(game.tile_prototypes) do
 		if tile.name:find("water", 1, true) and tile.name:find("green", 1, true) and not CheckTableValue(tile.name, Processed_Tiles_List) and not CheckTableValue(tile.name, global.Good_Tiles_List) and not CheckTableValue(tile.name, global.Bad_Tiles_List) and not CheckTableValue(tile.name, global.Meh_Tiles_List) then
 			table.insert(global.Bad_Tiles_List, tile.name)
 			table.insert(Processed_Tiles_List, tile.name)
@@ -473,7 +473,7 @@ local function ManageFarmingBeacon(entity, surface, force, radius)
 	end
 end
 
-local function OnLoadSetup()
+local function OnLoadSetup() --Unused, shouldn't be needed
 	local CatalogueHouse = { "sf-house", "mf-house", "low-rise", "ap-tower", "arcology-tower" }
 	local CatalogueFarm = { "fishery" }
 	for i, entity in pairs(game.entity_prototypes) do
@@ -501,6 +501,4 @@ script.on_event(defines.events.on_built_entity, on_new_entity)
 script.on_event(defines.events.on_robot_built_entity, on_new_entity)
 script.on_event(defines.events.script_raised_built, on_new_entity)
 script.on_event(defines.events.script_raised_revive, on_new_entity)
-script.on_load(function(OnLoadSetup))
-script.on_load(function(OnInit))
-script.on_init(function(OnInit)
+script.on_init(OnInit)
