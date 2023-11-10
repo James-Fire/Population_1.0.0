@@ -290,7 +290,13 @@ local function CalculateHousingBeacon(surface, position, force, radius)
 			Score = Score - TempScore*Per_Tile_Impact
 		end
 	end
-	Score = Score + WaterTiles
+	if WaterTiles > 2*Tiles_Max then
+		Score = Score + 2*Tiles_Max
+	elseif WaterTiles > 2*Tiles_Max then
+		Score = Score - 2*Tiles_Max
+	else
+		Score = Score + WaterTiles
+	end
 	--game.print("After Tiles Score: "..tostring(Score))
 	--Account for pollution
 	local pollution = surface.get_pollution(position)
