@@ -357,7 +357,7 @@ for _, count in pairs({2,3,4,5}) do
 			pipe_covers = pipecoverspictures(),
 			base_area = fluidboxArea,
 			height = 1,
-			base_level = 0,
+			base_level = -1,
 			pipe_connections = {
 			  { position = { (MathData.HousingSize[count]/2)-1.5, -(MathData.HousingSize[count]/2)-0.5 } },
 			  { position = { (MathData.HousingSize[count]/2)-1.5, (MathData.HousingSize[count]/2)+0.5 } },
@@ -369,7 +369,7 @@ for _, count in pairs({2,3,4,5}) do
 			pipe_covers = pipecoverspictures(),
 			base_area = fluidboxArea,
 			height = 1,
-			base_level = 0,
+			base_level = 1,
 			pipe_connections = {
 			  { position = { -(MathData.HousingSize[count]/2)+1.5, -(MathData.HousingSize[count]/2)-0.5} },
 			  { position = { -(MathData.HousingSize[count]/2)+1.5, (MathData.HousingSize[count]/2)+0.5 } },

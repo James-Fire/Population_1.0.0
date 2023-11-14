@@ -358,9 +358,9 @@ local function ManageFarmingBeacon(entity, surface, force, radius)
 			local module_inventory = hiddenBeacon.get_module_inventory()
 			--game.print("Beacon Modules "..serpent.block(module_inventory))
 			if module_inventory then
-				game.print("Module Inventory is valid")
+				--game.print("Module Inventory is valid")
 				local Score = CalculateFarmingBeacon(entity, surface, entity.position, force, radius)
-				game.print("Final Farm Score: "..tostring(Score))
+				--game.print("Final Farm Score: "..tostring(Score))
 				ManageFarmingBeaconModules(module_inventory, Score)
 			end
 		end
