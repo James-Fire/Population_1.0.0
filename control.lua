@@ -136,9 +136,9 @@ local function ManageFarmingBeaconModules(module_inventory, Score)
 		if added_modules < 0 then
 			added_modules = 0
 		end
-		if Score > 0 then
+		if added_modules > 0 then
 			module_inventory.insert{name = Farming_Pos_Module, count = added_modules}
-		elseif Score < 0 then
+		elseif added_modules < 0 then
 			module_inventory.insert{name = Farming_Neg_Module, count = added_modules}
 		end
 	end
