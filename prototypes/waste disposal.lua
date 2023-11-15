@@ -424,14 +424,14 @@ data:extend({
 		animation = {
 			filename = "__base__/graphics/entity/storage-tank/storage-tank.png",
 			priority = "extra-high",
-			frame_count = 2,
+			frame_count = 1,
 			width = 110,
 			height = 108,
 			shift = util.by_pixel(0, 4),
 			hr_version = {
 				filename = "__base__/graphics/entity/storage-tank/hr-storage-tank.png",
 				priority = "extra-high",
-				frame_count = 2,
+				frame_count = 1,
 				width = 219,
 				height = 215,
 				shift = util.by_pixel(-0.25, 3.75),
@@ -477,7 +477,7 @@ data:extend({
 				base_area = 2,
 				base_level = -1,
 				pipe_connections = {
-				  { position = {0, -1.75} }
+				  { position = {0, -2} }
 				}
 			},
 		},
