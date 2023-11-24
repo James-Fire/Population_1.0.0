@@ -147,7 +147,7 @@ data:extend({
 		name = "sf-house",
 		category = "crafting",
 		enabled = true,
-		energy_required = 1,
+		energy_required = 5,
 		ingredients = {
 			{ MathData.StructuralResources[1], MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, 1) },
 			{ MathData.ElectricalResources[1], MathData.CalcHousingCost(MathData.ElectricalBase, MathData.ElectricalScalar, 1) },
@@ -164,7 +164,7 @@ data:extend({
 		name = "mf-house",
 		category = "crafting",
 		enabled = true,
-		energy_required = 5,
+		energy_required = 20,
 		ingredients = {
 			{ MathData.StructuralResources[1], MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, 2) },
 			{ MathData.ElectricalResources[1], MathData.CalcHousingCost(MathData.ElectricalBase, MathData.ElectricalScalar, 2) },
@@ -179,9 +179,9 @@ data:extend({
 	{
 		type = "recipe",
 		name = "low-rise",
-		category = "crafting",
+		category = "advanced-crafting",
 		enabled = false,
-		energy_required = 20,
+		energy_required = 100,
 		ingredients = {
 			{ MathData.StructuralResources[1], MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, 3)*0.6 },
 			{ MathData.StructuralResources[2], MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, 3)*0.2 },
@@ -198,9 +198,9 @@ data:extend({
 	{
 		type = "recipe",
 		name = "ap-tower",
-		category = "crafting",
+		category = "advanced-crafting",
 		enabled = false,
-		energy_required = 100,
+		energy_required = 400,
 		ingredients = {
 			{ MathData.StructuralResources[2], MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, 4)*0.2 },
 			{ MathData.StructuralResources[3], MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, 4)*0.8 },
@@ -216,9 +216,9 @@ data:extend({
 	{
 		type = "recipe",
 		name = "arcology-tower",
-		category = "crafting",
+		category = "advanced-crafting",
 		enabled = false,
-		energy_required = 500,
+		energy_required = 2000,
 		ingredients = {
 			{ MathData.StructuralResources[2], MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, 5)*0.1 },
 			{ MathData.StructuralResources[3], MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, 5)*0.4 },
