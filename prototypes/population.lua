@@ -267,10 +267,10 @@ for _, count in pairs(PopRestRecipes) do
 	
 	--log("Before editing results and ingredients"..serpent.block(data.raw.recipe["2-copper-"..count]))
 	
-	LSlib.recipe.editResult("2-copper-"..count, "copper-plate", "copper-recycling", 1 )
-	LSlib.recipe.editResult("3-copper-"..count, "copper-plate", "copper-recycling", 1 )
-	LSlib.recipe.editResult("4-copper-"..count, "copper-plate", "copper-recycling", 1 )
-	LSlib.recipe.editResult("5-copper-"..count, "copper-plate", "copper-recycling", 1 )
+	LSlib.recipe.editResult("2-copper-"..count, "copper-plate", "copper-recycling", 2 )
+	LSlib.recipe.editResult("3-copper-"..count, "copper-plate", "copper-recycling", 3 )
+	LSlib.recipe.editResult("4-copper-"..count, "copper-plate", "copper-recycling", 4 )
+	LSlib.recipe.editResult("5-copper-"..count, "copper-plate", "copper-recycling", 5 )
 	
 	LSlib.recipe.editIngredient("2-copper-"..count, "copper-plate", "copper-food-2", 1 )
 	LSlib.recipe.editIngredient("3-copper-"..count, "copper-plate", "copper-food-3", 1 )
@@ -312,10 +312,10 @@ for _, count in pairs(PopRestRecipes) do
 	LSlib.recipe.editEnergyRequired("4-paper-"..count, 0.90)
 	LSlib.recipe.editEnergyRequired("5-paper-"..count, 0.85)
 	
-	LSlib.recipe.editResult("2-paper-"..count, "copper-plate", "paper-recycling", 1	)
-	LSlib.recipe.editResult("3-paper-"..count, "copper-plate", "paper-recycling", 1 )
-	LSlib.recipe.editResult("4-paper-"..count, "copper-plate", "paper-recycling", 1 )
-	LSlib.recipe.editResult("5-paper-"..count, "copper-plate", "paper-recycling", 1 )
+	LSlib.recipe.editResult("2-paper-"..count, "copper-plate", "paper-recycling", 2	)
+	LSlib.recipe.editResult("3-paper-"..count, "copper-plate", "paper-recycling", 3 )
+	LSlib.recipe.editResult("4-paper-"..count, "copper-plate", "paper-recycling", 4 )
+	LSlib.recipe.editResult("5-paper-"..count, "copper-plate", "paper-recycling", 5 )
 	
 	LSlib.recipe.editIngredient("2-paper-"..count, "copper-plate", "paper-food-2", 1 )
 	LSlib.recipe.editIngredient("3-paper-"..count, "copper-plate", "paper-food-3", 1 )
@@ -355,10 +355,10 @@ for _, count in pairs(PopRestRecipes) do
 	LSlib.recipe.editEnergyRequired("4-plastic-"..count, 0.90)
 	LSlib.recipe.editEnergyRequired("5-plastic-"..count, 0.85)
 	
-	LSlib.recipe.editResult("2-plastic-"..count, "copper-plate", "plastic-recycling", 1 )
-	LSlib.recipe.editResult("3-plastic-"..count, "copper-plate", "plastic-recycling", 1 )
-	LSlib.recipe.editResult("4-plastic-"..count, "copper-plate", "plastic-recycling", 1 )
-	LSlib.recipe.editResult("5-plastic-"..count, "copper-plate", "plastic-recycling", 1 )
+	LSlib.recipe.editResult("2-plastic-"..count, "copper-plate", "plastic-recycling", 2 )
+	LSlib.recipe.editResult("3-plastic-"..count, "copper-plate", "plastic-recycling", 3 )
+	LSlib.recipe.editResult("4-plastic-"..count, "copper-plate", "plastic-recycling", 4 )
+	LSlib.recipe.editResult("5-plastic-"..count, "copper-plate", "plastic-recycling", 5 )
 	
 	LSlib.recipe.editIngredient("2-plastic-"..count, "copper-plate", "plastic-food-2", 1 )
 	LSlib.recipe.editIngredient("3-plastic-"..count, "copper-plate", "plastic-food-3", 1 )
@@ -429,10 +429,10 @@ for _, count in pairs(PopReproduceRecipes) do
 	LSlib.recipe.editIngredient("4-copper-"..count, "copper-plate", "copper-food-4", 1 )
 	LSlib.recipe.editIngredient("5-copper-"..count, "copper-plate", "copper-food-5", 1 )
 	
-	LSlib.recipe.editResult("2-copper-"..count, "copper-plate", "copper-recycling", 1 )
-	LSlib.recipe.editResult("3-copper-"..count, "copper-plate", "copper-recycling", 1 )
-	LSlib.recipe.editResult("4-copper-"..count, "copper-plate", "copper-recycling", 1 )
-	LSlib.recipe.editResult("5-copper-"..count, "copper-plate", "copper-recycling", 1 )
+	LSlib.recipe.editResult("2-copper-"..count, "copper-plate", "copper-recycling", 2 )
+	LSlib.recipe.editResult("3-copper-"..count, "copper-plate", "copper-recycling", 3 )
+	LSlib.recipe.editResult("4-copper-"..count, "copper-plate", "copper-recycling", 4 )
+	LSlib.recipe.editResult("5-copper-"..count, "copper-plate", "copper-recycling", 5 )
 	
 	if count == "reproduce-person-3" then
 		LSlib.technology.addRecipeUnlock("steel-processing", "2-copper-"..count)
@@ -472,10 +472,10 @@ for _, count in pairs(PopReproduceRecipes) do
 	LSlib.recipe.editIngredient("4-paper-"..count, "copper-plate", "paper-food-4", 1 )
 	LSlib.recipe.editIngredient("5-paper-"..count, "copper-plate", "paper-food-5", 1 )
 	
-	LSlib.recipe.editResult("2-paper-"..count, "copper-plate", "paper-recycling", 1	)
-	LSlib.recipe.editResult("3-paper-"..count, "copper-plate", "paper-recycling", 1 )
-	LSlib.recipe.editResult("4-paper-"..count, "copper-plate", "paper-recycling", 1 )
-	LSlib.recipe.editResult("5-paper-"..count, "copper-plate", "paper-recycling", 1 )
+	LSlib.recipe.editResult("2-paper-"..count, "copper-plate", "paper-recycling", 2	)
+	LSlib.recipe.editResult("3-paper-"..count, "copper-plate", "paper-recycling", 3 )
+	LSlib.recipe.editResult("4-paper-"..count, "copper-plate", "paper-recycling", 4 )
+	LSlib.recipe.editResult("5-paper-"..count, "copper-plate", "paper-recycling", 5 )
 	
 	if count == "reproduce-person-3" then
 		LSlib.technology.addRecipeUnlock("steel-processing", "2-paper-"..count)
@@ -515,10 +515,10 @@ for _, count in pairs(PopReproduceRecipes) do
 	LSlib.recipe.editIngredient("4-plastic-"..count, "copper-plate", "plastic-food-4", 1 )
 	LSlib.recipe.editIngredient("5-plastic-"..count, "copper-plate", "plastic-food-5", 1 )
 	
-	LSlib.recipe.editResult("2-plastic-"..count, "copper-plate", "plastic-recycling", 1 )
-	LSlib.recipe.editResult("3-plastic-"..count, "copper-plate", "plastic-recycling", 1 )
-	LSlib.recipe.editResult("4-plastic-"..count, "copper-plate", "plastic-recycling", 1 )
-	LSlib.recipe.editResult("5-plastic-"..count, "copper-plate", "plastic-recycling", 1 )
+	LSlib.recipe.editResult("2-plastic-"..count, "copper-plate", "plastic-recycling", 2 )
+	LSlib.recipe.editResult("3-plastic-"..count, "copper-plate", "plastic-recycling", 3 )
+	LSlib.recipe.editResult("4-plastic-"..count, "copper-plate", "plastic-recycling", 4 )
+	LSlib.recipe.editResult("5-plastic-"..count, "copper-plate", "plastic-recycling", 5 )
 	
 	if count == "reproduce-person-1" then
 		LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
@@ -584,10 +584,10 @@ for _, count in pairs(PopGrowRecipes) do
 	LSlib.recipe.editIngredient("4-copper-"..count, "copper-plate", "copper-food-4", 1 )
 	LSlib.recipe.editIngredient("5-copper-"..count, "copper-plate", "copper-food-5", 1 )
 	
-	LSlib.recipe.editResult("2-copper-"..count, "copper-plate", "copper-recycling", 1 )
-	LSlib.recipe.editResult("3-copper-"..count, "copper-plate", "copper-recycling", 1 )
-	LSlib.recipe.editResult("4-copper-"..count, "copper-plate", "copper-recycling", 1 )
-	LSlib.recipe.editResult("5-copper-"..count, "copper-plate", "copper-recycling", 1 )
+	LSlib.recipe.editResult("2-copper-"..count, "copper-plate", "copper-recycling", 2 )
+	LSlib.recipe.editResult("3-copper-"..count, "copper-plate", "copper-recycling", 3 )
+	LSlib.recipe.editResult("4-copper-"..count, "copper-plate", "copper-recycling", 4 )
+	LSlib.recipe.editResult("5-copper-"..count, "copper-plate", "copper-recycling", 5 )
 	
 	if count == "grow-person-3" then
 		LSlib.technology.addRecipeUnlock("steel-processing", "2-copper-"..count)
@@ -627,10 +627,10 @@ for _, count in pairs(PopGrowRecipes) do
 	LSlib.recipe.editIngredient("4-paper-"..count, "copper-plate", "paper-food-4", 1 )
 	LSlib.recipe.editIngredient("5-paper-"..count, "copper-plate", "paper-food-5", 1 )
 	
-	LSlib.recipe.editResult("2-paper-"..count, "copper-plate", "paper-recycling", 1	)
-	LSlib.recipe.editResult("3-paper-"..count, "copper-plate", "paper-recycling", 1 )
-	LSlib.recipe.editResult("4-paper-"..count, "copper-plate", "paper-recycling", 1 )
-	LSlib.recipe.editResult("5-paper-"..count, "copper-plate", "paper-recycling", 1 )
+	LSlib.recipe.editResult("2-paper-"..count, "copper-plate", "paper-recycling", 2	)
+	LSlib.recipe.editResult("3-paper-"..count, "copper-plate", "paper-recycling", 3 )
+	LSlib.recipe.editResult("4-paper-"..count, "copper-plate", "paper-recycling", 4 )
+	LSlib.recipe.editResult("5-paper-"..count, "copper-plate", "paper-recycling", 5 )
 	
 	if count == "grow-person-3" then
 		LSlib.technology.addRecipeUnlock("steel-processing", "2-paper-"..count)
@@ -670,10 +670,10 @@ for _, count in pairs(PopGrowRecipes) do
 	LSlib.recipe.editIngredient("4-plastic-"..count, "copper-plate", "plastic-food-4", 1 )
 	LSlib.recipe.editIngredient("5-plastic-"..count, "copper-plate", "plastic-food-5", 1 )
 	
-	LSlib.recipe.editResult("2-plastic-"..count, "copper-plate", "plastic-recycling", 1 )
-	LSlib.recipe.editResult("3-plastic-"..count, "copper-plate", "plastic-recycling", 1 )
-	LSlib.recipe.editResult("4-plastic-"..count, "copper-plate", "plastic-recycling", 1 )
-	LSlib.recipe.editResult("5-plastic-"..count, "copper-plate", "plastic-recycling", 1 )
+	LSlib.recipe.editResult("2-plastic-"..count, "copper-plate", "plastic-recycling", 2 )
+	LSlib.recipe.editResult("3-plastic-"..count, "copper-plate", "plastic-recycling", 3 )
+	LSlib.recipe.editResult("4-plastic-"..count, "copper-plate", "plastic-recycling", 4 )
+	LSlib.recipe.editResult("5-plastic-"..count, "copper-plate", "plastic-recycling", 5 )
 	
 	if count == "grow-person-1" then
 		LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
