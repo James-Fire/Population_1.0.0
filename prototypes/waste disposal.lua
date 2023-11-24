@@ -80,13 +80,13 @@ data:extend({
 		name = "sewage-treatment",
 		category = "sewage-treatment",
 		enabled = false,
-		energy_required = 6,
+		energy_required = 12,
 		ingredients = {
-			{type = "fluid", name = "sewage", amount = 40 },
+			{type = "fluid", name = "sewage", amount = 80 },
 		},
 		results = {
-			{ type = "fluid", name = "water", amount = 38 },
-			{ "organic-material",1 },
+			{ type = "fluid", name = "water", amount = 76 },
+			{ "organic-material",3 },
 			{ "garbage",1 },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
