@@ -150,7 +150,7 @@ data:extend({
 		name = "paper-recycling",
 		category = "crafting-with-fluid",
 		enabled = false,
-		energy_required = 5,
+		energy_required = 4,
 		ingredients = {
 			{ "paper-recycling",10 },
 			{type = "fluid", name = "water", amount = 5 },
@@ -171,7 +171,7 @@ data:extend({
 		name = "copper-recycling",
 		category = "crafting-with-fluid",
 		enabled = true,
-		energy_required = 5,
+		energy_required = 4,
 		ingredients = {
 			{ "copper-recycling",10 },
 		},
@@ -190,7 +190,7 @@ data:extend({
 		name = "plastic-recycling",
 		category = "crafting-with-fluid",
 		enabled = false,
-		energy_required = 10,
+		energy_required = 8,
 		ingredients = {
 			{ "plastic-recycling",15 },
 			{type = "fluid", name = "water", amount = 30 },
