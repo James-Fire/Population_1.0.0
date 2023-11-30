@@ -44,7 +44,7 @@ local function OnInit()
 	global.Bad_Tiles_List = { }
 	global.Meh_Tiles_List = { }
 	Processed_Tiles_List = { }
-	global.Bad_Building_List = { "assembling-machine", "furnace", "generator", "boiler", "reactor", "heat-pipe", "pipe", "straight-rail", "curved-rail" }
+	global.Bad_Building_List = { "assembling-machine", "furnace", "generator", "boiler", "reactor", "heat-pipe", "pipe", "straight-rail", "curved-rail", "mining-drill" }
 	
 	for i, tile in pairs(game.tile_prototypes) do
 		if tile.name:find("water", 1, true) and tile.name:find("green", 1, true) and not CheckTableValue(tile.name, Processed_Tiles_List) and not CheckTableValue(tile.name, global.Good_Tiles_List) and not CheckTableValue(tile.name, global.Bad_Tiles_List) and not CheckTableValue(tile.name, global.Meh_Tiles_List) then
@@ -211,6 +211,7 @@ local function CalculateHousingBeacon(surface, position, force, radius)
 	local Terrain_Radius = 2*radius
 	--game.print("Max Tiles: "..tostring(Tiles_Max))
 	
+	--Count good buildings
 	
 	--Count trees
 	for _, entity in pairs(surface.find_entities_filtered{area = areaAroundPosition(position, Terrain_Radius)}) do
