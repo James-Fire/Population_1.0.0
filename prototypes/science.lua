@@ -44,7 +44,7 @@ for i, Science in pairs(sciencepackrecipes) do
 	--Add people to each science pack recipe, based on an exponent of how many packs it makes per recipe
 	local PeopleCount = 0
 	if (mods["MoreScience"]) then
-		PeopleCount = Science.energy_required*LSlib.recipe.getResultCount(Science.name)*(LSlib.recipe.getIngredientsCount(Science.name, true)[1]+LSlib.recipe.getIngredientsCount(Science.name, true)[2]-1)/2
+		PeopleCount = Science.energy_required*(LSlib.recipe.getResultCount(Science.name)/50)*(LSlib.recipe.getIngredientsCount(Science.name, true)[1]+LSlib.recipe.getIngredientsCount(Science.name, true)[2]-1)/2
 	else
 		PeopleCount = 2*LSlib.recipe.getResultCount(Science.name, Science.name)*LSlib.recipe.getResultCount(Science.name, Science.name)
 	end
@@ -52,7 +52,7 @@ for i, Science in pairs(sciencepackrecipes) do
 		PeopleCount = #Science.ingredients
 	end
 	if Science.name:find("fluid", 1, true) then
-		PeopleCount = PeopleCount/100
+		PeopleCount = PeopleCount/10
 	end
 	if PeopleCount <= 1 then
 		PeopleCount = 2
