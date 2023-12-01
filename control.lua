@@ -208,12 +208,11 @@ local function CalculateHousingBeacon(surface, position, force, radius)
 	local Tiles_Max = radius*radius/2 --You need this many Meh tiles to start having penalties, then you can have this many Meh tiles give penalties, and this is the max number of a single type of good or bad tile that have an effect
 	local Score = 0
 	local TempScore = 0
+	local BuildingCount = 0
 	local Terrain_Radius = 2*radius
 	--game.print("Max Tiles: "..tostring(Tiles_Max))
 	
-	--Count good buildings
-	
-	--Count trees
+	--Count trees and good buildings
 	for _, entity in pairs(surface.find_entities_filtered{area = areaAroundPosition(position, Terrain_Radius)}) do
 		--game.print(serpent.block(entity.name))
 		if entity.name:find("tree", 1, true) then
@@ -222,10 +221,20 @@ local function CalculateHousingBeacon(surface, position, force, radius)
 				--game.print("Found Living Tree")
 				TempScore = TempScore + Per_Tree_Impact
 			end
+		elseif entity.name:find("entertainment", 1, true) then
+			BuildingCount = BuildingCount + 1
 		end
 	end
 	Score = Score + TempScore
 	--game.print("Tree Impact: "..tostring(TempScore))
+	--game.print("Total Score: "..tostring(Score))
+	TempScore = 0
+	if BuildingCount > 3 then
+		BuildingCount = 3
+	end
+	TempScore = BuildingCount * 60
+	Score = Score + TempScore
+	--game.print("Building Impact: "..tostring(TempScore))
 	--game.print("Total Score: "..tostring(Score))
 	TempScore = 0
 	for _, entity in pairs(surface.find_entities_filtered{area = areaAroundPosition(position, Terrain_Radius)}) do
