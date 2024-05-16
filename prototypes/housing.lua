@@ -22,6 +22,18 @@ Housing structures get a calculated buff/nerf to their speed based on having tre
 ]]
 local MathData = require("prototypes/Data Script")
 local common = require("prototypes/common")
+local collision_mask_util = require("__core__/lualib/collision-mask-util")
+local collision = collision_mask_util.get_first_unused_layer()
+
+--Set it up so Concrete and Refined Concrete don't collide with T3 housing
+for i, Tile in pairs(data.raw.tile) do
+	if Tile.name:find("concrete", 1, true) then
+		Tile.check_collision_with_entities = true
+	else
+		table.insert(Tile.collision_mask, collision)
+		Tile.check_collision_with_entities = true
+	end
+end
 
 --Invisible beacons for Housing terrain impact
 data:extend{
@@ -251,6 +263,7 @@ data:extend({
 		dying_explosion = "medium-explosion",
 		collision_box = {{-(MathData.HousingSize[1]/2), -(MathData.HousingSize[1]/2)}, {(MathData.HousingSize[1]/2), (MathData.HousingSize[1]/2)}},
 		selection_box = {{-(MathData.HousingSize[1]/2), -(MathData.HousingSize[1]/2)}, {(MathData.HousingSize[1]/2), (MathData.HousingSize[1]/2)}},
+		collision_mask = {"item-layer", "object-layer", "player-layer", "water-tile"},
 		crafting_categories = {"pop-rest-1"},
 		crafting_speed = MathData.HousingWorkSpeed[1],
 		energy_usage = MathData.HousingEnergy[1],
@@ -400,6 +413,8 @@ for _, count in pairs({2,3,4,5}) do
 		mf_house_entity.fast_replaceable_group = "T2-housing"
 	elseif count == 4 or count == 5 then
 		mf_house_entity.fast_replaceable_group = "T3-housing"
+		mf_house_entity.protected_from_tile_building = true
+		table.insert(mf_house_entity.collision_mask, collision)
 	end
 	data:extend({mf_house_entity})
 end
