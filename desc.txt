@@ -1,19 +1,18 @@
-*Used up to make science and some select things.
-*Need food, water, and energy to rest
-*Need food, water, and energy to make children.
+Used up to make science and some select things.
+Need food, water, and energy to rest
+Need food, water, and energy to make children.
 Produce sewage. Treating sewage gives fertilizer
-*Fertilizer can be used to increase farm yield.
+Fertilizer can be used to increase farm yield.
 *Farms are furnaces, which means each food type needs a unique entity.
-*Wood farming, to supply wood for housing and paper.
-*Children need food, water, and energy to grow up
+Wood farming, to supply wood for housing and paper.
+Children need food, water, and energy to grow up
 *Improved recipes to get more science per person
-*Houses are furnaces that take in food and tired people. Variations for using electric, thermal
-*Food is "premade meals" with a variety of recipes to make it. Packaging must be made and dealt with. Paper, Plastic, Aluminum, Iron.
+Food is "premade meals" with a variety of recipes to make it. Packaging must be made and dealt with. Paper, Plastic, Aluminum, Iron.
 People stack up to 2.
 *Providing "entertainment" makes "rest" go faster.
-*Pollution causes houses to work slower, like homeworld farms.
-*Food made from a greater variety of ingredients increases rest speed.
-*Houses come in various sizes. Single-Family are the least space efficient, but do rest slightly faster. Apartment towers rest many people,
+Pollution causes houses to work slower, like homeworld farms.
+Food made from a greater variety of ingredients increases rest speed.
+Houses come in various sizes. Single-Family are the least space efficient, but do rest slightly faster. Apartment towers rest many people,
 but do so slightly slower.
 *Population gets tired over time, even if they're not working?
 *Vertical Farming to be more space-efficient, but does require input resources. Also divorces food production from land quality
