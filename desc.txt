@@ -3,17 +3,17 @@ Need food, water, and energy to rest
 Need food, water, and energy to make children.
 Produce sewage. Treating sewage gives fertilizer
 Fertilizer can be used to increase farm yield.
-*Farms are furnaces, which means each food type needs a unique entity.
 Wood farming, to supply wood for housing and paper.
 Children need food, water, and energy to grow up
-*Improved recipes to get more science per person
 Food is "premade meals" with a variety of recipes to make it. Packaging must be made and dealt with. Paper, Plastic, Aluminum, Iron.
-People stack up to 2.
-*Providing "entertainment" makes "rest" go faster.
+People stack up to 4.
 Pollution causes houses to work slower, like homeworld farms.
 Food made from a greater variety of ingredients increases rest speed.
 Houses come in various sizes. Single-Family are the least space efficient, but do rest slightly faster. Apartment towers rest many people,
 but do so slightly slower.
+*Farms are furnaces, which means each food type needs a unique entity.
+*Improved recipes to get more science per person
+*Providing "entertainment" makes "rest" go faster.
 *Population gets tired over time, even if they're not working?
 *Vertical Farming to be more space-efficient, but does require input resources. Also divorces food production from land quality
 
@@ -29,7 +29,14 @@ Electric Heater. Uses electricity, outputs heat. 24c
 Burner Heater. Uses fuel, outputs heat. 24c
 Fluid Burner Heater. Uses fluid fuel, outputs heat. 24c
 
+Clean Water:
+Recipe in the water treatment plant
+Pop recipes now use it
+Check on startup if a purified or clean water already exists, and use that.
 
+Sewage Plant is now Water Treatment Plant
+
+Farms need input pipes in the correct spots
 
 Entertainment. Beer.
 Quiet Rails?
@@ -43,8 +50,7 @@ Include a backup checker for entities that are removed from global
 True garbage
 Increase value search radius on bigger house
 See how much making people move on their own would cost (Probably best to just have a table of source and destination entities for each network, periodically updated)
-Sewage Plant is now Biomass Processing Plant
-Purified water
+
 Fix module update for farms and housing
 Maybe farms should require different materials? Farms need to be assemblers, so this might not be relevant at all.
 

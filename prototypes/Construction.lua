@@ -125,7 +125,7 @@ data:extend({
 		energy_required = 5,
 		ingredients = {
 			{ "steel-plate", 5 },
-			{ "concrete", 10 },
+			{ "concrete", 5 },
 		},
 		result = "stone-structural",
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -142,7 +142,7 @@ data:extend({
 		ingredients = {
 			{ "low-density-structure", 10 },
 			{ "steel-plate", 5 },
-			{ "concrete", 5 },
+			{ "concrete", 2 },
 		},
 		result = "skyscraper-structural",
 		--icon = "__Population__/graphics/crude-oil.png",
