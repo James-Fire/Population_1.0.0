@@ -204,7 +204,7 @@ local function CalculateFarmingBeacon(entity, surface, position, force, radius)
 end
 
 --Calculate terrain impact
-local function CalculateHousingBeacon(surface, position, force, radius)
+local function CalculateHousingBeacon(surface, ParamPosition, force, radius)
 	local Tiles_Max = radius*radius/2 --You need this many Meh tiles to start having penalties, then you can have this many Meh tiles give penalties, and this is the max number of a single type of good or bad tile that have an effect
 	local Score = 0
 	local TempScore = 0
@@ -213,7 +213,7 @@ local function CalculateHousingBeacon(surface, position, force, radius)
 	--game.print("Max Tiles: "..tostring(Tiles_Max))
 	
 	--Count trees and good buildings
-	for _, entity in pairs(surface.find_entities_filtered{area = areaAroundPosition(position, Terrain_Radius)}) do
+	for _, entity in pairs(surface.find_entities_filtered{area = areaAroundPosition(ParamPosition, Terrain_Radius)}) do
 		--game.print(serpent.block(entity.name))
 		if entity.name:find("tree", 1, true) then
 			--game.print("Found Tree")
@@ -237,7 +237,7 @@ local function CalculateHousingBeacon(surface, position, force, radius)
 	--game.print("Building Impact: "..tostring(TempScore))
 	--game.print("Total Score: "..tostring(Score))
 	TempScore = 0
-	for _, entity in pairs(surface.find_entities_filtered{area = areaAroundPosition(position, Terrain_Radius)}) do
+	for _, entity in pairs(surface.find_entities_filtered{area = areaAroundPosition(ParamPosition, Terrain_Radius)}) do
 		if entity.name:find("tree", 1, true) and entity.name:find("dead", 1, true) then
 			--game.print("Found Dead Tree")
 			TempScore = TempScore + Per_Tree_Impact
@@ -253,12 +253,14 @@ local function CalculateHousingBeacon(surface, position, force, radius)
 	local GoodTiles = 0
 	local BadTiles = 0
 	local MehTiles = 0
-	for i, tile in pairs(surface.find_tiles_filtered{position = position,radius = Terrain_Radius}) do
+	local HostBuilding = surface.find_entities_filtered{position = ParamPosition}
+	for i, tile in pairs(surface.find_tiles_filtered{position = ParamPosition,radius = Terrain_Radius}) do
 		--game.print(serpent.block(tile.name))
 		local Building = surface.find_entities_filtered{position = tile.position}
 		Building = Building[1]
 		if Building then
-			if Building.name:find("farm", 1, true) then
+			if Building == HostBuilding then
+			elseif Building.name:find("farm", 1, true) then
 				GoodTiles = GoodTiles + 1
 			else
 				if CheckTableValue(Building.type, global.Bad_Building_List) then
@@ -309,7 +311,7 @@ local function CalculateHousingBeacon(surface, position, force, radius)
 	end
 	--game.print("After Tiles Score: "..tostring(Score))
 	--Account for pollution
-	local pollution = surface.get_pollution(position)
+	local pollution = surface.get_pollution(ParamPosition)
 	--game.print("Pollution: "..tostring(pollution))
 	Score = Score - pollution
 	if Score > Tiles_Max then
@@ -408,7 +410,7 @@ local function on_new_entity(event)
 		--game.print("Found Farm")
 		ManageFarmingBeacon(new_entity, surface, force, 3)
 		if not CheckTableValue(new_entity,global.FarmList) then
-			game.print("Farm inserted into Global Table")
+			--game.print("Farm inserted into Global Table")
 			table.insert(global.FarmList, new_entity)
 		end
 	elseif new_entity.name == "fishery" then
@@ -502,6 +504,18 @@ local function HandleUpdate()
 		RemakeUpdateList()
 	end
 end
+
+commands.add_command("RebuildHousingBonuses", "", function ()
+    for i, housing in pairs(global.HousingList) do
+		ManageHousingBeacon(housing, housing.surface, housing.force, MathData.HousingSize[3])
+	end
+end)
+
+commands.add_command("RebuildFarmingBonuses", "", function ()
+    for i, farm in pairs(global.FarmList) do
+		ManageFarmingBeacon(farm, farm.surface, farm.force, MathData.HousingSize[3])
+	end
+end)
 
 script.on_event(defines.events.on_tick, function(event)
 	--game.print("pre tick")

@@ -38,6 +38,12 @@ Sewage Plant is now Water Treatment Plant
 
 Farms need input pipes in the correct spots
 
+Higher density housing can have more meh tiles before caring
+
+Housing doesn't care about lower density housing
+
+Housing no longer counts itself as meh
+
 Entertainment. Beer.
 Quiet Rails?
 Recipe-based construction of housing structures?
