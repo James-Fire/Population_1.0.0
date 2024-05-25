@@ -98,6 +98,79 @@ data:extend{
 	},
 }
 
+--Invisible beacons for heat management
+--[[for _, count in pairs({1,2,3,4,5}) do
+local thermal_beacon_15_entity = table.deepcopy(data.raw["beacon"]["housing-beacon"])
+thermal_beacon_15_entity.name = MathData.HousingName[count].."-thermal-beacon-15"
+thermal_beacon_15_entity.collision_box = {{-MathData.HousingSize[count]/2, -MathData.HousingSize[count]/2}, {MathData.HousingSize[count]/2, MathData.HousingSize[count]/2}}
+thermal_beacon_15_entity.supply_area_distance = MathData.HousingSize[count]/2
+thermal_beacon_15_entity.energy_usage = MathData.HousingHeat[count]
+thermal_beacon_15_entity.energy_source = {
+	type = "heat",
+	emissions_per_minute = 0,
+	max_temperature = 100,
+	specific_heat = MathData.HousingHeatCapacity[count],
+	max_transfer = "10GW",
+	min_working_temperature = 15,
+	connections = {
+		{
+			position = {0,-MathData.HousingSize[count]/4},
+			direction = defines.direction.north
+		},
+		{
+			position = {MathData.HousingSize[count]/4,0},
+			direction = defines.direction.east
+		},
+		{
+			position = {0,MathData.HousingSize[count]/4},
+			direction = defines.direction.south
+		},
+		{
+			position = {-MathData.HousingSize[count]/4,0},
+			direction = defines.direction.west
+		}
+	},
+	pipe_covers = make_4way_animation_from_spritesheet({
+		filename = "__base__/graphics/entity/".."heat-exchanger/heatex-endings.png",
+		line_length = 4,
+		width = 32,
+		height = 32,
+		direction_count = 4,
+		hr_version = {
+			filename = "__base__/graphics/entity/".."heat-exchanger/hr-heatex-endings.png",
+			line_length = 4,
+			width = 64,
+			height = 64,
+			direction_count = 4,
+			scale = 0.5
+		}
+	}),
+}
+
+local thermal_beacon_20_entity = table.deepcopy(data.raw["beacon"]["housing-beacon"])
+thermal_beacon_20_entity.name = MathData.HousingName[count].."-thermal-beacon-20"
+thermal_beacon_20_entity.collision_box = {{-MathData.HousingSize[count]/2, -MathData.HousingSize[count]/2}, {MathData.HousingSize[count]/2, MathData.HousingSize[count]/2}}
+thermal_beacon_20_entity.supply_area_distance = MathData.HousingSize[count]/2
+thermal_beacon_20_entity.energy_usage = MathData.HousingHeat[count]
+
+local thermal_beacon_25_entity = table.deepcopy(data.raw["beacon"]["housing-beacon"])
+thermal_beacon_25_entity.name = MathData.HousingName[count].."-thermal-beacon-25"
+thermal_beacon_25_entity.collision_box = {{-MathData.HousingSize[count]/2, -MathData.HousingSize[count]/2}, {MathData.HousingSize[count]/2, MathData.HousingSize[count]/2}}
+thermal_beacon_25_entity.supply_area_distance = MathData.HousingSize[count]/2
+thermal_beacon_25_entity.energy_usage = MathData.HousingHeat[count]
+
+local thermal_beacon_30_entity = table.deepcopy(data.raw["beacon"]["housing-beacon"])
+thermal_beacon_30_entity.name = MathData.HousingName[count].."-thermal-beacon-30"
+thermal_beacon_30_entity.collision_box = {{-MathData.HousingSize[count]/2, -MathData.HousingSize[count]/2}, {MathData.HousingSize[count]/2, MathData.HousingSize[count]/2}}
+thermal_beacon_30_entity.supply_area_distance = MathData.HousingSize[count]/2
+thermal_beacon_30_entity.energy_usage = MathData.HousingHeat[count]
+
+data:extend({thermal_beacon_15_entity,thermal_beacon_20_entity,thermal_beacon_25_entity,thermal_beacon_30_entity})
+end]]
+
+
+--Heating Elements
+
 --Items
 data:extend({
 	{
@@ -320,7 +393,7 @@ data:extend({
 				pipe_covers = pipecoverspictures(),
 				base_area = 3,
 				height = 1,
-				base_level = -1,
+				base_level = -2,
 				pipe_connections = {
 				  { position = { (MathData.HousingSize[1]/2)-0.5, -(MathData.HousingSize[1]/2)-0.5 } },
 				  { position = { (MathData.HousingSize[1]/2)-0.5, (MathData.HousingSize[1]/2)+0.5 } },
@@ -332,7 +405,7 @@ data:extend({
 				pipe_covers = pipecoverspictures(),
 				base_area = 3,
 				height = 1,
-				base_level = 1,
+				base_level = 2,
 				pipe_connections = {
 				  { position = { -(MathData.HousingSize[1]/2)+0.5, -(MathData.HousingSize[1]/2)-0.5} },
 				  { position = { -(MathData.HousingSize[1]/2)+0.5, (MathData.HousingSize[1]/2)+0.5 } },
@@ -370,7 +443,7 @@ for _, count in pairs({2,3,4,5}) do
 			pipe_covers = pipecoverspictures(),
 			base_area = fluidboxArea,
 			height = 1,
-			base_level = -1,
+			base_level = -2,
 			pipe_connections = {
 			  { position = { (MathData.HousingSize[count]/2)-1.5, -(MathData.HousingSize[count]/2)-0.5 } },
 			  { position = { (MathData.HousingSize[count]/2)-1.5, (MathData.HousingSize[count]/2)+0.5 } },
@@ -382,7 +455,7 @@ for _, count in pairs({2,3,4,5}) do
 			pipe_covers = pipecoverspictures(),
 			base_area = fluidboxArea,
 			height = 1,
-			base_level = 1,
+			base_level = 2,
 			pipe_connections = {
 			  { position = { -(MathData.HousingSize[count]/2)+1.5, -(MathData.HousingSize[count]/2)-0.5} },
 			  { position = { -(MathData.HousingSize[count]/2)+1.5, (MathData.HousingSize[count]/2)+0.5 } },
