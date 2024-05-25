@@ -81,7 +81,7 @@ MathData.HousingPollution = { --How much pollution each density of housing makes
 	MathData.HousingPopRest[4]*MathData.PopPollution*MathData.DensityPollutionScalar^3,
 	MathData.HousingPopRest[5]*MathData.PopPollution*MathData.DensityPollutionScalar^4,
 }
-MathData.HousingEnergy = {	--How much energy each density of housing needs to work
+MathData.HousingEnergy = { --How much energy each density of housing needs to work
 	tostring(MathData.RestPower/MathData.RestTime*MathData.HousingPopRest[1]*MathData.HousingPopCapScalar[1]).."W",
 	tostring(MathData.RestPower/MathData.RestTime*MathData.HousingPopRest[2]*MathData.HousingPopCapScalar[2]*MathData.DensityEnergyScalar).."W",
 	tostring(MathData.RestPower/MathData.RestTime*MathData.HousingPopRest[3]*MathData.HousingPopCapScalar[3]*MathData.DensityEnergyScalar^2).."W",
@@ -161,6 +161,20 @@ function MathData.CalcHousingCost(BaseType,ScalarType,HouseIndex)
 	HousingCost = HousingCost + MathData.HousingPopRest[HouseIndex]*ScalarType[HouseIndex] --Scaled cost for the population capacity
 	HousingCost = MathData.round(HousingCost/10) --Make it reasonable, and round it.
 	return HousingCost
+end
+
+
+
+MathData.HousingHeat = { --How much thermal energy each density of housing needs to work
+	tostring(MathData.RestPower/MathData.RestTime*MathData.HousingPopRest[1]*MathData.HousingPopCapScalar[1]+MathData.HousingSize[1]^2).."W",
+	tostring(MathData.RestPower/MathData.RestTime*MathData.HousingPopRest[2]*MathData.HousingPopCapScalar[2]*MathData.DensityEnergyScalar+MathData.HousingSize[2]^2*MathData.DensityEnergyScalar).."W",
+	tostring(MathData.RestPower/MathData.RestTime*MathData.HousingPopRest[3]*MathData.HousingPopCapScalar[3]*MathData.DensityEnergyScalar^2+MathData.HousingSize[2]^2*MathData.DensityEnergyScalar^2).."W",
+	tostring(MathData.RestPower/MathData.RestTime*MathData.HousingPopRest[4]*MathData.HousingPopCapScalar[4]*MathData.DensityEnergyScalar^3+MathData.HousingSize[2]^2*MathData.DensityEnergyScalar^3).."W",
+	tostring(MathData.RestPower/MathData.RestTime*MathData.HousingPopRest[5]*MathData.HousingPopCapScalar[5]*MathData.DensityEnergyScalar^4+MathData.HousingSize[2]^2*MathData.DensityEnergyScalar^4).."W",
+}
+MathData.HousingHeatCapacity = { } --How much thermal energy each density of housing absorbs to increase temp. Divided by 4, because of the 4 beacons
+for _, count in pairs({1,2,3,4,5}) do
+	table.insert(MathData.HousingHeatCapacity,MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, count).."MJ")
 end
 
 return MathData

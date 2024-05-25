@@ -18,7 +18,20 @@ but do so slightly slower.
 *Vertical Farming to be more space-efficient, but does require input resources. Also divorces food production from land quality
 
 TODO
-Heating, maintain a 20C temp, outside that slows rest speed
+Heating:
+Halve crafting speed on housing
+Heat beacon that needs 15c to run, gives +25% crafting speed
+Heat beacon that needs 20c to run, gives +75% crafting speed
+Heat beacon that needs 25c to run, gives -100% crafting speed
+Heat beacon that needs 30c to run, gives -200% crafting speed
+Steam Heat Exchanger. Uses steam, outputs heat. 24c
+Electric Heater. Uses electricity, outputs heat. 24c
+Burner Heater. Uses fuel, outputs heat. 24c
+Fluid Burner Heater. Uses fluid fuel, outputs heat. 24c
+
+
+
+Entertainment. Beer.
 Quiet Rails?
 Recipe-based construction of housing structures?
 Setting for requiring people in specific machines:
