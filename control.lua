@@ -111,10 +111,13 @@ local function ManageHousingBeaconModules(module_inventory, Score)
 			module_inventory.remove{name = Housing_Neg_Module, count = module_inventory.get_item_count(Housing_Neg_Module)}
 		end
 		local added_modules = round(math.abs(Score))
-		if Score > 0 then
-			module_inventory.insert{name = Housing_Pos_Module, count = added_modules}
-		elseif Score < 0 then
-			module_inventory.insert{name = Housing_Neg_Module, count = added_modules}
+		if added_modules ~= 0 then
+			if Score > 0 then
+				game.print(Score..", "..added_modules)
+				module_inventory.insert{name = Housing_Pos_Module, count = added_modules}
+			elseif Score < 0 then
+				module_inventory.insert{name = Housing_Neg_Module, count = added_modules}
+			end
 		end
 	end
 end
