@@ -110,7 +110,7 @@ local function ManageHousingBeaconModules(module_inventory, Score)
 		elseif module_inventory.get_item_count(Housing_Neg_Module) > 0 then
 			module_inventory.remove{name = Housing_Neg_Module, count = module_inventory.get_item_count(Housing_Neg_Module)}
 		end
-		local added_modules = round(math.abs(Score))
+		local added_modules = round(math.abs(Score/2))
 		if added_modules ~= 0 then
 			if Score > 0 then
 				--game.print(Score..", "..added_modules)
