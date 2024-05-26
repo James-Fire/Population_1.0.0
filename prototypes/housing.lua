@@ -82,7 +82,7 @@ data:extend{
 		category = "speed",
 		tier = 0,
 		stack_size = 1,
-		effect = {speed = {bonus = 0.01}, consumption = {bonus = 0.01}},
+		effect = {speed = {bonus = 0.02}, consumption = {bonus = 0.01}},
 	},
 	{
 		type = "module",
@@ -94,7 +94,7 @@ data:extend{
 		category = "speed",
 		tier = 0,
 		stack_size = 1,
-		effect = {speed = {bonus = -0.01}, consumption = {bonus = -0.01}},
+		effect = {speed = {bonus = -0.02}, consumption = {bonus = -0.01}},
 	},
 }
 

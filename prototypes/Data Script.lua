@@ -8,7 +8,7 @@ end
 MathData.Bad_Building_List = { "assembling-machine", "furnace" }
 
 MathData.RequiredWater = 10 --Water required for 1 rest period for 1 person
-MathData.RestTime = 1000 --Rest time for 1 rest period
+MathData.RestTime = 2000 --Rest time for 1 rest period
 MathData.GrowthTime = 3 --time mult for 1 growth period, making or raising children
 MathData.RestFood = 1 --How much food/packaging waste is used/made per rest period
 MathData.RestPower = 120000 --How much energy is required for 1 rest period, in KJ
