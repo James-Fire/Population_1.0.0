@@ -113,7 +113,7 @@ local function ManageHousingBeaconModules(module_inventory, Score)
 		local added_modules = round(math.abs(Score))
 		if added_modules ~= 0 then
 			if Score > 0 then
-				game.print(Score..", "..added_modules)
+				--game.print(Score..", "..added_modules)
 				module_inventory.insert{name = Housing_Pos_Module, count = added_modules}
 			elseif Score < 0 then
 				module_inventory.insert{name = Housing_Neg_Module, count = added_modules}
