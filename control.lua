@@ -207,7 +207,7 @@ local function CalculateFarmingBeacon(entity, surface, position, force, radius)
 end
 
 --Calculate terrain impact
-local function CalculateHousingBeacon(surface, ParamPosition, force, radius)
+local function CalculateHousingBeacon(entityName, surface, ParamPosition, force, radius)
 	local Tiles_Max = radius*radius/2 --You need this many Meh tiles to start having penalties, then you can have this many Meh tiles give penalties, and this is the max number of a single type of good or bad tile that have an effect
 	local Score = 0
 	local TempScore = 0
@@ -267,7 +267,7 @@ local function CalculateHousingBeacon(surface, ParamPosition, force, radius)
 				GoodTiles = GoodTiles + 1
 			else
 				if CheckTableValue(Building.type, global.Bad_Building_List) then
-					MehTiles = MehTiles + 1
+					MehTiles = MehTiles + MathData.HousingCare[entityName]
 				end
 			end
 		elseif CheckTableValue(tile.name,global.Meh_Tiles_List) or Building then
@@ -346,7 +346,7 @@ local function ManageHousingBeacon(entity, surface, force, radius)
 		if module_inventory then
 			--game.print("Module Inventory is valid")
 			--game.print("Calc score for "..entity.name)
-			local Score = CalculateHousingBeacon(surface, hiddenBeacon.position, force, radius)
+			local Score = CalculateHousingBeacon(entity.name ,surface, hiddenBeacon.position, force, radius)
 			--game.print("Final House Score: "..tostring(Score))
 			ManageHousingBeaconModules(module_inventory, Score)
 		end

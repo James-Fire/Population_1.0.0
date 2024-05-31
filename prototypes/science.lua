@@ -32,6 +32,8 @@ for i, prototype in pairs(data.raw.recipe) do
 		table.insert(rocketrecipes, prototype.name)
 	elseif (mods["MoreScience"]) and prototype.name:find("infused", 1, true) then
 		table.insert(sciencepackrecipes, prototype)
+	elseif prototype.category and prototype.category:find("particle-accelerator", 1, true) then
+		table.insert(sciencepackrecipes, prototype)
 	end
 end
 
@@ -47,6 +49,9 @@ for i, Science in pairs(sciencepackrecipes) do
 		PeopleCount = Science.energy_required*(LSlib.recipe.getResultCount(Science.name)/50)*(LSlib.recipe.getIngredientsCount(Science.name, true)[1]+LSlib.recipe.getIngredientsCount(Science.name, true)[2]-1)/2
 	else
 		PeopleCount = 2*LSlib.recipe.getResultCount(Science.name, Science.name)*LSlib.recipe.getResultCount(Science.name, Science.name)
+	end
+	if Science.category == "particle-accelerator" then
+		PeopleCount = PeopleCount*Science.energy_required/100
 	end
 	if PeopleCount < #Science.ingredients then
 		PeopleCount = #Science.ingredients
@@ -96,7 +101,7 @@ for i, Science in pairs(sciencepackrecipes) do
 		end
 	end
 	--Why does More Science have so much bullshit to deal with just to add a result to their recipes?
-	if (mods["MoreScience"]) and Science.name:find("infused", 1, true) then
+	if (mods["MoreScience"]) and Science.name:find("infused", 1, true) and Science.category ~= "particle-accelerator" then
 		Science.subgroup = "ms-science-science-cauldron"
 	end
 	

@@ -21,6 +21,13 @@ MathData.HousingName = {
 	"ap-tower",
 	"arcology-tower",
 }
+MathData.HousingCare = {
+	["sf-house"] = 1,
+	["mf-house"] = 0.9,
+	["low-rise"] = 0.8,
+	["ap-tower"] = 0.7,
+	["arcology-tower"] = 0.6,
+}
 MathData.HousingPopRecipe = { --How many people each recipe level handles per run. Also how much food it needs, and how much garbage it makes
 	2,
 	8,
