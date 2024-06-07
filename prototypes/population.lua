@@ -26,7 +26,7 @@ data:extend({
 		enabled = true,
 		energy_required = 1,
 		ingredients = {
-			{"stasis-pod", 1},
+			{"population-stasis-pod", 1},
 		},
 		results = {
 			{"person", 40},
@@ -44,15 +44,15 @@ data:extend({
 		enabled = true,
 		energy_required = 1,
 		ingredients = {
-			{"child-stasis-pod", 1},
+			{"population-child-stasis-pod", 1},
 		},
 		results = {
 			{"child-person", 80},
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		icon_size = 32,
-		subgroup = "Population",
-		order = "a-0",
+		subgroup = "Stasis",
+		order = "a-1",
 		main_product = "child-person"
 	},
 	{
