@@ -335,22 +335,10 @@ for _, count in pairs(PopRestRecipes) do
 	--log("After editing results and ingredients"..serpent.block(data.raw.recipe["2-copper-"..count]))
 	
 	if count == "rest-person-3" then
-		LSlib.technology.addRecipeUnlock("steel-processing", "2-copper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "3-copper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "4-copper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "5-copper-"..count)
-	end
-	if count == "rest-person-4" then
 		LSlib.technology.addRecipeUnlock("concrete", "2-copper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "3-copper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "4-copper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "5-copper-"..count)
-	end
-	if count == "rest-person-5" then
-		LSlib.technology.addRecipeUnlock("low-density-structure", "2-copper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "3-copper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "4-copper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "5-copper-"..count)
 	end
 	
 	LSlib.recipe.duplicate(count, "2-paper-"..count)
@@ -378,22 +366,10 @@ for _, count in pairs(PopRestRecipes) do
 	LSlib.recipe.editIngredient("5-paper-"..count, "copper-plate", "paper-food-5", 1 )
 	
 	if count == "rest-person-3" then
-		LSlib.technology.addRecipeUnlock("steel-processing", "2-paper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "3-paper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "4-paper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "5-paper-"..count)
-	end
-	if count == "rest-person-4" then
 		LSlib.technology.addRecipeUnlock("concrete", "2-paper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "3-paper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "4-paper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "5-paper-"..count)
-	end
-	if count == "rest-person-5" then
-		LSlib.technology.addRecipeUnlock("low-density-structure", "2-paper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "3-paper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "4-paper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "5-paper-"..count)
 	end
 	
 	LSlib.recipe.duplicate(count, "2-plastic-"..count)
@@ -419,47 +395,16 @@ for _, count in pairs(PopRestRecipes) do
 	LSlib.recipe.editIngredient("3-plastic-"..count, "copper-plate", "plastic-food-3", 1 )
 	LSlib.recipe.editIngredient("4-plastic-"..count, "copper-plate", "plastic-food-4", 1 )
 	LSlib.recipe.editIngredient("5-plastic-"..count, "copper-plate", "plastic-food-5", 1 )
+
+	LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
+	LSlib.technology.addRecipeUnlock("plastics", "3-plastic-"..count)
+	LSlib.technology.addRecipeUnlock("plastics", "4-plastic-"..count)
+	LSlib.technology.addRecipeUnlock("plastics", "5-plastic-"..count)
 	
-	if count == "rest-person-1" then
-		LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "3-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "4-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "5-plastic-"..count)
-		
-		LSlib.recipe.disable("2-plastic-"..count)
-		LSlib.recipe.disable("3-plastic-"..count)
-		LSlib.recipe.disable("4-plastic-"..count)
-		LSlib.recipe.disable("5-plastic-"..count)
-	end
-	if count == "rest-person-2" then
-		LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "3-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "4-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "5-plastic-"..count)
-		
-		LSlib.recipe.disable("2-plastic-"..count)
-		LSlib.recipe.disable("3-plastic-"..count)
-		LSlib.recipe.disable("4-plastic-"..count)
-		LSlib.recipe.disable("5-plastic-"..count)
-	end
-	if count == "rest-person-3" then
-		LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "3-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "4-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "5-plastic-"..count)
-	end
-	if count == "rest-person-4" then
-		LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "3-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "4-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "5-plastic-"..count)
-	end
-	if count == "rest-person-5" then
-		LSlib.technology.addRecipeUnlock("low-density-structure", "2-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "3-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "4-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "5-plastic-"..count)
-	end
+	LSlib.recipe.disable("2-plastic-"..count)
+	LSlib.recipe.disable("3-plastic-"..count)
+	LSlib.recipe.disable("4-plastic-"..count)
+	LSlib.recipe.disable("5-plastic-"..count)
 end
 
 local PopReproduceRecipes = { "reproduce-person-1", "reproduce-person-2", "reproduce-person-3" }
@@ -488,24 +433,12 @@ for _, count in pairs(PopReproduceRecipes) do
 	LSlib.recipe.editResult("3-copper-"..count, "copper-plate", "copper-recycling", 3 )
 	LSlib.recipe.editResult("4-copper-"..count, "copper-plate", "copper-recycling", 4 )
 	LSlib.recipe.editResult("5-copper-"..count, "copper-plate", "copper-recycling", 5 )
-	
+
 	if count == "reproduce-person-3" then
-		LSlib.technology.addRecipeUnlock("steel-processing", "2-copper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "3-copper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "4-copper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "5-copper-"..count)
-	end
-	if count == "reproduce-person-4" then
 		LSlib.technology.addRecipeUnlock("concrete", "2-copper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "3-copper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "4-copper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "5-copper-"..count)
-	end
-	if count == "reproduce-person-5" then
-		LSlib.technology.addRecipeUnlock("low-density-structure", "2-copper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "3-copper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "4-copper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "5-copper-"..count)
 	end
 	
 	LSlib.recipe.duplicate(count, "2-paper-"..count)
@@ -531,24 +464,12 @@ for _, count in pairs(PopReproduceRecipes) do
 	LSlib.recipe.editResult("3-paper-"..count, "copper-plate", "paper-recycling", 3 )
 	LSlib.recipe.editResult("4-paper-"..count, "copper-plate", "paper-recycling", 4 )
 	LSlib.recipe.editResult("5-paper-"..count, "copper-plate", "paper-recycling", 5 )
-	
+
 	if count == "reproduce-person-3" then
-		LSlib.technology.addRecipeUnlock("steel-processing", "2-paper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "3-paper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "4-paper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "5-paper-"..count)
-	end
-	if count == "reproduce-person-4" then
 		LSlib.technology.addRecipeUnlock("concrete", "2-paper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "3-paper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "4-paper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "5-paper-"..count)
-	end
-	if count == "reproduce-person-5" then
-		LSlib.technology.addRecipeUnlock("low-density-structure", "2-paper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "3-paper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "4-paper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "5-paper-"..count)
 	end
 	
 	LSlib.recipe.duplicate(count, "2-plastic-"..count)
@@ -574,47 +495,16 @@ for _, count in pairs(PopReproduceRecipes) do
 	LSlib.recipe.editResult("3-plastic-"..count, "copper-plate", "plastic-recycling", 3 )
 	LSlib.recipe.editResult("4-plastic-"..count, "copper-plate", "plastic-recycling", 4 )
 	LSlib.recipe.editResult("5-plastic-"..count, "copper-plate", "plastic-recycling", 5 )
+
+	LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
+	LSlib.technology.addRecipeUnlock("plastics", "3-plastic-"..count)
+	LSlib.technology.addRecipeUnlock("plastics", "4-plastic-"..count)
+	LSlib.technology.addRecipeUnlock("plastics", "5-plastic-"..count)
 	
-	if count == "reproduce-person-1" then
-		LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "3-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "4-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "5-plastic-"..count)
-		
-		LSlib.recipe.disable("2-plastic-"..count)
-		LSlib.recipe.disable("3-plastic-"..count)
-		LSlib.recipe.disable("4-plastic-"..count)
-		LSlib.recipe.disable("5-plastic-"..count)
-	end
-	if count == "reproduce-person-2" then
-		LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "3-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "4-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "5-plastic-"..count)
-		
-		LSlib.recipe.disable("2-plastic-"..count)
-		LSlib.recipe.disable("3-plastic-"..count)
-		LSlib.recipe.disable("4-plastic-"..count)
-		LSlib.recipe.disable("5-plastic-"..count)
-	end
-	if count == "reproduce-person-3" then
-		LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "3-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "4-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "5-plastic-"..count)
-	end
-	if count == "reproduce-person-4" then
-		LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "3-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "4-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "5-plastic-"..count)
-	end
-	if count == "reproduce-person-5" then
-		LSlib.technology.addRecipeUnlock("low-density-structure", "2-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "3-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "4-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "5-plastic-"..count)
-	end
+	LSlib.recipe.disable("2-plastic-"..count)
+	LSlib.recipe.disable("3-plastic-"..count)
+	LSlib.recipe.disable("4-plastic-"..count)
+	LSlib.recipe.disable("5-plastic-"..count)
 end
 
 local PopGrowRecipes = { "grow-person-1", "grow-person-2", "grow-person-3" }
@@ -645,22 +535,10 @@ for _, count in pairs(PopGrowRecipes) do
 	LSlib.recipe.editResult("5-copper-"..count, "copper-plate", "copper-recycling", 5 )
 	
 	if count == "grow-person-3" then
-		LSlib.technology.addRecipeUnlock("steel-processing", "2-copper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "3-copper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "4-copper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "5-copper-"..count)
-	end
-	if count == "grow-person-4" then
 		LSlib.technology.addRecipeUnlock("concrete", "2-copper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "3-copper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "4-copper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "5-copper-"..count)
-	end
-	if count == "grow-person-5" then
-		LSlib.technology.addRecipeUnlock("low-density-structure", "2-copper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "3-copper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "4-copper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "5-copper-"..count)
 	end
 	
 	LSlib.recipe.duplicate(count, "2-paper-"..count)
@@ -686,24 +564,12 @@ for _, count in pairs(PopGrowRecipes) do
 	LSlib.recipe.editResult("3-paper-"..count, "copper-plate", "paper-recycling", 3 )
 	LSlib.recipe.editResult("4-paper-"..count, "copper-plate", "paper-recycling", 4 )
 	LSlib.recipe.editResult("5-paper-"..count, "copper-plate", "paper-recycling", 5 )
-	
+
 	if count == "grow-person-3" then
-		LSlib.technology.addRecipeUnlock("steel-processing", "2-paper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "3-paper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "4-paper-"..count)
-		LSlib.technology.addRecipeUnlock("steel-processing", "5-paper-"..count)
-	end
-	if count == "grow-person-4" then
 		LSlib.technology.addRecipeUnlock("concrete", "2-paper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "3-paper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "4-paper-"..count)
 		LSlib.technology.addRecipeUnlock("concrete", "5-paper-"..count)
-	end
-	if count == "grow-person-5" then
-		LSlib.technology.addRecipeUnlock("low-density-structure", "2-paper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "3-paper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "4-paper-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "5-paper-"..count)
 	end
 	
 	LSlib.recipe.duplicate(count, "2-plastic-"..count)
@@ -730,46 +596,15 @@ for _, count in pairs(PopGrowRecipes) do
 	LSlib.recipe.editResult("4-plastic-"..count, "copper-plate", "plastic-recycling", 4 )
 	LSlib.recipe.editResult("5-plastic-"..count, "copper-plate", "plastic-recycling", 5 )
 	
-	if count == "grow-person-1" then
-		LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "3-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "4-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "5-plastic-"..count)
-		
-		LSlib.recipe.disable("2-plastic-"..count)
-		LSlib.recipe.disable("3-plastic-"..count)
-		LSlib.recipe.disable("4-plastic-"..count)
-		LSlib.recipe.disable("5-plastic-"..count)
-	end
-	if count == "grow-person-2" then
-		LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "3-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "4-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "5-plastic-"..count)
-		
-		LSlib.recipe.disable("2-plastic-"..count)
-		LSlib.recipe.disable("3-plastic-"..count)
-		LSlib.recipe.disable("4-plastic-"..count)
-		LSlib.recipe.disable("5-plastic-"..count)
-	end
-	if count == "grow-person-3" then
-		LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "3-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "4-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "5-plastic-"..count)
-	end
-	if count == "grow-person-4" then
-		LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "3-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "4-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("plastics", "5-plastic-"..count)
-	end
-	if count == "grow-person-5" then
-		LSlib.technology.addRecipeUnlock("low-density-structure", "2-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "3-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "4-plastic-"..count)
-		LSlib.technology.addRecipeUnlock("low-density-structure", "5-plastic-"..count)
-	end
+	LSlib.technology.addRecipeUnlock("plastics", "2-plastic-"..count)
+	LSlib.technology.addRecipeUnlock("plastics", "3-plastic-"..count)
+	LSlib.technology.addRecipeUnlock("plastics", "4-plastic-"..count)
+	LSlib.technology.addRecipeUnlock("plastics", "5-plastic-"..count)
+	
+	LSlib.recipe.disable("2-plastic-"..count)
+	LSlib.recipe.disable("3-plastic-"..count)
+	LSlib.recipe.disable("4-plastic-"..count)
+	LSlib.recipe.disable("5-plastic-"..count)
 end
 
 LSlib.recipe.disable("rest-person-1")
