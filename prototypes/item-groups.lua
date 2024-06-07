@@ -12,9 +12,15 @@ data:extend({
 	--Subgroups
 	{
 		type = "item-subgroup",
+		name = "Stasis",
+		group = "Population",
+		order = "a-0-0",
+	},
+	{
+		type = "item-subgroup",
 		name = "Housing",
 		group = "Population",
-		order = "a-0",
+		order = "a-0-1",
 	},
 	{
 		type = "item-subgroup",

@@ -1,5 +1,60 @@
 local MathData = require("__Population__/prototypes/Data Script")
 data:extend({
+	--Stasis pods for dense people storage for game start
+	{
+		type = "item",
+		name = "stasis-pod",
+		icon = "__base__/graphics/icons/steam-turbine.png",
+		icon_size = 64,
+		subgroup = "Population",
+		order = "a",
+		stack_size = 20
+	},
+	{
+		type = "item",
+		name = "child-stasis-pod",
+		icon = "__base__/graphics/icons/steam-turbine.png",
+		icon_size = 64,
+		subgroup = "Population",
+		order = "a",
+		stack_size = 20
+	},
+	{
+		type = "recipe",
+		name = "stasis-pod",
+		category = "Stasis",
+		enabled = true,
+		energy_required = 1,
+		ingredients = {
+			{"stasis-pod", 1},
+		},
+		results = {
+			{"person", 40},
+		},
+		--icon = "__Population__/graphics/crude-oil.png",
+		icon_size = 32,
+		subgroup = "Population",
+		order = "a-0",
+		main_product = "person"
+	},
+	{
+		type = "recipe",
+		name = "child-stasis-pod",
+		category = "Stasis",
+		enabled = true,
+		energy_required = 1,
+		ingredients = {
+			{"child-stasis-pod", 1},
+		},
+		results = {
+			{"child-person", 80},
+		},
+		--icon = "__Population__/graphics/crude-oil.png",
+		icon_size = 32,
+		subgroup = "Population",
+		order = "a-0",
+		main_product = "person"
+	},
 	{
 		type = "item",
 		name = "child-person",

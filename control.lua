@@ -65,9 +65,9 @@ local function OnInit()
 		end
 	end
 	local population_start = {
-		["person"] = 40,
-		["child-person"] = 80,
-		["mf-house"] = 5,
+		["stasis-pod"] = 20,
+		["child-stasis-pod"] = 20,
+		["mf-house"] = 12,
 		["wood"] = 100,
 		["vegetables-farm"] = 2,
 		["grain-farm"] = 2,
