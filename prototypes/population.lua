@@ -3,26 +3,26 @@ data:extend({
 	--Stasis pods for dense people storage for game start
 	{
 		type = "item",
-		name = "stasis-pod",
+		name = "population-stasis-pod",
 		icon = "__base__/graphics/icons/steam-turbine.png",
 		icon_size = 64,
-		subgroup = "Population",
+		subgroup = "Stasis",
 		order = "a",
 		stack_size = 20
 	},
 	{
 		type = "item",
-		name = "child-stasis-pod",
+		name = "population-child-stasis-pod",
 		icon = "__base__/graphics/icons/steam-turbine.png",
 		icon_size = 64,
-		subgroup = "Population",
+		subgroup = "Stasis",
 		order = "a",
 		stack_size = 20
 	},
 	{
 		type = "recipe",
 		name = "stasis-pod",
-		category = "Stasis",
+		category = "crafting",
 		enabled = true,
 		energy_required = 1,
 		ingredients = {
@@ -33,14 +33,14 @@ data:extend({
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		icon_size = 32,
-		subgroup = "Population",
+		subgroup = "Stasis",
 		order = "a-0",
 		main_product = "person"
 	},
 	{
 		type = "recipe",
 		name = "child-stasis-pod",
-		category = "Stasis",
+		category = "crafting",
 		enabled = true,
 		energy_required = 1,
 		ingredients = {
@@ -53,7 +53,7 @@ data:extend({
 		icon_size = 32,
 		subgroup = "Population",
 		order = "a-0",
-		main_product = "person"
+		main_product = "child-person"
 	},
 	{
 		type = "item",
