@@ -271,7 +271,7 @@ data:extend({
 			{ MathData.StructuralResources[1], MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, 3)*0.6 },
 			{ MathData.StructuralResources[2], MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, 3)*0.2 },
 			{ MathData.StructuralResources[3], MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, 3)*0.2 },
-			{ MathData.ElectricalResources[2], MathData.CalcHousingCost(MathData.ElectricalBase, MathData.ElectricalScalar, 3) },
+			{ MathData.ElectricalResources[1], MathData.CalcHousingCost(MathData.ElectricalBase, MathData.ElectricalScalar, 3) },
 			{ MathData.MechanicalResources[2], MathData.CalcHousingCost(MathData.MechanicalBase, MathData.MechanicalScalar, 3) },
 		},
 		result = "low-rise",
