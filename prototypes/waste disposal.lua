@@ -491,7 +491,11 @@ LSlib.technology.addRecipeUnlock("sulfur-processing", "stone-sulfur-fertilizer")
 LSlib.technology.addRecipeUnlock("sulfur-processing", "fertilizer")
 LSlib.recipe.enable("septic-tank")
 
-local wasteproductivity = { "stone-fertilizer", "stone-sulfur-fertilizer", "stone-organic-fertilizer", "fertilizer", "organic-material-gas" }
+LSlib.recipe.duplicate("explosives", "fertilizer-explosives")
+LSlib.recipe.editIngredient("fertilizer-explosives", "sulfur", "fertilizer", 1 )
+LSlib.technology.addRecipeUnlock("explosives", "fertilizer-explosives")
+
+local wasteproductivity = { "stone-fertilizer", "stone-sulfur-fertilizer", "stone-organic-fertilizer", "fertilizer", "organic-material-gas", "fertilizer-explosives" }
 
 for km, vm in pairs(data.raw.module) do
   if vm.effect.productivity and vm.limitation then
