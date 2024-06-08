@@ -267,7 +267,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "composting",
-		category = "crafting-with-fluid",
+		category = "chemistry",
 		enabled = true,
 		energy_required = 20,
 		ingredients = {
