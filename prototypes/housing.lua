@@ -287,8 +287,8 @@ data:extend({
 		enabled = false,
 		energy_required = 400,
 		ingredients = {
-			{ MathData.StructuralResources[2], MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, 4)*0.2 },
-			{ MathData.StructuralResources[3], MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, 4)*0.8 },
+			{ MathData.StructuralResources[2], MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, 4)*0.4 },
+			{ MathData.StructuralResources[3], MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, 4)*0.6 },
 			{ MathData.ElectricalResources[2], MathData.CalcHousingCost(MathData.ElectricalBase, MathData.ElectricalScalar, 4) },
 			{ MathData.MechanicalResources[3], MathData.CalcHousingCost(MathData.MechanicalBase, MathData.MechanicalScalar, 4) },
 		},
