@@ -264,7 +264,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "low-rise",
-		category = "advanced-crafting",
+		category = "crafting",
 		enabled = false,
 		energy_required = 100,
 		ingredients = {
