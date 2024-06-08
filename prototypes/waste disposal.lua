@@ -285,7 +285,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "stone-fertilizer",
-		category = "crafting-with-fluid",
+		category = "chemistry",
 		enabled = true,
 		energy_required = 2.5,
 		ingredients = {
@@ -303,7 +303,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "stone-sulfur-fertilizer",
-		category = "crafting-with-fluid",
+		category = "chemistry",
 		enabled = false,
 		energy_required = 2.5,
 		ingredients = {
@@ -322,7 +322,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "stone-organic-fertilizer",
-		category = "crafting-with-fluid",
+		category = "chemistry",
 		enabled = true,
 		energy_required = 2.5,
 		ingredients = {
@@ -341,7 +341,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "fertilizer",
-		category = "crafting-with-fluid",
+		category = "chemistry",
 		enabled = false,
 		energy_required = 2.5,
 		ingredients = {
@@ -361,7 +361,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "plant-oil-fertilizer",
-		category = "crafting-with-fluid",
+		category = "chemistry",
 		enabled = true,
 		energy_required = 10,
 		ingredients = {
