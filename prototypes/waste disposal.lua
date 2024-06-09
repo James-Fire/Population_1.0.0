@@ -61,9 +61,9 @@ data:extend({
 		name = "septic-treatment",
 		category = "septic",
 		enabled = true,
-		energy_required = 30,
+		energy_required = 7.5,
 		ingredients = {
-			{type = "fluid", name = "sewage", amount = 20 },
+			{type = "fluid", name = "sewage", amount = 5 },
 		},
 		results = {
 			{ "organic-material",1 },
@@ -80,12 +80,12 @@ data:extend({
 		name = "sewage-treatment",
 		category = "sewage-treatment",
 		enabled = false,
-		energy_required = 12,
+		energy_required = 3,
 		ingredients = {
-			{type = "fluid", name = "sewage", amount = 80 },
+			{type = "fluid", name = "sewage", amount = 20 },
 		},
 		results = {
-			{ type = "fluid", name = "water", amount = 76 },
+			{ type = "fluid", name = "water", amount = 19 },
 			{ "organic-material",3 },
 			{ "garbage",1 },
 		},
