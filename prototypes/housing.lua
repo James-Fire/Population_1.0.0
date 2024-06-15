@@ -29,6 +29,7 @@ local collision = collision_mask_util.get_first_unused_layer()
 for i, Tile in pairs(data.raw.tile) do
 	if Tile.name:find("concrete", 1, true) then
 		Tile.check_collision_with_entities = true
+	elseif Tile.name:find("water", 1, true) then
 	else
 		table.insert(Tile.collision_mask, collision)
 		Tile.check_collision_with_entities = true
