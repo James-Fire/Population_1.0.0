@@ -213,6 +213,7 @@ local function CalculateHousingBeacon(entityName, surface, ParamPosition, force,
 	local TempScore = 0
 	local BuildingCount = 0
 	local Terrain_Radius = 2*radius
+	local HasButcher = false
 	--game.print("Max Tiles: "..tostring(Tiles_Max))
 	
 	--Count trees and good buildings
@@ -224,8 +225,15 @@ local function CalculateHousingBeacon(entityName, surface, ParamPosition, force,
 				--game.print("Found Living Tree")
 				TempScore = TempScore + Per_Tree_Impact
 			end
-		elseif entity.name:find("entertainment", 1, true) then
+		elseif entity.name:find("tree", 1, true) and entity.name:find("dead", 1, true) then
+			--game.print("Found Dead Tree")
+			TempScore = TempScore - Per_Tree_Impact
+		elseif entity.name:find("entertainment", 1, true) and is_crafting(entity) and is_connected_to_electric_network(is_crafting) then
 			BuildingCount = BuildingCount + 1
+		elseif entity.name:find("butcher", 1, true) and is_crafting(entity) and is_connected_to_electric_network(is_crafting) then
+			HasButcher = true
+		elseif entity.name:find("tolerance", 1, true) and is_crafting(entity) and is_connected_to_electric_network(is_crafting) then
+			Tiles_Max = Tiles_Max * 1.2
 		end
 	end
 	Score = Score + TempScore
@@ -235,20 +243,13 @@ local function CalculateHousingBeacon(entityName, surface, ParamPosition, force,
 	if BuildingCount > 3 then
 		BuildingCount = 3
 	end
-	TempScore = BuildingCount * 60
+	if HasButcher then
+		TempScore = TempScore + 40
+	end
+	TempScore = TempScore + BuildingCount * 60
 	Score = Score + TempScore
 	--game.print("Building Impact: "..tostring(TempScore))
 	--game.print("Total Score: "..tostring(Score))
-	TempScore = 0
-	for _, entity in pairs(surface.find_entities_filtered{area = areaAroundPosition(ParamPosition, Terrain_Radius)}) do
-		if entity.name:find("tree", 1, true) and entity.name:find("dead", 1, true) then
-			--game.print("Found Dead Tree")
-			TempScore = TempScore + Per_Tree_Impact
-		end
-	end
-	Score = Score - TempScore
-	--game.print("Negative Tree Impact: "..tostring(TempScore))
-	--game.print("After Trees Score: "..tostring(Score))
 	TempScore = 0
 	
 	--Count Terrain
@@ -265,10 +266,8 @@ local function CalculateHousingBeacon(entityName, surface, ParamPosition, force,
 			if Building == HostBuilding then
 			elseif Building.name:find("farm", 1, true) then
 				GoodTiles = GoodTiles + 1
-			else
-				if CheckTableValue(Building.type, global.Bad_Building_List) then
-					MehTiles = MehTiles + MathData.HousingCare[entityName]
-				end
+			elseif CheckTableValue(Building.type, global.Bad_Building_List) then
+				MehTiles = MehTiles + MathData.HousingCare[entityName]
 			end
 		elseif CheckTableValue(tile.name,global.Meh_Tiles_List) or Building then
 			MehTiles = MehTiles + 1
