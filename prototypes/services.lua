@@ -36,7 +36,7 @@ data:extend({
 		enabled = true,
 		energy_required = 120,
 		ingredients = {
-			{"fish", 40},
+			{"raw-fish", 40},
 			{ type = "fluid", name = "water", amount = 120 },
 			{"person", 4},
 		},
@@ -59,7 +59,7 @@ data:extend({
 		energy_required = 150,
 		ingredients = {
 			{"meat", 25},
-			{"fish", 25},
+			{"raw-fish", 25},
 			{ type = "fluid", name = "water", amount = 150 },
 			{"person", 4},
 		},
