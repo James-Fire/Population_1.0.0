@@ -162,10 +162,12 @@ MathData.ElectricalResources = { --Resources that are used for electrical purpos
 	"advanced-electrical",
 }
 
-function MathData.CalcHousingCost(BaseType,ScalarType,HouseIndex)
+function MathData.CalcStructureCost(BaseType,ScalarType,HouseIndex,IsNotHousing)
 	local HousingCost = 0
 	HousingCost = HousingCost + BaseType[HouseIndex]*MathData.HousingSize[HouseIndex]^2 --Base Cost for the structure
-	HousingCost = HousingCost + MathData.HousingPopRest[HouseIndex]*ScalarType[HouseIndex] --Scaled cost for the population capacity
+	if IsNotHousing then
+		HousingCost = HousingCost + MathData.HousingPopRest[HouseIndex]*ScalarType[HouseIndex] --Scaled cost for the population capacity
+	end
 	HousingCost = MathData.round(HousingCost/10) --Make it reasonable, and round it.
 	return HousingCost
 end
@@ -181,7 +183,7 @@ MathData.HousingHeat = { --How much thermal energy each density of housing needs
 }
 MathData.HousingHeatCapacity = { } --How much thermal energy each density of housing absorbs to increase temp. Divided by 4, because of the 4 beacons
 for _, count in pairs({1,2,3,4,5}) do
-	table.insert(MathData.HousingHeatCapacity,MathData.CalcHousingCost(MathData.StructuralBase, MathData.StructuralScalar, count).."MJ")
+	table.insert(MathData.HousingHeatCapacity,MathData.CalcStructureCost(MathData.StructuralBase, MathData.StructuralScalar, count).."MJ")
 end
 
 return MathData

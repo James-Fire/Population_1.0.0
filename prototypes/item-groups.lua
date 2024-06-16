@@ -24,6 +24,18 @@ data:extend({
 	},
 	{
 		type = "item-subgroup",
+		name = "Auxilliary",
+		group = "Population",
+		order = "a-0-2",
+	},
+	{
+		type = "item-subgroup",
+		name = "Services",
+		group = "Population",
+		order = "a-0-3",
+	},
+	{
+		type = "item-subgroup",
 		name = "Population",
 		group = "Population",
 		order = "a-1",
@@ -245,5 +257,17 @@ data:extend({
 	{
 		type = "recipe-category",
 		name = "Recycling"
+	},
+	{
+		type = "recipe-category",
+		name = "tolerance-bar"
+	},
+	{
+		type = "recipe-category",
+		name = "entertainment-bar"
+	},
+	{
+		type = "recipe-category",
+		name = "services-butcher"
 	},
 })
