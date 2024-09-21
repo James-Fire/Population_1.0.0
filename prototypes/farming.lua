@@ -373,8 +373,8 @@ data:extend({
 		max_health = 250,
 		corpse = "big-remnants",
 		dying_explosion = "medium-explosion",
-		collision_box = {{-3,-3},{3,3}},
-		selection_box = {{-3,-3},{3,3}},
+		collision_box = {{-2.5,-2.5},{2.5,2.5}},
+		selection_box = {{-2.5,-2.5},{2.5,2.5}},
 		crafting_categories = {"farming"},
 		crafting_speed = 1,
 		energy_usage = "1kW",
@@ -435,7 +435,7 @@ data:extend({
 				base_area = 2,
 				base_level = -1,
 				pipe_connections = {
-				  { position = {0, -3.5} }
+				  { position = {0, -3} }
 				}
 			},
 		},
@@ -454,8 +454,8 @@ data:extend({
 		corpse = "big-remnants",
 		dying_explosion = "medium-explosion",
 		collision_mask = {"ground-tile"},
-		collision_box = {{-3,-3},{3,3}},
-		selection_box = {{-3,-3},{3,3}},
+		collision_box = {{-2.5,-2.5},{2.5,2.5}},
+		selection_box = {{-2.5,-2.5},{2.5,2.5}},
 		crafting_categories = {"fishing"},
 		crafting_speed = 0.1,
 		energy_usage = "1kW",
@@ -515,7 +515,7 @@ data:extend({
 				base_area = 1,
 				base_level = -1,
 				pipe_connections = {
-				  { position = {0, -3.5} }
+				  { position = {0, -3} }
 				}
 			},
 		},

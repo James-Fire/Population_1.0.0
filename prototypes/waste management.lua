@@ -185,7 +185,7 @@ data:extend({
 		max_health = 100,
 		corpse = "big-remnants",
 		dying_explosion = "medium-explosion",
-		collision_box = {{-0.35, -0.35}, {0.35, 0.35}},
+		collision_box = {{-0.29, -0.29}, {0.29, 0.29}},
 		selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
 		collision_mask = {"item-layer", "object-layer", "player-layer", "water-tile"},
 		crafting_categories = {"filter-water-treatment"},
@@ -237,29 +237,32 @@ data:extend({
 			},
 			apparent_volume = 2,
 		},
-		fluid_boxes = {
-			{
-				production_type = "input",
-				pipe_picture = bulkypipepictures(),
-				pipe_covers = pipecoverspictures(),
-				base_area = 1,
-				height = 1,
-				base_level = -1,
-				pipe_connections = {
-				  { position = { 0, 0.5 }, }
-				}
+		fluid_boxes = {{
+			production_type = "input",
+			pipe_picture = assembler2pipepictures(),
+			secondary_draw_orders = {
+				north=-1,south=-1,east=-1,west=-1
 			},
-			{
-				production_type = "output",
-				pipe_picture = bulkypipepictures(),
-				pipe_covers = pipecoverspictures(),
-				base_area = 1,
-				height = 1,
-				base_level = 1,
-				pipe_connections = {
-				  { position = { 0, -0.5 }, }
-				}
+			pipe_covers = pipecoverspictures(),
+			base_area = 1,
+			base_level = -1,
+			pipe_connections = {
+				{type="input", position = {0, 1} }
+			}
+		},
+		{
+			production_type = "output",
+			pipe_picture = assembler2pipepictures(),
+			secondary_draw_orders = {
+				north=-1,south=-1,east=-1,west=-1
 			},
+			pipe_covers = pipecoverspictures(),
+			base_area = 1,
+			base_level = 1,
+			pipe_connections = { 
+				{ type="output", position = {0, -1} }
+			}
+		  }
 		},
 	},
 	--Garbage handling

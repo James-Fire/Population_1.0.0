@@ -246,7 +246,7 @@ data:extend({
 				height = 1,
 				base_level = -2,
 				pipe_connections = {
-					{ position = { (MathData.HousingSize[1]/2), 0 } },
+					{ position = { (MathData.HousingSize[1]/2), 1 } },
 				}
 			},
 			{
@@ -257,7 +257,7 @@ data:extend({
 				height = 1,
 				base_level = -2,
 				pipe_connections = {
-					{ position = { -(MathData.HousingSize[1]/2), 0 } },
+					{ position = { (MathData.HousingSize[1]/2), -1 } },
 				}
 			},
 			{
@@ -268,7 +268,7 @@ data:extend({
 				height = 1,
 				base_level = 2,
 				pipe_connections = {
-					{ position = { 0, 0 } },
+					{ position = { -(MathData.HousingSize[1]/2), 0 } },
 				}
 			},
 		},
