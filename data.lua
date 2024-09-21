@@ -47,7 +47,7 @@ end
 
 require("prototypes/item-groups")
 
-require("prototypes/waste disposal")
+require("prototypes/waste management")
 require("prototypes/food")
 require("prototypes/farming")
 require("prototypes/housing")

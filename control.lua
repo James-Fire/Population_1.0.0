@@ -65,14 +65,15 @@ local function OnInit()
 		end
 	end
 	local population_start = {
-		["stasis-pod"] = 20,
-		["child-stasis-pod"] = 20,
+		["population-stasis-pod"] = 20,
+		["population-child-stasis-pod"] = 20,
 		["mf-house"] = 12,
 		["wood"] = 100,
 		["vegetables-farm"] = 2,
 		["grain-farm"] = 2,
 		["wood-farm"] = 2,
 		["septic-tank"] = 5,
+		["filter-water-treatment"] = 10,
 	}
 	if remote.interfaces["freeplay"] then
 		local freeplayStartItems = remote.call("freeplay", "get_created_items") or {}

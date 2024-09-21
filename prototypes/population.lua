@@ -93,7 +93,7 @@ data:extend({
 			{ "person",MathData.HousingPopRecipe[1] },
 			{ "child-person",MathData.HousingPopChildrenGrow[1] },
 			{ "copper-plate",MathData.HousingPopGrowRecipe[1] },
-			{ type = "fluid", name = "water", amount = MathData.HousingPopGrowRecipe[1]*MathData.RequiredWater },
+			{ type = "fluid", name = "treated-water", amount = MathData.HousingPopGrowRecipe[1]*MathData.RequiredWater },
 		},
 		results = {
 			{ "tired-person",MathData.HousingPopRecipe[1] },
@@ -118,7 +118,7 @@ data:extend({
 			{ "person",MathData.HousingPopRecipe[2] },
 			{ "child-person",MathData.HousingPopChildrenGrow[2] },
 			{ "copper-plate",MathData.HousingPopGrowRecipe[2] },
-			{ type = "fluid", name = "water", amount = MathData.HousingPopGrowRecipe[2]*MathData.RequiredWater },
+			{ type = "fluid", name = "treated-water", amount = MathData.HousingPopGrowRecipe[2]*MathData.RequiredWater },
 		},
 		results = {
 			{ "tired-person",MathData.HousingPopRecipe[2] },
@@ -143,7 +143,7 @@ data:extend({
 			{ "person",MathData.HousingPopRecipe[3] },
 			{ "child-person",MathData.HousingPopChildrenGrow[3] },
 			{ "copper-plate",MathData.HousingPopGrowRecipe[3] },
-			{ type = "fluid", name = "water", amount = MathData.HousingPopGrowRecipe[3]*MathData.RequiredWater },
+			{ type = "fluid", name = "treated-water", amount = MathData.HousingPopGrowRecipe[3]*MathData.RequiredWater },
 		},
 		results = {
 			{ "tired-person",MathData.HousingPopRecipe[3] },
@@ -168,7 +168,7 @@ data:extend({
 		ingredients = {
 			{ "person",MathData.HousingPopRecipe[1] },
 			{ "copper-plate",MathData.HousingPopReproRecipe[1] },
-			{ type = "fluid", name = "water", amount = MathData.HousingPopReproRecipe[1]*MathData.RequiredWater },
+			{ type = "fluid", name = "treated-water", amount = MathData.HousingPopReproRecipe[1]*MathData.RequiredWater },
 		},
 		results = {
 			{ "tired-person",MathData.HousingPopRecipe[1] },
@@ -192,7 +192,7 @@ data:extend({
 		ingredients = {
 			{ "person",MathData.HousingPopRecipe[2] },
 			{ "copper-plate",MathData.HousingPopReproRecipe[2] },
-			{ type = "fluid", name = "water", amount = MathData.HousingPopReproRecipe[2]*MathData.RequiredWater },
+			{ type = "fluid", name = "treated-water", amount = MathData.HousingPopReproRecipe[2]*MathData.RequiredWater },
 		},
 		results = {
 			{ "tired-person",MathData.HousingPopRecipe[2] },
@@ -216,7 +216,7 @@ data:extend({
 		ingredients = {
 			{ "person",MathData.HousingPopRecipe[3] },
 			{ "copper-plate",MathData.HousingPopReproRecipe[3] },
-			{ type = "fluid", name = "water", amount = MathData.HousingPopReproRecipe[3]*MathData.RequiredWater },
+			{ type = "fluid", name = "treated-water", amount = MathData.HousingPopReproRecipe[3]*MathData.RequiredWater },
 		},
 		results = {
 			{ "tired-person",MathData.HousingPopRecipe[3] },
@@ -241,7 +241,7 @@ data:extend({
 		ingredients = {
 			{ "tired-person",MathData.HousingPopRecipe[1] },
 			{ "copper-plate",MathData.HousingPopRecipe[1] },
-			{ type = "fluid", name = "water", amount = MathData.HousingPopRecipe[1]*MathData.RequiredWater },
+			{ type = "fluid", name = "treated-water", amount = MathData.HousingPopRecipe[1]*MathData.RequiredWater },
 		},
 		results = {
 			{ "person",MathData.HousingPopRecipe[1] },
@@ -264,7 +264,7 @@ data:extend({
 		ingredients = {
 			{ "tired-person",MathData.HousingPopRecipe[2] },
 			{ "copper-plate",MathData.HousingPopRecipe[2] },
-			{ type = "fluid", name = "water", amount = MathData.HousingPopRecipe[2]*MathData.RequiredWater },
+			{ type = "fluid", name = "treated-water", amount = MathData.HousingPopRecipe[2]*MathData.RequiredWater },
 		},
 		results = {
 			{ "person",MathData.HousingPopRecipe[2] },
@@ -287,7 +287,7 @@ data:extend({
 		ingredients = {
 			{ "tired-person",MathData.HousingPopRecipe[3] },
 			{ "copper-plate",MathData.HousingPopRecipe[3] },
-			{ type = "fluid", name = "water", amount = MathData.HousingPopRecipe[3]*MathData.RequiredWater },
+			{ type = "fluid", name = "treated-water", amount = MathData.HousingPopRecipe[3]*MathData.RequiredWater },
 		},
 		results = {
 			{ "person",MathData.HousingPopRecipe[3] },

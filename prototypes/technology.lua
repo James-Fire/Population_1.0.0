@@ -8,7 +8,7 @@ data:extend({
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "sewage-treatment-plant"
+				recipe = "water-treatment-plant"
 			},
 			{
 				type = "unlock-recipe",

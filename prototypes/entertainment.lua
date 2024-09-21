@@ -49,7 +49,7 @@ data:extend({
 		ingredients = {
 			{"person", 8},
 			{"beer", 20},
-			{ type = "fluid", name = "water", amount = 200 },
+			{ type = "fluid", name = "treated-water", amount = 200 },
 		},
 		results = {
 			{"tired-person", 8},

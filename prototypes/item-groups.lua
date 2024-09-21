@@ -244,7 +244,11 @@ data:extend({
 	},
 	{
 		type = "recipe-category",
-		name = "sewage-treatment"
+		name = "water-treatment"
+	},
+	{
+		type = "recipe-category",
+		name = "filter-water-treatment"
 	},
 	{
 		type = "recipe-category",

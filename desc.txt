@@ -29,12 +29,8 @@ Electric Heater. Uses electricity, outputs heat. 24c
 Burner Heater. Uses fuel, outputs heat. 24c
 Fluid Burner Heater. Uses fluid fuel, outputs heat. 24c
 
-Clean Water:
-Recipe in the water treatment plant
-Pop recipes now use it
-Check on startup if a purified or clean water already exists, and use that.
+Repair Packs use people to make
 
-Sewage Plant is now Water Treatment Plant
 
 Farms need input pipes in the correct spots
 

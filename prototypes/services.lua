@@ -15,7 +15,30 @@ data:extend({
 		energy_required = 120,
 		ingredients = {
 			{"meat", 40},
-			{ type = "fluid", name = "water", amount = 120 },
+			{ type = "fluid", name = "treated-water", amount = 120 },
+			{"person", 4},
+		},
+		results = {
+			{"tired-person", 4},
+			{ type = "fluid", name = "sewage", amount = 120 },
+		},
+		--icon = "__Population__/graphics/crude-oil.png",
+		--icon_size = 32,
+		subgroup = "Services",
+		order = "butcher-1",
+	},
+	{
+		type = "recipe",
+		name = "butcher-meat-water",
+		icon = "__base__/graphics/icons/steam-turbine.png",
+		icon_size = 64,
+		category = "services-butcher",
+		enabled = true,
+		energy_required = 120,
+		ingredients = {
+			{"meat", 40},
+			{ type = "fluid", name = "treated-water", amount = 60 },
+			{ type = "fluid", name = "water", amount = 60 },
 			{"person", 4},
 		},
 		results = {
@@ -37,7 +60,30 @@ data:extend({
 		energy_required = 120,
 		ingredients = {
 			{"raw-fish", 40},
-			{ type = "fluid", name = "water", amount = 120 },
+			{ type = "fluid", name = "treated-water", amount = 120 },
+			{"person", 4},
+		},
+		results = {
+			{"tired-person", 4},
+			{ type = "fluid", name = "sewage", amount = 120 },
+		},
+		--icon = "__Population__/graphics/crude-oil.png",
+		--icon_size = 32,
+		subgroup = "Services",
+		order = "butcher-2",
+	},
+	{
+		type = "recipe",
+		name = "butcher-fish-water",
+		icon = "__base__/graphics/icons/steam-turbine.png",
+		icon_size = 64,
+		category = "services-butcher",
+		enabled = true,
+		energy_required = 120,
+		ingredients = {
+			{"raw-fish", 40},
+			{ type = "fluid", name = "treated-water", amount = 60 },
+			{ type = "fluid", name = "water", amount = 60 },
 			{"person", 4},
 		},
 		results = {
@@ -60,7 +106,31 @@ data:extend({
 		ingredients = {
 			{"meat", 25},
 			{"raw-fish", 25},
-			{ type = "fluid", name = "water", amount = 150 },
+			{ type = "fluid", name = "treated-water", amount = 150 },
+			{"person", 4},
+		},
+		results = {
+			{"tired-person", 4},
+			{ type = "fluid", name = "sewage", amount = 150 },
+		},
+		--icon = "__Population__/graphics/crude-oil.png",
+		--icon_size = 32,
+		subgroup = "Services",
+		order = "butcher-3",
+	},
+	{
+		type = "recipe",
+		name = "butcher-meat-fish-water",
+		icon = "__base__/graphics/icons/steam-turbine.png",
+		icon_size = 64,
+		category = "services-butcher",
+		enabled = true,
+		energy_required = 150,
+		ingredients = {
+			{"meat", 25},
+			{"raw-fish", 25},
+			{ type = "fluid", name = "treated-water", amount = 75 },
+			{ type = "fluid", name = "water", amount = 75 },
 			{"person", 4},
 		},
 		results = {
@@ -180,6 +250,17 @@ data:extend({
 				}
 			},
 			{
+				production_type = "input",
+				pipe_picture = bulkypipepictures(),
+				pipe_covers = pipecoverspictures(),
+				base_area = 1,
+				height = 1,
+				base_level = -2,
+				pipe_connections = {
+					{ position = { -(MathData.HousingSize[1]/2), 0 } },
+				}
+			},
+			{
 				production_type = "output",
 				pipe_picture = bulkypipepictures(),
 				pipe_covers = pipecoverspictures(),
@@ -187,7 +268,7 @@ data:extend({
 				height = 1,
 				base_level = 2,
 				pipe_connections = {
-					{ position = { -(MathData.HousingSize[1]/2), 0 } },
+					{ position = { 0, 0 } },
 				}
 			},
 		},
