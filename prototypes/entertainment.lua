@@ -6,27 +6,30 @@ local common = require("prototypes/common")
 --Entertainment products
 data:extend({
 	{
-		type = "item",
+		type = "fluid",
 		name = "beer",
-		icon = "__base__/graphics/icons/steam-turbine.png",
-		icon_size = 64,
-		subgroup = "Auxilliary",
-		order = "a",
-		stack_size = 5
+		default_temperature = 15,
+		max_temperature = 100,
+		heat_capacity = "0.2KJ",
+		base_color = {r=0, g=0.34, b=0.6},
+		flow_color = {r=0.7, g=0.7, b=0.7},
+		icon = "__Population__/graphics/icons/beer.png",
+		icon_size = 64, icon_mipmaps = 4,
+		order = "a[fluid]-a[water]"
 	},
 	{
 		type = "recipe",
 		name = "beer",
-		category = "crafting-with-fluid",
+		category = "chemistry",
 		enabled = true,
-		energy_required = 600,
+		energy_required = 300,
 		ingredients = {
 			{"grain", 400},
-			{ type = "fluid", name = "water", amount = 1000 },
+			{ type = "fluid", name = "treated-water", amount = 600 },
 		},
 		results = {
-			{"beer", 400},
-			{ type = "fluid", name = "sewage", amount = 600 },
+			{ type = "fluid", name = "beer", amount = 400 },
+			{ type = "fluid", name = "sewage", amount = 200 },
 		},
 		main_product = "beer",
 		--icon = "__Population__/graphics/crude-oil.png",
@@ -48,12 +51,13 @@ data:extend({
 		energy_required = 200,
 		ingredients = {
 			{"person", 8},
-			{"beer", 20},
+			{ type = "fluid", name = "beer", amount = 100 },
 			{ type = "fluid", name = "treated-water", amount = 200 },
 		},
 		results = {
 			{"tired-person", 8},
-			{ type = "fluid", name = "sewage", amount = 200 },
+			{ type = "fluid", name = "sewage", amount = 250 },
+			{ "garbage",64 },
 		},
 		--icon = "__Population__/graphics/crude-oil.png",
 		--icon_size = 32,
@@ -160,7 +164,18 @@ data:extend({
 				height = 1,
 				base_level = -2,
 				pipe_connections = {
-					{ position = { (MathData.HousingSize[1]/2), 0 } },
+					{ position = { (MathData.HousingSize[1]/2), 1 } },
+				}
+			},
+			{
+				production_type = "input",
+				pipe_picture = bulkypipepictures(),
+				pipe_covers = pipecoverspictures(),
+				base_area = 1,
+				height = 1,
+				base_level = -2,
+				pipe_connections = {
+					{ position = { (MathData.HousingSize[1]/2), -1 } },
 				}
 			},
 			{

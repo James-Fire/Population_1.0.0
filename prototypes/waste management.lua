@@ -156,7 +156,7 @@ data:extend({
 	},
 	{
 		type = "recipe",
-		name = "filter-water-treatment",
+		name = "filter-water-treatment-pipe",
 		category = "crafting",
 		enabled = true,
 		energy_required = 10,
