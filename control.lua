@@ -229,11 +229,11 @@ local function CalculateHousingBeacon(entityName, surface, ParamPosition, force,
 		elseif entity.name:find("tree", 1, true) and entity.name:find("dead", 1, true) then
 			--game.print("Found Dead Tree")
 			TempScore = TempScore - Per_Tree_Impact
-		elseif entity.name:find("entertainment", 1, true) and is_crafting(entity) and is_connected_to_electric_network(is_crafting) then
+		elseif entity.name:find("entertainment", 1, true) and entity.is_crafting() and entity.is_connected_to_electric_network() then
 			BuildingCount = BuildingCount + 1
-		elseif entity.name:find("butcher", 1, true) and is_crafting(entity) and is_connected_to_electric_network(is_crafting) then
+		elseif entity.name:find("butcher", 1, true) and entity.is_crafting() and entity.is_connected_to_electric_network() then
 			HasButcher = true
-		elseif entity.name:find("tolerance", 1, true) and is_crafting(entity) and is_connected_to_electric_network(is_crafting) then
+		elseif entity.name:find("tolerance", 1, true) and entity.is_crafting() and entity.is_connected_to_electric_network() then
 			Tiles_Max = Tiles_Max * 1.2
 		end
 	end

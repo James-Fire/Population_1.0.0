@@ -31,9 +31,6 @@ Fluid Burner Heater. Uses fluid fuel, outputs heat. 24c
 
 Some way to communicate what is in housing effect range (Floating text on place?)
 Some way to communicate housing effect range
-Unlocks for Bar and Beer
-Unlocks for Butcher
-Put meat and fishing behind tech
 
 Repair Packs use people to make
 
@@ -46,7 +43,7 @@ Housing doesn't care about lower density housing
 
 Housing no longer counts itself as meh
 
-Entertainment. Beer.
+Entertainment
 Quiet Rails?
 Recipe-based construction of housing structures?
 Setting for requiring people in specific machines:

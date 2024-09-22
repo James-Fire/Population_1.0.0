@@ -109,8 +109,8 @@ data:extend({
 		selection_box = {{-(MathData.HousingSize[1]/2), -(MathData.HousingSize[1]/2)}, {(MathData.HousingSize[1]/2), (MathData.HousingSize[1]/2)}},
 		collision_mask = {"item-layer", "object-layer", "player-layer", "water-tile"},
 		crafting_categories = {"tolerance-bar"},
-		crafting_speed = MathData.HousingWorkSpeed[1],
-		energy_usage = MathData.HousingEnergy[1],
+		crafting_speed = 1,
+		energy_usage = MathData.HousingEnergy[2],
 		allowed_effects = {"speed", "consumption"},
 		energy_source = {
 			type = "electric",
@@ -164,7 +164,7 @@ data:extend({
 				height = 1,
 				base_level = -2,
 				pipe_connections = {
-					{ position = { (MathData.HousingSize[1]/2), 1 } },
+					{ position = { (MathData.HousingSize[1]/2)+0.5, 1 } },
 				}
 			},
 			{
@@ -175,7 +175,7 @@ data:extend({
 				height = 1,
 				base_level = -2,
 				pipe_connections = {
-					{ position = { (MathData.HousingSize[1]/2), -1 } },
+					{ position = { (MathData.HousingSize[1]/2)+0.5, -1 } },
 				}
 			},
 			{
@@ -186,7 +186,7 @@ data:extend({
 				height = 1,
 				base_level = 2,
 				pipe_connections = {
-					{ position = { -(MathData.HousingSize[1]/2), 0 } },
+					{ position = { -(MathData.HousingSize[1]/2)-0.5, 0 } },
 				}
 			},
 		},
