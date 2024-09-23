@@ -361,17 +361,16 @@ data:extend({
 		icon = "__base__/graphics/icons/steam-turbine.png",
 		icon_size = 64,
 		category = "entertainment-arcade",
-		enabled = false,
+		enabled = true,
 		energy_required = 500,
 		ingredients = {
 			{"person", 4},
-			{ "copper-plate", 40},
+			{ "candy", 40},
 			{ type = "fluid", name = "beer", amount = 100 },
 			{ type = "fluid", name = "treated-water", amount = 100 },
 		},
 		results = {
 			{"tired-person", 4},
-			{ "copper-plate", 80},
 			{ type = "fluid", name = "sewage", amount = 200 },
 			{ "garbage",40 },
 		},
@@ -497,19 +496,3 @@ data:extend({
 		},
 	},
 })
-
-LSlib.recipe.duplicate("entertainment-arcade-use", "entertainment-arcade-use-copper")
-LSlib.recipe.duplicate("entertainment-arcade-use", "entertainment-arcade-use-paper")
-LSlib.recipe.duplicate("entertainment-arcade-use", "entertainment-arcade-use-plastic")
-
-LSlib.recipe.editResult("entertainment-arcade-use-copper", "copper-plate", "copper-recycling", 1 )
-LSlib.recipe.editResult("entertainment-arcade-use-paper", "copper-plate", "paper-recycling", 1 )
-LSlib.recipe.editResult("entertainment-arcade-use-plastic", "copper-plate", "plastic-recycling", 1 )
-
-LSlib.recipe.editIngredient("entertainment-arcade-use-copper", "copper-plate", "copper-food-2", 1 )
-LSlib.recipe.editIngredient("entertainment-arcade-use-paper", "copper-plate", "paper-food-2", 1 )
-LSlib.recipe.editIngredient("entertainment-arcade-use-plastic", "copper-plate", "plastic-food-2", 1 )
-
-LSlib.recipe.enable("entertainment-arcade-use-copper")
-LSlib.recipe.enable("entertainment-arcade-use-paper")
-LSlib.recipe.enable("entertainment-arcade-use-plastic")

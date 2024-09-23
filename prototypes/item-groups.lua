@@ -236,6 +236,10 @@ data:extend({
 	},
 	{
 		type = "recipe-category",
+		name = "sugar-cane-farming"
+	},
+	{
+		type = "recipe-category",
 		name = "recycling"
 	},
 	{

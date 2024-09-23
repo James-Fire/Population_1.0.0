@@ -121,7 +121,34 @@ data:extend({
 	},
 	{
 		type = "item",
-		name = "hemp-fiber",
+		name = "sugar-cane",
+		icon = "__base__/graphics/icons/steam-turbine.png",
+		icon_size = 64,
+		subgroup = "farming",
+		order = "a",
+		stack_size = 100
+	},
+	{
+		type = "item",
+		name = "sugar",
+		icon = "__base__/graphics/icons/steam-turbine.png",
+		icon_size = 64,
+		subgroup = "farming",
+		order = "a",
+		stack_size = 100
+	},
+	{
+		type = "item",
+		name = "candy",
+		icon = "__base__/graphics/icons/steam-turbine.png",
+		icon_size = 64,
+		subgroup = "farming",
+		order = "a",
+		stack_size = 100
+	},
+	{
+		type = "item",
+		name = "plant-fiber",
 		icon = "__base__/graphics/icons/steam-turbine.png",
 		icon_size = 64,
 		subgroup = "farming",
@@ -238,12 +265,12 @@ data:extend({
 	},
 	{
 		type = "recipe",
-		name = "hemp-paper",
+		name = "plant-paper",
 		category = "crafting-with-fluid",
 		enabled = true,
 		energy_required = 5,
 		ingredients = {
-			{ "hemp-fiber",1 },
+			{ "plant-fiber",1 },
 			{ type = "fluid", name = "water", amount = 10 },
 		},
 		results = {
@@ -251,6 +278,45 @@ data:extend({
 		},
 		subgroup = "farming",
 		order = "a-5",
+	},
+	{
+		type = "recipe",
+		name = "sugar-cane-procressing",
+		icon = "__base__/graphics/icons/steam-turbine.png",
+		icon_size = 64,
+		category = "chemistry",
+		enabled = true,
+		energy_required = 10,
+		ingredients = {
+			{ "sugar-cane",10 },
+			{ type = "fluid", name = "water", amount = 50 },
+		},
+		results = {
+			{ "sugar",2 },
+			{ "plant-fiber",2 },
+			{ type = "fluid", name = "sewage", amount = 25 },
+		},
+		subgroup = "farming",
+		order = "b-0",
+	},
+	{
+		type = "recipe",
+		name = "candy",
+		icon = "__base__/graphics/icons/steam-turbine.png",
+		icon_size = 64,
+		category = "chemistry",
+		enabled = true,
+		energy_required = 20,
+		ingredients = {
+			{ "sugar",5 },
+			{ "fruit",5 },
+			{ type = "fluid", name = "water", amount = 10 },
+		},
+		results = {
+			{ "candy",5 },
+		},
+		subgroup = "farming",
+		order = "b-0",
 	},
 	{
 		type = "recipe",
@@ -266,7 +332,7 @@ data:extend({
 		},
 		results = {
 			{ "hemp-food",2 },
-			{ "hemp-fiber",2 },
+			{ "plant-fiber",2 },
 			{ type = "fluid", name = "plant-oil", amount = 2 },
 		},
 		subgroup = "farming",
@@ -522,10 +588,10 @@ data:extend({
 	},
 })
 
-local Farms = { "grain", "fruit", "vegetables", "meat", "nuts", "wood", "hemp" }
+local Farms = { "grain", "fruit", "vegetables", "meat", "nuts", "wood", "hemp", "sugar-cane" }
 --"fish",
-local FarmTime = { 160, 200, 120, 360, 120, 800, 40 }
-local FarmProduce = { 30, 50, 30, 30, 30, 100, 20 }
+local FarmTime = { 160, 200, 120, 360, 120, 800, 40, 160 }
+local FarmProduce = { 30, 50, 30, 30, 30, 100, 20, 150 }
 local FarmRequiresWater = { false, true, false, true, false, false, false }
 
 for i, Farm in pairs(Farms) do
@@ -580,21 +646,21 @@ for i, Farm in pairs(Farms) do
 end
 
 LSlib.recipe.duplicate("concrete", "hempcrete")
-LSlib.recipe.editIngredient("hempcrete", "iron-stick", "hemp-fiber", 1 )
+LSlib.recipe.editIngredient("hempcrete", "iron-stick", "plant-fiber", 1 )
 LSlib.technology.addRecipeUnlock("concrete", "hempcrete")
 
 LSlib.recipe.duplicate("composting", "hemp-food-composting")
 LSlib.recipe.editIngredient("hemp-food-composting", "organic-material", "hemp-food", 1 )
 LSlib.recipe.editResult("hemp-food-composting", "fertilizer", "organic-material", 1 )
 
-LSlib.recipe.duplicate("composting", "hemp-fiber-composting")
-LSlib.recipe.editIngredient("hemp-fiber-composting", "organic-material", "hemp-fiber", 1 )
-LSlib.recipe.editResult("hemp-fiber-composting", "fertilizer", "organic-material", 1 )
+LSlib.recipe.duplicate("composting", "plant-fiber-composting")
+LSlib.recipe.editIngredient("plant-fiber-composting", "organic-material", "plant-fiber", 1 )
+LSlib.recipe.editResult("plant-fiber-composting", "fertilizer", "organic-material", 1 )
 
 LSlib.recipe.disable("farming")
 LSlib.recipe.disable("farm")
 
-local farmproductivity = { "nut-procressing", "plant-oil-gas", "hemp-procressing", "hemp-paper", "paper" }
+local farmproductivity = { "nut-procressing", "plant-oil-gas", "hemp-procressing", "plant-paper", "paper" }
 
 --limitation_blacklist
 

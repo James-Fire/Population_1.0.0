@@ -109,6 +109,9 @@ Items:
 	Meat
 	Fruit
 	Vegetables
+	Sugar Cane
+	Sugar
+	Candy
 	Farm for each: Maybe just a generic farm, then I can layer the crop it makes onto it?
 		Hemp
 		Nuts
@@ -116,6 +119,7 @@ Items:
 		Meat
 		Fruit
 		Vegetables
+		Sugar Cane
 	Fishery
 	Paper
 	Food
