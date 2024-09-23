@@ -268,7 +268,11 @@ data:extend({
 	},
 	{
 		type = "recipe-category",
-		name = "entertainment-bar"
+		name = "entertainment-theatre"
+	},
+	{
+		type = "recipe-category",
+		name = "entertainment-arcade"
 	},
 	{
 		type = "recipe-category",

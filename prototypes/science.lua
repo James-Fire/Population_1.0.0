@@ -62,10 +62,13 @@ for i, Science in pairs(sciencepackrecipes) do
 	if PeopleCount <= 1 then
 		PeopleCount = 2
 	end
+	Science.icon_size = 64
 	if data.raw.tool[Science.name] then
 		LSlib.recipe.setMainResult(Science.name, Science.name)
+		Science.subgroup = data.raw.tool[Science.name].subgroup
 	elseif data.raw.fluid[Science.name] then
 		LSlib.recipe.setMainResult(Science.name, Science.name)
+		Science.subgroup = data.raw.fluid[Science.name].subgroup
 	elseif Science.result then
 		Science.main_product = Science.result
 	end

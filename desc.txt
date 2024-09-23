@@ -5,7 +5,7 @@ Produce sewage. Treating sewage gives fertilizer
 Fertilizer can be used to increase farm yield.
 Wood farming, to supply wood for housing and paper.
 Children need food, water, and energy to grow up
-Food is "premade meals" with a variety of recipes to make it. Packaging must be made and dealt with. Paper, Plastic, Aluminum, Iron.
+Food is "premade meals" with a variety of recipes to make it. Packaging must be made and dealt with. Paper, Plastic, Copper.
 People stack up to 4.
 Pollution causes houses to work slower, like homeworld farms.
 Food made from a greater variety of ingredients increases rest speed.
