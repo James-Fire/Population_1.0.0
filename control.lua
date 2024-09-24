@@ -291,8 +291,9 @@ local function CalculateHousingBeacon(entityName, surface, ParamPosition, force,
 	if MehTiles > Tiles_Max then
 		BadTiles = BadTiles + MehTiles - Tiles_Max
 	end
+	--game.print("Bad + Meh Tile Score: "..tostring(BadTiles))
 	TempScore = GoodTiles - BadTiles
-	--game.print("Tile Temp Score: "..tostring(TempScore))
+	--game.print("Tile Score: "..tostring(TempScore))
 	if TempScore > 0 and TempScore > Tiles_Max then
 		Score = Score + Tiles_Max*Per_Tile_Impact
 	else
@@ -347,6 +348,7 @@ local function ManageHousingBeacon(entity, surface, force, radius)
 			--game.print("Module Inventory is valid")
 			--game.print("Calc score for "..entity.name)
 			local Score = CalculateHousingBeacon(entity.name ,surface, hiddenBeacon.position, force, radius)
+			hiddenBeacon.surface.create_entity{name="flying-damage-text", position=hiddenBeacon.position, text=string.format("%s",tostring(Score)), color={r = 200, g = 200, b = 200}}
 			--game.print("Final House Score: "..tostring(Score))
 			ManageHousingBeaconModules(module_inventory, Score)
 		end
@@ -375,6 +377,7 @@ local function ManageFarmingBeacon(entity, surface, force, radius)
 			if module_inventory then
 				--game.print("Module Inventory is valid")
 				local Score = CalculateFarmingBeacon(entity, surface, entity.position, force, radius)
+				hiddenBeacon.surface.create_entity{name="flying-damage-text", position=hiddenBeacon.position, text=string.format("%s",tostring(Score)), color={r = 200, g = 200, b = 200}}
 				--game.print("Final Farm Score: "..tostring(Score))
 				ManageFarmingBeaconModules(module_inventory, Score)
 			end

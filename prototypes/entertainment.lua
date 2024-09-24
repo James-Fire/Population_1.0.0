@@ -479,7 +479,18 @@ data:extend({
 				height = 1,
 				base_level = -2,
 				pipe_connections = {
-					{ position = { (MathData.HousingSize[1]/2)+0.5, 0 } },
+					{ position = { (MathData.HousingSize[1]/2)+0.5, 1 } },
+				}
+			},
+			{
+				production_type = "input",
+				pipe_picture = bulkypipepictures(),
+				pipe_covers = pipecoverspictures(),
+				base_area = 1,
+				height = 1,
+				base_level = -2,
+				pipe_connections = {
+					{ position = { (MathData.HousingSize[1]/2)+0.5, -1 } },
 				}
 			},
 			{
